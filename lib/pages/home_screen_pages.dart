@@ -3,6 +3,7 @@ import 'package:flutter/src/widgets/framework.dart';
 import 'package:flutter/material.dart';
 import 'package:mountain_trip_api/data/fake_data.dart';
 import 'package:mountain_trip_api/misc/colors.dart';
+import 'package:mountain_trip_api/pages/SignIn_SignUpPage/SignInScreen.dart';
 
 class HomeScreen extends StatelessWidget {
   const HomeScreen({Key? key}) : super(key: key);
@@ -70,7 +71,14 @@ class HomeScreen extends StatelessWidget {
                         ),
                         const SizedBox(height: 30),
                         InkWell(
-                          onTap: () {},
+                          onTap: () {
+                            Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                builder: (context) => SignInScreen(),
+                              ),
+                            );
+                          },
                           child: Container(
                             height: 50,
                             width: 100,
