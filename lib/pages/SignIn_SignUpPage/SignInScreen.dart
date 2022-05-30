@@ -1,6 +1,7 @@
 import 'package:flutter/src/foundation/key.dart';
 import 'package:flutter/src/widgets/framework.dart';
 import 'package:flutter/material.dart';
+import 'package:mountain_trip_api/pages/SignIn_SignUpPage/SignUpScreen.dart';
 
 import '../../misc/colors.dart';
 import '../../widgets/TextFormFieldDesign.dart';
@@ -189,7 +190,14 @@ class SignInScreen extends StatelessWidget {
                                   ),
                                 ),
                                 InkWell(
-                                  onTap: () {},
+                                  onTap: () {
+                                    Navigator.push(
+                                      context,
+                                      MaterialPageRoute(
+                                        builder: (context) => SignUpScreen(),
+                                      ),
+                                    );
+                                  },
                                   child: Text(
                                     'Sign Up',
                                     style: TextStyle(
