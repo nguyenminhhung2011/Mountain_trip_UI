@@ -1,16 +1,6 @@
 # mountain_trip_api
 
-A new Flutter project.
+Mountain Trip Project
 
-## Getting Started
-
-This project is a starting point for a Flutter application.
-
-A few resources to get you started if this is your first Flutter project:
-
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
-
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+All Screens
+![Thiết kế chưa có tên](https://user-images.githubusercontent.com/90996598/171013633-a37f69f3-ffd7-4080-89a8-764a838a4bfe.png)
