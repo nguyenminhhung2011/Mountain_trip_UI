@@ -2,9 +2,11 @@ import 'package:flutter/src/foundation/key.dart';
 import 'package:flutter/src/widgets/framework.dart';
 import 'package:flutter/material.dart';
 import 'package:mountain_trip_api/pages/SignIn_SignUpPage/SignUpScreen.dart';
+import 'package:mountain_trip_api/widgets/responsiveButton.dart';
 
 import '../../misc/colors.dart';
 import '../../widgets/TextFormFieldDesign.dart';
+import '../mainPages.dart/mainPages.dart';
 
 class SignInScreen extends StatelessWidget {
   const SignInScreen({Key? key}) : super(key: key);
@@ -162,21 +164,16 @@ class SignInScreen extends StatelessWidget {
                               ],
                             ),
                             const SizedBox(height: 17),
-                            InkWell(
-                              onTap: () {},
-                              child: Container(
-                                height: 50,
-                                width: 150,
-                                decoration: BoxDecoration(
-                                  borderRadius: BorderRadius.circular(20),
-                                  color: AppColors.mainColor,
-                                  image: DecorationImage(
-                                    image:
-                                        AssetImage('assets/img/button-one.png'),
-                                  ),
-                                ),
-                              ),
-                            ),
+                            ResponSiveButton(
+                                tittle: "",
+                                press: () {
+                                  Navigator.push(
+                                    context,
+                                    MaterialPageRoute(
+                                      builder: (context) => MainPagesScreen(),
+                                    ),
+                                  );
+                                }),
                             const SizedBox(height: 7),
                             Row(
                               mainAxisAlignment: MainAxisAlignment.center,

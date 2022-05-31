@@ -4,9 +4,10 @@ import 'package:flutter/material.dart';
 import 'package:mountain_trip_api/data/fake_data.dart';
 import 'package:mountain_trip_api/misc/colors.dart';
 import 'package:mountain_trip_api/pages/SignIn_SignUpPage/SignInScreen.dart';
+import 'package:mountain_trip_api/widgets/responsiveButton.dart';
 
-class HomeScreen extends StatelessWidget {
-  const HomeScreen({Key? key}) : super(key: key);
+class WelcomeScreen extends StatelessWidget {
+  const WelcomeScreen({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -70,8 +71,9 @@ class HomeScreen extends StatelessWidget {
                           ),
                         ),
                         const SizedBox(height: 30),
-                        InkWell(
-                          onTap: () {
+                        ResponSiveButton(
+                          tittle: "",
+                          press: () {
                             Navigator.push(
                               context,
                               MaterialPageRoute(
@@ -79,17 +81,6 @@ class HomeScreen extends StatelessWidget {
                               ),
                             );
                           },
-                          child: Container(
-                            height: 50,
-                            width: 100,
-                            decoration: BoxDecoration(
-                              borderRadius: BorderRadius.circular(10),
-                              color: AppColors.mainColor,
-                              image: DecorationImage(
-                                image: AssetImage('assets/img/button-one.png'),
-                              ),
-                            ),
-                          ),
                         ),
                       ],
                     ),
