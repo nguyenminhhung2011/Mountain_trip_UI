@@ -3,6 +3,9 @@ import 'package:flutter/src/foundation/key.dart';
 import 'package:flutter/src/widgets/framework.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:mountain_trip_api/misc/colors.dart';
+import 'package:mountain_trip_api/pages/Home/widgets/DiffCard.dart';
+import 'package:mountain_trip_api/pages/Home/widgets/LocationCard.dart';
+import 'package:mountain_trip_api/pages/Home/widgets/ViewListLocation.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({Key? key}) : super(key: key);
@@ -44,7 +47,9 @@ class _HomeScreenState extends State<HomeScreen> {
               child: Row(
                 children: [
                   InkWell(
-                    onTap: () {},
+                    onTap: () {
+                      Navigator.pop(context);
+                    },
                     child: SvgPicture.asset('assets/icons/sort.svg',
                         height: 19, color: Colors.black54),
                   ),
@@ -229,146 +234,6 @@ class _HomeScreenState extends State<HomeScreen> {
             BoxShadow(
                 color: Colors.black38, offset: Offset(2, 3), blurRadius: 3)
           ]),
-    );
-  }
-}
-
-class DiffCard extends StatelessWidget {
-  final String icon;
-  final String tittle;
-  final Function() press;
-  const DiffCard({
-    Key? key,
-    required this.icon,
-    required this.tittle,
-    required this.press,
-  }) : super(key: key);
-
-  @override
-  Widget build(BuildContext context) {
-    return Padding(
-      padding: const EdgeInsets.only(right: 35),
-      child: Column(
-        children: [
-          InkWell(
-            borderRadius: BorderRadius.circular(20),
-            onTap: press,
-            child: Container(
-              height: 60,
-              width: 60,
-              decoration: BoxDecoration(
-                borderRadius: BorderRadius.circular(20),
-                image: DecorationImage(
-                  image: AssetImage(icon),
-                ),
-              ),
-            ),
-          ),
-          const SizedBox(height: 8),
-          Text(
-            tittle,
-            style: TextStyle(
-              fontWeight: FontWeight.w500,
-              fontSize: 14,
-            ),
-          ),
-        ],
-      ),
-    );
-  }
-}
-
-class ViewListLocation extends StatelessWidget {
-  const ViewListLocation({
-    Key? key,
-  }) : super(key: key);
-
-  @override
-  Widget build(BuildContext context) {
-    return Padding(
-      padding: const EdgeInsets.symmetric(horizontal: 20),
-      child: SingleChildScrollView(
-        scrollDirection: Axis.horizontal,
-        child: Row(
-          children: [
-            LocationCard(),
-            LocationCard(),
-            LocationCard(),
-            LocationCard(),
-          ],
-        ),
-      ),
-    );
-  }
-}
-
-class LocationCard extends StatelessWidget {
-  const LocationCard({
-    Key? key,
-  }) : super(key: key);
-
-  @override
-  Widget build(BuildContext context) {
-    return Stack(
-      children: [
-        Container(
-          height: 270,
-          width: 180,
-          decoration: BoxDecoration(
-            borderRadius: BorderRadius.circular(20),
-            image: DecorationImage(
-              fit: BoxFit.cover,
-              image: AssetImage('assets/img/mountain.jpeg'),
-            ),
-          ),
-        ),
-        Container(
-          height: 270,
-          width: 180,
-          decoration: BoxDecoration(
-            borderRadius: BorderRadius.circular(20),
-            gradient: LinearGradient(
-              begin: Alignment.topCenter,
-              end: Alignment.bottomCenter,
-              colors: [
-                Colors.black26,
-                Colors.black26,
-                AppColors.mainColor,
-              ],
-            ),
-          ),
-        ),
-        Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 10),
-          child: Container(
-            height: 270,
-            width: 180,
-            child: Column(
-              mainAxisAlignment: MainAxisAlignment.end,
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Text(
-                  'Cascade',
-                  style: TextStyle(
-                    color: Colors.white,
-                    fontSize: 20,
-                  ),
-                ),
-                Row(
-                  children: [
-                    Icon(Icons.location_on_sharp,
-                        color: Colors.white, size: 15),
-                    const SizedBox(width: 4),
-                    Text('Canada, Banff',
-                        style: TextStyle(color: Colors.white)),
-                  ],
-                ),
-                const SizedBox(height: 20),
-              ],
-            ),
-          ),
-        ),
-      ],
     );
   }
 }
