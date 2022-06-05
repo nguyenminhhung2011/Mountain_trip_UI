@@ -4,12 +4,33 @@ import 'package:flutter/material.dart';
 import 'package:mountain_trip_api/data/fake_data.dart';
 import 'package:mountain_trip_api/misc/colors.dart';
 import 'package:mountain_trip_api/pages/SignIn_SignUpPage/SignInScreen.dart';
+import 'package:mountain_trip_api/services/remoteServices.dart';
 import 'package:mountain_trip_api/widgets/responsiveButton.dart';
 
-class WelcomeScreen extends StatelessWidget {
+import '../models/user.dart';
+
+class WelcomeScreen extends StatefulWidget {
   const WelcomeScreen({Key? key}) : super(key: key);
 
   @override
+  State<WelcomeScreen> createState() => _WelcomeScreenState();
+}
+
+class _WelcomeScreenState extends State<WelcomeScreen> {
+  late List<User> users;
+  @override
+  void initState() {
+    super.initState();
+    getData();
+  }
+
+  getData() async {
+    users = await RemoteService().getAllUser();
+    for (var item in users) {
+      print(item.name);
+    }
+  }
+
   Widget build(BuildContext context) {
     final List<int> indexPage = [0, 1, 2];
 

@@ -15,7 +15,7 @@ class DetailScreen extends StatefulWidget {
 
 class _DetailScreenState extends State<DetailScreen> {
   int selectPeople = 1;
-  @override
+  @override 
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Colors.white,
@@ -253,21 +253,25 @@ class _DetailScreenState extends State<DetailScreen> {
                         const SizedBox(height: 20),
                         Row(
                           children: [
-                            Container(
-                              alignment: Alignment.center,
-                              height: 75,
-                              width: 75,
-                              decoration: BoxDecoration(
-                                color: Colors.white,
-                                border: Border.all(
-                                  width: 2,
+                            InkWell(
+                              borderRadius: BorderRadius.circular(20),
+                              onTap: () {},
+                              child: Container(
+                                alignment: Alignment.center,
+                                height: 75,
+                                width: 75,
+                                decoration: BoxDecoration(
+                                  color: Colors.white,
+                                  border: Border.all(
+                                    width: 2,
+                                    color: AppColors.mainColor,
+                                  ),
+                                  borderRadius: BorderRadius.circular(20),
+                                ),
+                                child: Icon(
+                                  Icons.favorite_outline,
                                   color: AppColors.mainColor,
                                 ),
-                                borderRadius: BorderRadius.circular(20),
-                              ),
-                              child: Icon(
-                                Icons.favorite_outline,
-                                color: AppColors.mainColor,
                               ),
                             ),
                             const SizedBox(

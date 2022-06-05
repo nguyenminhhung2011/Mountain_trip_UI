@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+import 'package:mountain_trip_api/pages/Home/HomeScreen.dart';
 import 'package:mountain_trip_api/pages/home_screen_pages.dart';
 
 void main() {
@@ -11,13 +13,17 @@ class MyApp extends StatelessWidget {
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      title: 'Flutter Demo',
+    return GetMaterialApp(
       debugShowCheckedModeBanner: false,
-      theme: ThemeData(
-        primarySwatch: Colors.blue,
+      title: 'Tiktok clone',
+      theme: ThemeData.dark().copyWith(
+        scaffoldBackgroundColor: Colors.black,
       ),
-      home: WelcomeScreen(),
+      home: const WelcomeScreen(),
+      getPages: [
+        GetPage(name: '/WelcomeScreen', page: () => const WelcomeScreen()),
+        GetPage(name: '/HomeScreen', page: () => const HomeScreen()),
+      ],
     );
   }
 }

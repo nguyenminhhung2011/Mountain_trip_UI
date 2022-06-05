@@ -94,11 +94,11 @@ class SignUpScreen extends StatelessWidget {
                                 width: 60,
                                 decoration: BoxDecoration(
                                   shape: BoxShape.circle,
-                                  image: DecorationImage(
-                                    fit: BoxFit.cover,
-                                    image: NetworkImage(
-                                        'https://scontent.fsgn5-15.fna.fbcdn.net/v/t39.30808-6/283302695_586918832926290_7105784237859390906_n.jpg?_nc_cat=111&ccb=1-7&_nc_sid=09cbfe&_nc_ohc=ESsVoa63avcAX_UDBUu&_nc_ht=scontent.fsgn5-15.fna&oh=00_AT8KFguLOr6_8642GieK6QfNofXEYHU38xfL4PBqWhI4SA&oe=6298B4FA'),
-                                  ),
+                                  // image: DecorationImage(
+                                  //   fit: BoxFit.cover,
+                                  //   image: NetworkImage(
+                                  //       'https://scontent.fsgn5-15.fna.fbcdn.net/v/t39.30808-6/283302695_586918832926290_7105784237859390906_n.jpg?_nc_cat=111&ccb=1-7&_nc_sid=09cbfe&_nc_ohc=ESsVoa63avcAX_UDBUu&_nc_ht=scontent.fsgn5-15.fna&oh=00_AT8KFguLOr6_8642GieK6QfNofXEYHU38xfL4PBqWhI4SA&oe=6298B4FA'),
+                                  // ),
                                 ),
                               ),
                             ),
