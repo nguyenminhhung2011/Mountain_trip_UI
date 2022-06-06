@@ -5,6 +5,7 @@ import 'package:flutter_rating_bar/flutter_rating_bar.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:mountain_trip_api/misc/colors.dart';
 import 'package:mountain_trip_api/pages/DetailsPages/evaluate.dart';
+import 'package:mountain_trip_api/pages/DetailsPages/widgets/NumberPeopleInGroup.dart';
 import 'package:mountain_trip_api/widgets/responsiveButton.dart';
 
 class DetailScreen extends StatefulWidget {
@@ -16,6 +17,7 @@ class DetailScreen extends StatefulWidget {
 
 class _DetailScreenState extends State<DetailScreen> {
   int selectPeople = 1;
+  double selectPeopleDouble = 1;
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -226,7 +228,70 @@ class _DetailScreenState extends State<DetailScreen> {
                                   },
                                   selected: selectPeople == 5),
                               InkWell(
-                                onTap: () {},
+                                onTap: () {
+                                  showDialog(
+                                    context: context,
+                                    builder: (context) => Dialog(
+                                      backgroundColor: Colors.transparent,
+                                      child: Container(
+                                        height:
+                                            MediaQuery.of(context).size.height /
+                                                2,
+                                        width:
+                                            MediaQuery.of(context).size.width /
+                                                1.5,
+                                        decoration: BoxDecoration(
+                                          color: Colors.white,
+                                          borderRadius:
+                                              BorderRadius.circular(20),
+                                        ),
+                                        child: Column(
+                                          crossAxisAlignment:
+                                              CrossAxisAlignment.center,
+                                          children: [
+                                            Row(
+                                              mainAxisAlignment:
+                                                  MainAxisAlignment.center,
+                                              children: [
+                                                Text(
+                                                  double.parse(
+                                                          (selectPeopleDouble)
+                                                              .toStringAsFixed(
+                                                                  0))
+                                                      .toString(),
+                                                  style: TextStyle(
+                                                    color: AppColors.mainColor,
+                                                    fontSize: 80,
+                                                    fontWeight: FontWeight.bold,
+                                                  ),
+                                                ),
+                                                const SizedBox(width: 5),
+                                                Icon(
+                                                  Icons.people,
+                                                  color: AppColors.mainColor,
+                                                  size: 40,
+                                                ),
+                                              ],
+                                            ),
+                                            const SizedBox(height: 10),
+                                            Slider(
+                                              value: selectPeopleDouble,
+                                              min: 1,
+                                              max: 10,
+                                              divisions: 95,
+                                              activeColor: AppColors.mainColor,
+                                              onChanged: (value) {
+                                                setState(() {
+                                                  selectPeopleDouble = value;
+                                                });
+                                              },
+                                            ),
+                                          ],
+                                        ),
+                                      ),
+                                    ),
+                                  );
+                                },
                                 child: Container(
                                   margin: const EdgeInsets.only(right: 10),
                                   alignment: Alignment.center,
@@ -335,44 +400,6 @@ class _DetailScreenState extends State<DetailScreen> {
             ],
           ),
         ],
-      ),
-    );
-  }
-}
-
-class NumberPeopleInGroup extends StatelessWidget {
-  final int no;
-  final bool selected;
-  final Function() press;
-  const NumberPeopleInGroup({
-    Key? key,
-    required this.no,
-    required this.press,
-    required this.selected,
-  }) : super(key: key);
-
-  @override
-  Widget build(BuildContext context) {
-    return InkWell(
-      onTap: press,
-      child: Container(
-        margin: const EdgeInsets.only(right: 10),
-        alignment: Alignment.center,
-        height: 60,
-        width: 60,
-        decoration: BoxDecoration(
-          borderRadius: BorderRadius.circular(15),
-          color:
-              (selected) ? Colors.black : AppColors.mainColor.withOpacity(0.3),
-        ),
-        child: Text(
-          no.toString(),
-          style: TextStyle(
-            color: (selected) ? Colors.white : Colors.black,
-            fontWeight: FontWeight.bold,
-            fontSize: 20,
-          ),
-        ),
       ),
     );
   }
