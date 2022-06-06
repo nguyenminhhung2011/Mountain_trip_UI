@@ -17,19 +17,19 @@ class WelcomeScreen extends StatefulWidget {
 }
 
 class _WelcomeScreenState extends State<WelcomeScreen> {
-  late List<User> users;
+  // late List<User> users;
   @override
   void initState() {
     super.initState();
-    getData();
+    //getData();
   }
 
-  getData() async {
-    users = await RemoteService().getAllUser();
-    for (var item in users) {
-      print(item.name);
-    }
-  }
+  // getData() async {
+  //   users = await RemoteService().getAllUser();
+  //   for (var item in users) {
+  //     print(item.name);
+  //   }
+  // }
 
   Widget build(BuildContext context) {
     final List<int> indexPage = [0, 1, 2];

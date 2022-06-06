@@ -1,14 +1,8 @@
-// To parse this JSON data, do
-//
-//     final temperatures = temperaturesFromJson(jsonString);
-
 import 'dart:convert';
 
 User UserFromJson(String str) => User.fromJson(json.decode(str));
 List<User> ListUserFromJson(String str) =>
     List<User>.from(json.decode(str).map((x) => User.fromJson(x)));
-
-String temperaturesToJson(User data) => json.encode(data.toJson());
 
 class User {
   User({
@@ -26,7 +20,7 @@ class User {
   String id;
 
   factory User.fromJson(Map<String, dynamic> json) => User(
-        name: json["name"],
+        name: json["name"], 
         email: json["email"],
         password: json["password"],
         age: json["Age"],

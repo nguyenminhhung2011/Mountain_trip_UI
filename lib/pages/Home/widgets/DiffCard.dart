@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 
+import '../../../misc/colors.dart';
+
 class DiffCard extends StatelessWidget {
   final String icon;
   final String tittle;
@@ -37,6 +39,7 @@ class DiffCard extends StatelessWidget {
             style: TextStyle(
               fontWeight: FontWeight.w500,
               fontSize: 14,
+              color: Colors.black,
             ),
           ),
         ],

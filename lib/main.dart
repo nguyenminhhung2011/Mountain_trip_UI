@@ -13,17 +13,22 @@ class MyApp extends StatelessWidget {
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
-    return GetMaterialApp(
+    return MaterialApp(
       debugShowCheckedModeBanner: false,
-      title: 'Tiktok clone',
-      theme: ThemeData.dark().copyWith(
-        scaffoldBackgroundColor: Colors.black,
-      ),
+      title: 'Mountain trip',
       home: const WelcomeScreen(),
-      getPages: [
-        GetPage(name: '/WelcomeScreen', page: () => const WelcomeScreen()),
-        GetPage(name: '/HomeScreen', page: () => const HomeScreen()),
-      ],
     );
+    //  GetMaterialApp(
+    //   debugShowCheckedModeBanner: false,
+    //   title: 'Tiktok clone',
+    //   theme: ThemeData.dark().copyWith(
+    //     scaffoldBackgroundColor: Colors.black,
+    //   ),
+    //   home: const WelcomeScreen(),
+    //   getPages: [
+    //     GetPage(name: '/WelcomeScreen', page: () => const WelcomeScreen()),
+    //     GetPage(name: '/HomeScreen', page: () => const HomeScreen()),
+    //   ],
+    // );
   }
 }

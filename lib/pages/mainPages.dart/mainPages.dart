@@ -28,7 +28,7 @@ class _MainPagesScreenState extends State<MainPagesScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       extendBody: true,
-      backgroundColor: Color.fromARGB(255, 92, 71, 71),
+      backgroundColor: Colors.white,
       bottomNavigationBar: BottomNavigationBar(
         currentIndex: currentIndex,
         onTap: (index) {

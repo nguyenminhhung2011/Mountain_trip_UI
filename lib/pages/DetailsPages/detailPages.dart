@@ -4,6 +4,7 @@ import 'package:flutter/src/widgets/framework.dart';
 import 'package:flutter_rating_bar/flutter_rating_bar.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:mountain_trip_api/misc/colors.dart';
+import 'package:mountain_trip_api/pages/DetailsPages/evaluate.dart';
 import 'package:mountain_trip_api/widgets/responsiveButton.dart';
 
 class DetailScreen extends StatefulWidget {
@@ -15,7 +16,7 @@ class DetailScreen extends StatefulWidget {
 
 class _DetailScreenState extends State<DetailScreen> {
   int selectPeople = 1;
-  @override 
+  @override
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Colors.white,
@@ -143,6 +144,22 @@ class _DetailScreenState extends State<DetailScreen> {
                                   color: Colors.grey,
                                   fontWeight: FontWeight.w500,
                                   fontSize: 15),
+                            ),
+                            Spacer(),
+                            InkWell(
+                              onTap: () {
+                                Navigator.push(
+                                  context,
+                                  MaterialPageRoute(
+                                    builder: (context) => Evaluate(),
+                                  ),
+                                );
+                              },
+                              child: SvgPicture.asset(
+                                'assets/icons/chat.svg',
+                                color: AppColors.mainColor,
+                                height: 20,
+                              ),
                             )
                           ],
                         ),
