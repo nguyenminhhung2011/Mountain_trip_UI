@@ -6,8 +6,25 @@ import 'package:flutter_svg/svg.dart';
 
 import '../../misc/colors.dart';
 
-class Evaluate extends StatelessWidget {
+class Evaluate extends StatefulWidget {
   const Evaluate({Key? key}) : super(key: key);
+
+  @override
+  State<Evaluate> createState() => _EvaluateState();
+}
+
+class _EvaluateState extends State<Evaluate> {
+  int indexClieck = 0;
+  List<Map<String, dynamic>> _listButton = [
+    {"title": "All", "index": 0, "check": true},
+    {"title": "Positive", "index": 1, "check": false},
+    {"title": "Negative", "index": 2, "check": false},
+    {"title": "5 Star", "index": 3, "check": false},
+    {"title": "4 Star", "index": 4, "check": false},
+    {"title": "3 Star", "index": 5, "check": false},
+    {"title": "2 Star", "index": 6, "check": false},
+    {"title": "1 Star", "index": 7, "check": false},
+  ];
 
   @override
   Widget build(BuildContext context) {
@@ -23,21 +40,21 @@ class Evaluate extends StatelessWidget {
           child: Icon(Icons.arrow_back_ios, color: Colors.black),
         ),
       ),
-      bottomNavigationBar: Container(
-        height: MediaQuery.of(context).size.height * 0.1,
-        decoration: BoxDecoration(
-          borderRadius: BorderRadius.only(
-            topLeft: Radius.circular(10),
-            topRight: Radius.circular(10),
-          ),
-          color: AppColors.mainColor.withOpacity(0.7),
-          boxShadow: [
-            BoxShadow(
-              color: Colors.black.withOpacity(0.5),
-              offset: Offset(-1, -1),
-              blurRadius: 150,
+      floatingActionButton: FloatingActionButton(
+        backgroundColor: AppColors.mainColor,
+        onPressed: () {
+          showDialog(
+            context: context,
+            builder: (context) => Dialog(
+              backgroundColor: Colors.transparent,
+              child: PostComment(),
             ),
-          ],
+          );
+        },
+        child: SvgPicture.asset(
+          'assets/icons/chat.svg',
+          color: Colors.white,
+          height: 20,
         ),
       ),
       body: SingleChildScrollView(
@@ -124,6 +141,24 @@ class Evaluate extends StatelessWidget {
                 ],
               ),
               const SizedBox(height: 10),
+              SingleChildScrollView(
+                scrollDirection: Axis.horizontal,
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.start,
+                  children: _listButton.map((e) {
+                    return ButtonChoose(
+                      tittle: e["title"],
+                      press: () {
+                        setState(() {
+                          indexClieck = e["index"];
+                        });
+                      },
+                      check: indexClieck == e["index"],
+                    );
+                  }).toList(),
+                ),
+              ),
+              const SizedBox(height: 10),
               Evaluation(
                 userName: 'Minh Hung',
                 star: 4.2,
@@ -153,6 +188,107 @@ class Evaluate extends StatelessWidget {
           ),
         ),
       ),
+    );
+  }
+}
+
+class PostComment extends StatefulWidget {
+  const PostComment({
+    Key? key,
+  }) : super(key: key);
+
+  @override
+  State<PostComment> createState() => _PostCommentState();
+}
+
+class _PostCommentState extends State<PostComment> {
+  double slideValue = 0;
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      height: MediaQuery.of(context).size.height / 2,
+      width: MediaQuery.of(context).size.width / 1.5,
+      decoration: BoxDecoration(
+        color: Colors.white,
+        borderRadius: BorderRadius.circular(20),
+      ),
+      child: Column(children: [
+        Text(
+          double.parse((slideValue).toStringAsFixed(1)).toString(),
+          style: TextStyle(
+            color: AppColors.mainColor,
+            fontSize: 80,
+            fontWeight: FontWeight.bold,
+          ),
+        ),
+        const SizedBox(height: 10),
+        RatingBar.builder(
+          initialRating: slideValue,
+          minRating: 1,
+          direction: Axis.horizontal,
+          allowHalfRating: true,
+          itemCount: 5,
+          itemSize: 15,
+          itemPadding: EdgeInsets.symmetric(horizontal: 2),
+          itemBuilder: (context, _) => Icon(
+            Icons.star,
+            color: Colors.amber,
+          ),
+          onRatingUpdate: (rating) {
+            print(rating);
+          },
+        ),
+        Slider(
+          value: slideValue,
+          min: 0,
+          max: 5,
+          divisions: 95,
+          activeColor: AppColors.mainColor,
+          onChanged: (value) {
+            setState(() {
+              slideValue = value;
+            });
+          },
+        ),
+        Spacer(),
+        Container(
+          height: MediaQuery.of(context).size.height / 4.6,
+          margin: const EdgeInsets.symmetric(horizontal: 15),
+          padding: const EdgeInsets.all(10),
+          decoration: BoxDecoration(
+            border: Border.all(
+              width: 1,
+              color: AppColors.mainColor,
+            ),
+            borderRadius: BorderRadius.circular(20),
+          ),
+          child: TextFormField(
+            maxLines: 8,
+            decoration: InputDecoration(
+              hintText: "Comment Here",
+              border: InputBorder.none,
+            ),
+          ),
+        ),
+        const SizedBox(height: 10),
+        InkWell(
+          onTap: () {},
+          child: Container(
+            padding: const EdgeInsets.all(10),
+            decoration: BoxDecoration(
+              color: AppColors.mainColor,
+              shape: BoxShape.circle,
+            ),
+            child: Icon(
+              Icons.send,
+              color: Colors.white,
+              size: 20,
+            ),
+          ),
+        ),
+        const SizedBox(height: 10),
+      ]),
     );
   }
 }
@@ -358,6 +494,46 @@ class CharStar extends StatelessWidget {
           ],
         )
       ],
+    );
+  }
+}
+
+class ButtonChoose extends StatelessWidget {
+  final String tittle;
+  final Function() press;
+  final bool check;
+  const ButtonChoose(
+      {Key? key,
+      required this.tittle,
+      required this.press,
+      required this.check})
+      : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return Padding(
+      padding: const EdgeInsets.only(right: 10),
+      child: InkWell(
+        borderRadius: BorderRadius.circular(20),
+        onTap: press,
+        child: Container(
+          alignment: Alignment.center,
+          padding: const EdgeInsets.symmetric(horizontal: 20),
+          height: 35,
+          decoration: BoxDecoration(
+            color: check ? AppColors.mainColor : Colors.white,
+            border: Border.all(
+              width: 1,
+              color: AppColors.mainColor,
+            ),
+            borderRadius: BorderRadius.circular(20),
+          ),
+          child: Text(
+            tittle,
+            style: TextStyle(color: check ? Colors.white : AppColors.mainColor),
+          ),
+        ),
+      ),
     );
   }
 }
