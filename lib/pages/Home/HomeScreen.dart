@@ -350,7 +350,7 @@ class _HomeScreenState extends State<HomeScreen> {
                                 children: [
                                   const SizedBox(width: 10),
                                   Rating(
-                                    rating: 2,
+                                    rating: 2.0,
                                     icon: Icon(Icons.star, color: Colors.amber),
                                     itemCount: 3,
                                     itemSize: 15,
@@ -428,7 +428,7 @@ class _HomeScreenState extends State<HomeScreen> {
                                 children: [
                                   const SizedBox(width: 10),
                                   Rating(
-                                    rating: 1,
+                                    rating: 3,
                                     icon: Icon(Icons.star, color: Colors.amber),
                                     itemCount: 3,
                                     itemSize: 15,

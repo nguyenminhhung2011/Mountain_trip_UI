@@ -8,6 +8,8 @@ import 'package:mountain_trip_api/pages/DetailsPages/evaluate.dart';
 import 'package:mountain_trip_api/pages/DetailsPages/widgets/NumberPeopleInGroup.dart';
 import 'package:mountain_trip_api/widgets/responsiveButton.dart';
 
+import '../bookTripsScreen/Calender.dart';
+
 class DetailScreen extends StatefulWidget {
   const DetailScreen({Key? key}) : super(key: key);
 
@@ -361,7 +363,14 @@ class _DetailScreenState extends State<DetailScreen> {
                             ),
                             Expanded(
                               child: InkWell(
-                                onTap: () {},
+                                onTap: () {
+                                  Navigator.push(
+                                    context,
+                                    MaterialPageRoute(
+                                      builder: (context) => BookTrips(),
+                                    ),
+                                  );
+                                },
                                 child: Container(
                                   padding: const EdgeInsets.symmetric(
                                       horizontal: 10),

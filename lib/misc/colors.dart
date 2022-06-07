@@ -9,3 +9,4 @@ class AppColors {
   static final Color mainTextColor = Color(0xFFababad);
   static final Color buttonBackground = Color(0xFFf1f1f9);
 }
+  
