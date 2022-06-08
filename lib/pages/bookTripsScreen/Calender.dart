@@ -25,18 +25,18 @@ class _BookTripsState extends State<BookTrips> {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Colors.white,
-      floatingActionButton: FloatingActionButton(
-        backgroundColor: AppColors.mainColor,
-        onPressed: () {
-          Navigator.push(
-            context,
-            MaterialPageRoute(
-              builder: (context) => GoogleMaps(),
-            ),
-          );
-        },
-        child: Icon(Icons.send, color: Colors.white),
-      ),
+      // floatingActionButton: FloatingActionButton(
+      //   backgroundColor: AppColors.mainColor,
+      //   onPressed: () {
+      //     Navigator.push(
+      //       context,
+      //       MaterialPageRoute(
+      //         builder: (context) => GoogleMaps(),
+      //       ),
+      //     );
+      //   },
+      //   child: Icon(Icons.send, color: Colors.white),
+      // ),
       appBar: AppBar(
         elevation: 0,
         backgroundColor: Colors.white,
@@ -65,7 +65,19 @@ class _BookTripsState extends State<BookTrips> {
                   ),
                 ),
                 Spacer(),
-                Icon(Icons.calendar_month, color: AppColors.mainColor)
+                Icon(Icons.calendar_month, color: AppColors.mainColor),
+                const SizedBox(width: 10),
+                InkWell(
+                  onTap: () {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                        builder: (context) => GoogleMaps(),
+                      ),
+                    );
+                  },
+                  child: Icon(Icons.send, color: AppColors.mainColor),
+                )
               ],
             ),
             const SizedBox(height: 10),

@@ -8,6 +8,7 @@ import 'package:mountain_trip_api/pages/DetailsPages/evaluate.dart';
 import 'package:mountain_trip_api/pages/DetailsPages/widgets/NumberPeopleInGroup.dart';
 import 'package:mountain_trip_api/widgets/responsiveButton.dart';
 
+import '../../widgets/ratingBar.dart';
 import '../bookTripsScreen/Calender.dart';
 
 class DetailScreen extends StatefulWidget {
@@ -335,6 +336,22 @@ class _DetailScreenState extends State<DetailScreen> {
                           ),
                         ),
                         const SizedBox(height: 20),
+                        Text(
+                          'Level of difficult',
+                          style: TextStyle(
+                            color: Colors.black,
+                            fontWeight: FontWeight.w600,
+                            fontSize: 25,
+                          ),
+                        ),
+                        const SizedBox(height: 20),
+                        Rating(
+                          rating: 2.0,
+                          icon: Icon(Icons.star, color: Colors.amber),
+                          itemCount: 3,
+                          itemSize: 20,
+                        ),
+                        const SizedBox(height: 20),
                         Row(
                           children: [
                             InkWell(
@@ -351,6 +368,12 @@ class _DetailScreenState extends State<DetailScreen> {
                                     color: AppColors.mainColor,
                                   ),
                                   borderRadius: BorderRadius.circular(20),
+                                  boxShadow: [
+                                    BoxShadow(
+                                        color: Colors.black38.withOpacity(0.4),
+                                        offset: Offset(2, 3),
+                                        blurRadius: 3)
+                                  ],
                                 ),
                                 child: Icon(
                                   Icons.favorite_outline,
@@ -379,6 +402,13 @@ class _DetailScreenState extends State<DetailScreen> {
                                   decoration: BoxDecoration(
                                     color: AppColors.mainColor,
                                     borderRadius: BorderRadius.circular(20),
+                                    boxShadow: [
+                                      BoxShadow(
+                                          color:
+                                              Colors.black38.withOpacity(0.4),
+                                          offset: Offset(2, 3),
+                                          blurRadius: 3)
+                                    ],
                                   ),
                                   child: Row(children: [
                                     const SizedBox(width: 20),

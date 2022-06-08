@@ -61,7 +61,6 @@ dependencies:
   vector_math: ^2.1.2
   proj4dart: ^2.0.0
   collection: ^1.16.0
-
   
 dev_dependencies:
   flutter_test:
