@@ -7,6 +7,7 @@ import 'package:mountain_trip_api/pages/HotelScreen/HotelScreen.dart';
 import 'package:mountain_trip_api/pages/bookTripsScreen/widgets/hotelCard.dart';
 
 import '../../misc/colors.dart';
+import '../tourGuide/chooseTourGuideScreen.dart';
 
 class GoogleMaps extends StatefulWidget {
   const GoogleMaps({Key? key}) : super(key: key);
@@ -84,6 +85,17 @@ class _GoogleMapsState extends State<GoogleMaps> {
                         ),
                       ),
                     ),
+                    InkWell(
+                      onTap: () {
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                            builder: (context) => ChooseTourGuideScreen(),
+                          ),
+                        );
+                      },
+                      child: Icon(Icons.send, color: AppColors.mainColor),
+                    )
                   ],
                 ),
                 Spacer(),
