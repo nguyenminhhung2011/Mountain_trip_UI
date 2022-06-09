@@ -67,7 +67,7 @@ class HotelCard extends StatelessWidget {
                     child: Text(
                       overflow: TextOverflow.ellipsis,
                       'Day la 1 trong nhung khach san noi tieng nhat the gioi voiw kien truc vo cung doc dao va dawng cap toan bo ngoi nha duoc lam tuu go',
-                      style: TextStyle(color: Colors.grey),
+                      style: TextStyle(color: Colors.grey, fontSize: 12),
                       maxLines: 3,
                     ),
                   ),

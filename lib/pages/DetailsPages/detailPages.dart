@@ -91,7 +91,7 @@ class _DetailScreenState extends State<DetailScreen> {
                               style: TextStyle(
                                 color: Colors.black,
                                 fontWeight: FontWeight.w500,
-                                fontSize: 30,
+                                fontSize: 25,
                               ),
                             ),
                             Spacer(),
@@ -100,7 +100,7 @@ class _DetailScreenState extends State<DetailScreen> {
                               style: TextStyle(
                                 color: AppColors.mainColor,
                                 fontWeight: FontWeight.w500,
-                                fontSize: 30,
+                                fontSize: 25,
                               ),
                             )
                           ],
@@ -169,20 +169,26 @@ class _DetailScreenState extends State<DetailScreen> {
                           ],
                         ),
                         const SizedBox(height: 30),
-                        Text(
-                          'People',
-                          style: TextStyle(
-                            color: Colors.black,
-                            fontWeight: FontWeight.w600,
-                            fontSize: 25,
-                          ),
+                        Row(
+                          children: [
+                            Text(
+                              'People',
+                              style: TextStyle(
+                                color: Colors.black,
+                                fontWeight: FontWeight.w600,
+                                fontSize: 25,
+                              ),
+                            ),
+                            Spacer(),
+                            Icon(Icons.people, color: AppColors.mainColor),
+                          ],
                         ),
                         Text(
                           'Number of people in your group',
                           style: TextStyle(
                             color: Colors.grey.withOpacity(0.6),
                             fontWeight: FontWeight.w600,
-                            fontSize: 15,
+                            fontSize: 13,
                           ),
                         ),
                         const SizedBox(height: 10),
@@ -316,7 +322,7 @@ class _DetailScreenState extends State<DetailScreen> {
                             ],
                           ),
                         ),
-                        const SizedBox(height: 30),
+                        const SizedBox(height: 20),
                         Text(
                           'Description',
                           style: TextStyle(
@@ -332,7 +338,7 @@ class _DetailScreenState extends State<DetailScreen> {
                           style: TextStyle(
                             color: Colors.grey.withOpacity(0.6),
                             fontWeight: FontWeight.w600,
-                            fontSize: 15,
+                            fontSize: 13,
                           ),
                         ),
                         const SizedBox(height: 20),
@@ -344,7 +350,7 @@ class _DetailScreenState extends State<DetailScreen> {
                             fontSize: 25,
                           ),
                         ),
-                        const SizedBox(height: 20),
+                        const SizedBox(height: 10),
                         Rating(
                           rating: 2.0,
                           icon: Icon(Icons.star, color: Colors.amber),

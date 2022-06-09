@@ -89,6 +89,7 @@ class _BookTripsState extends State<BookTrips> {
                   color: Colors.white,
                   border: Border.all(width: 5, color: AppColors.mainColor)),
               child: TableCalendar(
+                rowHeight: 45,
                 focusedDay: focusDay,
                 firstDay: DateTime(1990),
                 lastDay: DateTime(2050),
