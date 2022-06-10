@@ -20,6 +20,7 @@ class FakeData {
   final List<Map<String, dynamic>> listEmployee = [];
   final List<Map<String, dynamic>> listButtonInProfile = [
     {
+      'type': 0,
       'title': Text(
         'Tour Guide',
         style: TextStyle(
@@ -40,6 +41,7 @@ class FakeData {
     },
     {},
     {
+      'type': 1,
       'title': Text(
         'Following',
         style: TextStyle(
@@ -58,6 +60,7 @@ class FakeData {
       'color': Colors.white,
     },
     {
+      'type': 2,
       'title': Text(
         'Evaluate',
         style: TextStyle(
@@ -109,6 +112,7 @@ class FakeData {
       'color': Colors.white,
     },
     {
+      'type': 3,
       'title': Text(
         'Communications',
         style: TextStyle(
@@ -168,6 +172,7 @@ class FakeData {
       'color': Colors.white,
     },
     {
+      'type': 4,
       'title': Text(
         'Top Comments',
         style: TextStyle(
@@ -252,6 +257,7 @@ class FakeData {
       'color': Colors.white,
     },
     {
+      'type': 5,
       'title': Text(
         'Chat with him/her',
         style: TextStyle(
@@ -276,6 +282,7 @@ class FakeData {
       'color': Colors.white,
     },
     {
+      'type': 6,
       'title': Text(
         'Alll Posts',
         style: TextStyle(

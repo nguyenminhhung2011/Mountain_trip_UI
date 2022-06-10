@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/src/foundation/key.dart';
 import 'package:flutter/src/widgets/framework.dart';
 import 'package:flutter_staggered_grid_view/flutter_staggered_grid_view.dart';
+import 'package:mountain_trip_api/pages/tourGuide/chatScreen.dart';
 import 'package:mountain_trip_api/pages/tourGuide/widgets/ActiveOrNot.dart';
 
 import '../../data/fake_data.dart';
@@ -209,7 +210,17 @@ class _TourGuideProfileState extends State<TourGuideProfile> {
                         }
                         return InkWell(
                           borderRadius: BorderRadius.circular(30),
-                          onTap: () {},
+                          onTap: () {
+                            if (FakeData().listButtonInProfile[index]["type"] ==
+                                5) {
+                              Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                  builder: (context) => ChatScreen(),
+                                ),
+                              );
+                            }
+                          },
                           child: Container(
                             //height: 210,
                             alignment: Alignment.center,
