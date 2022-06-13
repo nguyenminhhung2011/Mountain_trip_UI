@@ -34,10 +34,10 @@ class Evaluation extends StatelessWidget {
                   width: 35,
                   decoration: BoxDecoration(
                     shape: BoxShape.circle,
-                    // image: DecorationImage(
-                    //   image: NetworkImage(
-                    //       'https://scontent.fsgn5-15.fna.fbcdn.net/v/t39.30808-1/283302695_586918832926290_7105784237859390906_n.jpg?stp=c62.0.160.160a_dst-jpg_p160x160&_nc_cat=111&ccb=1-7&_nc_sid=7206a8&_nc_ohc=eCaMGjmMvMwAX9ugid3&_nc_ht=scontent.fsgn5-15.fna&oh=00_AT-DUnBaYxTelXdsPaLrJl59joUVTKfSbNGsRCdMEYMmrg&oe=62A1A300'),
-                    // ),
+                    image: DecorationImage(
+                      fit: BoxFit.cover,
+                      image: AssetImage('assets/img/pngwing.com.png'),
+                    ),
                   ),
                 ),
               ),

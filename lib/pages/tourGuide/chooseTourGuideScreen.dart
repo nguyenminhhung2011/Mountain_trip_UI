@@ -56,7 +56,7 @@ class _ChooseTourGuideScreenState extends State<ChooseTourGuideScreen> {
                         ),
                         // const SizedBox(width: 5),
                         Text(
-                          'Employee',
+                          'Tour Guide',
                           style: TextStyle(
                             color: Colors.white,
                             fontWeight: FontWeight.bold,

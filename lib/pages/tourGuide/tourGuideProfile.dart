@@ -1,3 +1,5 @@
+import 'dart:math';
+
 import 'package:flutter/material.dart';
 import 'package:flutter/src/foundation/key.dart';
 import 'package:flutter/src/widgets/framework.dart';
@@ -17,7 +19,53 @@ class TourGuideProfile extends StatefulWidget {
 
 class _TourGuideProfileState extends State<TourGuideProfile> {
   double p = 1;
+  bool checkHire = false;
+  final _controller = PageController(viewportFraction: 0.85);
+  int _curentPage = 0;
   @override
+  void initState() {
+    super.initState();
+  }
+
+  void showSnackBar() {
+    ScaffoldMessenger.of(context).showSnackBar(
+      SnackBar(
+        elevation: 0,
+        backgroundColor: Colors.transparent,
+        content: Container(
+          height: 80,
+          padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 10),
+          decoration: BoxDecoration(
+            color: AppColors.mainColor,
+            borderRadius: BorderRadius.circular(20),
+          ),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Text(
+                'Choose him as a guide',
+                style: TextStyle(
+                  color: Colors.white,
+                  fontWeight: FontWeight.bold,
+                  fontSize: 17,
+                ),
+              ),
+              const SizedBox(height: 10),
+              Text(
+                'Success',
+                style: TextStyle(
+                  color: Colors.white,
+                  fontWeight: FontWeight.w500,
+                  fontSize: 14,
+                ),
+              ),
+            ],
+          ),
+        ),
+      ),
+    );
+  }
+
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Colors.white.withOpacity(0.95),
@@ -101,6 +149,141 @@ class _TourGuideProfileState extends State<TourGuideProfile> {
                       ),
                     ),
                     Spacer(),
+                    InkWell(
+                      borderRadius: BorderRadius.circular(10),
+                      onTap: () {
+                        setState(() {
+                          if (checkHire == false) {
+                            showDialog(
+                              context: context,
+                              builder: (context) => Dialog(
+                                backgroundColor: Colors.transparent,
+                                child: Container(
+                                  height:
+                                      MediaQuery.of(context).size.height * 0.4,
+                                  width:
+                                      MediaQuery.of(context).size.width * 0.6,
+                                  padding: const EdgeInsets.symmetric(
+                                      vertical: 20, horizontal: 20),
+                                  decoration: BoxDecoration(
+                                    borderRadius: BorderRadius.circular(20),
+                                    color: Colors.white,
+                                  ),
+                                  child: Column(
+                                    mainAxisAlignment: MainAxisAlignment.start,
+                                    children: [
+                                      Row(
+                                        children: [
+                                          Container(
+                                            width: 60,
+                                            height: 60,
+                                            decoration: BoxDecoration(
+                                              color: AppColors.mainColor,
+                                              shape: BoxShape.circle,
+                                              image: DecorationImage(
+                                                fit: BoxFit.cover,
+                                                image: AssetImage(
+                                                    'assets/img/pngwing.com.png'),
+                                              ),
+                                            ),
+                                          ),
+                                          const SizedBox(width: 20),
+                                          Column(
+                                            crossAxisAlignment:
+                                                CrossAxisAlignment.start,
+                                            mainAxisAlignment:
+                                                MainAxisAlignment.center,
+                                            children: [
+                                              Text(
+                                                'Stephen cury',
+                                                style: TextStyle(
+                                                  color: Colors.black,
+                                                  fontWeight: FontWeight.bold,
+                                                  fontSize: 15,
+                                                ),
+                                              ),
+                                              Text(
+                                                'Tour Guide',
+                                                style: TextStyle(
+                                                  color: Colors.grey,
+                                                  fontWeight: FontWeight.bold,
+                                                  fontSize: 15,
+                                                ),
+                                              ),
+                                              const SizedBox(height: 20),
+                                            ],
+                                          ),
+                                        ],
+                                      ),
+                                      const SizedBox(height: 10),
+                                      Row(
+                                        mainAxisAlignment:
+                                            MainAxisAlignment.start,
+                                        children: [
+                                          Text(
+                                            'Choose Options',
+                                            textAlign: TextAlign.start,
+                                            style: TextStyle(
+                                              color: Colors.black,
+                                              fontWeight: FontWeight.bold,
+                                              fontSize: 18,
+                                            ),
+                                          ),
+                                          Spacer(),
+                                          Icon(
+                                            Icons.trip_origin,
+                                            color: AppColors.mainColor,
+                                          ),
+                                        ],
+                                      ),
+                                      Expanded(
+                                        child: Column(
+                                          children: [],
+                                        ),
+                                      )
+                                    ],
+                                  ),
+                                ),
+                              ),
+                            );
+                          }
+                          checkHire = !checkHire;
+                        });
+                      },
+                      child: Container(
+                        padding: const EdgeInsets.all(10),
+                        decoration: BoxDecoration(
+                          color:
+                              (checkHire) ? AppColors.mainColor : Colors.white,
+                          borderRadius: BorderRadius.circular(15),
+                          boxShadow: [
+                            BoxShadow(
+                              color: Colors.black38.withOpacity(0.5),
+                              offset: Offset(-2, 2),
+                              blurRadius: 3,
+                            ),
+                            BoxShadow(
+                              color: Colors.black38.withOpacity(0.1),
+                              offset: Offset(2, -2),
+                              blurRadius: 3,
+                            )
+                          ],
+                        ),
+                        child: Row(
+                          children: [
+                            Text(
+                              (checkHire) ? "Cancle" : 'Hire a Guide',
+                              style: TextStyle(
+                                color:
+                                    (checkHire) ? Colors.white : Colors.black,
+                                fontWeight: FontWeight.bold,
+                              ),
+                            )
+                          ],
+                        ),
+                      ),
+                    ),
+                    const SizedBox(width: 10),
                     InkWell(
                       borderRadius: BorderRadius.circular(15),
                       onTap: () {
@@ -211,14 +394,18 @@ class _TourGuideProfileState extends State<TourGuideProfile> {
                         return InkWell(
                           borderRadius: BorderRadius.circular(30),
                           onTap: () {
-                            if (FakeData().listButtonInProfile[index]["type"] ==
-                                5) {
-                              Navigator.push(
-                                context,
-                                MaterialPageRoute(
-                                  builder: (context) => ChatScreen(),
-                                ),
-                              );
+                            switch (FakeData().listButtonInProfile[index]
+                                ["type"]) {
+                              case 5:
+                                {
+                                  Navigator.push(
+                                    context,
+                                    MaterialPageRoute(
+                                      builder: (context) => ChatScreen(),
+                                    ),
+                                  );
+                                }
+                                break;
                             }
                           },
                           child: Container(
@@ -264,6 +451,19 @@ class _TourGuideProfileState extends State<TourGuideProfile> {
           )
         ],
       ),
+    );
+  }
+
+  _pageImages() {
+    return Padding(
+      padding: const EdgeInsets.symmetric(
+        vertical: 80,
+        horizontal: 5,
+      ),
+      child: Container(
+          decoration: BoxDecoration(
+        color: AppColors.mainColor,
+      )),
     );
   }
 }

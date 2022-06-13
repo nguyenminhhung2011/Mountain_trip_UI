@@ -85,17 +85,6 @@ class _GoogleMapsState extends State<GoogleMaps> {
                         ),
                       ),
                     ),
-                    InkWell(
-                      onTap: () {
-                        Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                            builder: (context) => ChooseTourGuideScreen(),
-                          ),
-                        );
-                      },
-                      child: Icon(Icons.send, color: AppColors.mainColor),
-                    )
                   ],
                 ),
                 Spacer(),

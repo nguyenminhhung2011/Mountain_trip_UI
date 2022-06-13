@@ -206,6 +206,7 @@ class _HotelScreenState extends State<HotelScreen> {
                                       height: 40,
                                       width: 40,
                                       decoration: BoxDecoration(
+                                        color: AppColors.mainColor,
                                         shape: BoxShape.circle,
                                         boxShadow: [
                                           BoxShadow(
@@ -216,9 +217,8 @@ class _HotelScreenState extends State<HotelScreen> {
                                         ],
                                         image: DecorationImage(
                                           fit: BoxFit.cover,
-                                          image: NetworkImage(
-                                            'https://scontent.fsgn5-15.fna.fbcdn.net/v/t39.30808-6/283302695_586918832926290_7105784237859390906_n.jpg?_nc_cat=111&ccb=1-7&_nc_sid=09cbfe&_nc_ohc=TgsYky3jQzgAX9iIA6w&_nc_ht=scontent.fsgn5-15.fna&oh=00_AT8f9QeaqCzBt0xIc-iCq8RXncaIf4T-BR95w0Uzfk6UXg&oe=62A4927A',
-                                          ),
+                                          image: AssetImage(
+                                              'assets/img/pngwing.com.png'),
                                         ),
                                       ),
                                     ),
@@ -229,6 +229,7 @@ class _HotelScreenState extends State<HotelScreen> {
                                       height: 40,
                                       width: 40,
                                       decoration: BoxDecoration(
+                                        color: AppColors.mainColor,
                                         boxShadow: [
                                           BoxShadow(
                                               color: Colors.black38
@@ -239,8 +240,8 @@ class _HotelScreenState extends State<HotelScreen> {
                                         shape: BoxShape.circle,
                                         image: DecorationImage(
                                           fit: BoxFit.cover,
-                                          image: NetworkImage(
-                                              'https://scontent.fsgn5-13.fna.fbcdn.net/v/t1.6435-9/199077180_344520240499485_2792476399852603899_n.jpg?_nc_cat=106&ccb=1-7&_nc_sid=174925&_nc_ohc=xhjgpvfD43EAX9F7zcH&_nc_oc=AQkkRssUb_fMykMHd8ZXwncIZIkF71ehJOeSXVkrr_p5Wf8BBJLifSVcgJXHkIaV-W0&_nc_ht=scontent.fsgn5-13.fna&oh=00_AT_qnpgORjoWarlR9JBjBhFbUvATr74Ne6vPE45piT3v_g&oe=62C4F846'),
+                                          image: AssetImage(
+                                              'assets/img/pngwing.com.png'),
                                         ),
                                       ),
                                     ),

@@ -3,10 +3,13 @@ import 'package:flutter/src/foundation/key.dart';
 import 'package:flutter/src/widgets/framework.dart';
 import 'package:flutter_rating_bar/flutter_rating_bar.dart';
 import 'package:flutter_svg/svg.dart';
+import 'package:intl/intl.dart';
 import 'package:mountain_trip_api/misc/colors.dart';
+import 'package:mountain_trip_api/pages/ConfirmInformationListPages/confirmInFor.dart';
 import 'package:mountain_trip_api/pages/DetailsPages/evaluate.dart';
 import 'package:mountain_trip_api/pages/DetailsPages/widgets/NumberPeopleInGroup.dart';
 import 'package:mountain_trip_api/widgets/responsiveButton.dart';
+import 'package:table_calendar/table_calendar.dart';
 
 import '../../widgets/ratingBar.dart';
 import '../bookTripsScreen/Calender.dart';
@@ -21,21 +24,64 @@ class DetailScreen extends StatefulWidget {
 class _DetailScreenState extends State<DetailScreen> {
   int selectPeople = 1;
   double selectPeopleDouble = 1;
+  double _height = 600;
+  CalendarFormat format = CalendarFormat.month;
+  DateTime selectedDate = DateTime.now();
+  DateTime focusDay = DateTime.now();
+  String _dateBook = "20/11/2002";
+  List<String> _listImage = [
+    "assets/img/mountain.jpeg",
+    "assets/img/welcome-one.png",
+    "assets/img/welcome-three.png",
+    "assets/img/welcome-two.png",
+  ];
+  int _currentIndex = 0;
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Colors.white,
       body: Stack(
         children: [
-          Container(
-            height: double.infinity,
-            width: double.infinity,
-            child: Image(
-              fit: BoxFit.cover,
-              image: AssetImage(
-                'assets/img/mountain.jpeg',
+          PageView.builder(
+            itemCount: _listImage.length,
+            onPageChanged: (value) {
+              setState(() {
+                _currentIndex = value;
+              });
+            },
+            itemBuilder: (context, index) {
+              return Container(
+                height: double.infinity,
+                width: double.infinity,
+                child: Image(
+                  fit: BoxFit.cover,
+                  image: AssetImage(
+                    _listImage[_currentIndex],
+                  ),
+                ),
+              );
+            },
+          ),
+          Column(
+            crossAxisAlignment: CrossAxisAlignment.center,
+            children: [
+              Spacer(),
+              Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 50),
+                child: Container(
+                  //color: Colors.red,
+                  width: double.infinity,
+                  height: 15,
+                  child: ListView.builder(
+                    itemCount: _listImage.length,
+                    scrollDirection: Axis.horizontal,
+                    itemBuilder: (context, index) => buildIndicator(
+                        _currentIndex == index, MediaQuery.of(context).size),
+                  ),
+                ),
               ),
-            ),
+              const SizedBox(height: 20),
+            ],
           ),
           Column(
             children: [
@@ -51,14 +97,21 @@ class _DetailScreenState extends State<DetailScreen> {
                       onTap: () {
                         Navigator.pop(context);
                       },
-                      child: SvgPicture.asset('assets/icons/sort.svg',
-                          height: 19, color: Colors.white),
+                      child: Icon(Icons.arrow_back_ios, color: Colors.white),
                     ),
                     Spacer(),
                     InkWell(
                       onTap: () {
-                        Navigator.pop(context);
+                        setState(() {
+                          _height = (_height == 0)
+                              ? MediaQuery.of(context).size.height / 1.5
+                              : 0;
+                        });
                       },
+                      child: Icon(Icons.image, size: 25, color: Colors.white),
+                    ),
+                    InkWell(
+                      onTap: () {},
                       child:
                           Icon(Icons.more_vert, size: 25, color: Colors.white),
                     ),
@@ -66,9 +119,11 @@ class _DetailScreenState extends State<DetailScreen> {
                 ),
               ),
               Spacer(),
-              Container(
+              AnimatedContainer(
+                curve: Curves.fastOutSlowIn,
+                duration: const Duration(seconds: 1),
                 width: double.infinity,
-                height: MediaQuery.of(context).size.height / 1.5,
+                height: _height,
                 decoration: BoxDecoration(
                   color: Colors.white,
                   borderRadius: BorderRadius.only(
@@ -168,7 +223,7 @@ class _DetailScreenState extends State<DetailScreen> {
                             )
                           ],
                         ),
-                        const SizedBox(height: 30),
+                        const SizedBox(height: 10),
                         Row(
                           children: [
                             Text(
@@ -176,7 +231,7 @@ class _DetailScreenState extends State<DetailScreen> {
                               style: TextStyle(
                                 color: Colors.black,
                                 fontWeight: FontWeight.w600,
-                                fontSize: 25,
+                                fontSize: 21,
                               ),
                             ),
                             Spacer(),
@@ -322,13 +377,13 @@ class _DetailScreenState extends State<DetailScreen> {
                             ],
                           ),
                         ),
-                        const SizedBox(height: 20),
+                        const SizedBox(height: 10),
                         Text(
                           'Description',
                           style: TextStyle(
                             color: Colors.black,
                             fontWeight: FontWeight.w600,
-                            fontSize: 25,
+                            fontSize: 21,
                           ),
                         ),
                         const SizedBox(height: 2),
@@ -341,13 +396,13 @@ class _DetailScreenState extends State<DetailScreen> {
                             fontSize: 13,
                           ),
                         ),
-                        const SizedBox(height: 20),
+                        const SizedBox(height: 10),
                         Text(
                           'Level of difficult',
                           style: TextStyle(
                             color: Colors.black,
                             fontWeight: FontWeight.w600,
-                            fontSize: 25,
+                            fontSize: 21,
                           ),
                         ),
                         const SizedBox(height: 10),
@@ -356,6 +411,63 @@ class _DetailScreenState extends State<DetailScreen> {
                           icon: Icon(Icons.star, color: Colors.amber),
                           itemCount: 3,
                           itemSize: 20,
+                        ),
+                        const SizedBox(height: 10),
+                        InkWell(
+                          borderRadius: BorderRadius.circular(14),
+                          onTap: () {
+                            showDialog(
+                              context: context,
+                              builder: (context) => Dialog(
+                                backgroundColor: Colors.transparent,
+                                child: PickDay(context),
+                              ),
+                            );
+                          },
+                          child: Container(
+                            width: double.infinity,
+                            padding: const EdgeInsets.symmetric(
+                              vertical: 10,
+                              horizontal: 20,
+                            ),
+                            //height: 50,
+                            decoration: BoxDecoration(
+                              border: Border.all(
+                                width: 2,
+                                color: Colors.grey,
+                              ),
+                              borderRadius: BorderRadius.circular(14),
+                            ),
+                            child: Row(
+                              children: [
+                                Column(
+                                  crossAxisAlignment: CrossAxisAlignment.start,
+                                  children: [
+                                    Text(
+                                      'Choose Date',
+                                      style: TextStyle(
+                                        color: Colors.black,
+                                        fontWeight: FontWeight.bold,
+                                      ),
+                                    ),
+                                    const SizedBox(height: 5),
+                                    Text(
+                                      _dateBook,
+                                      style: TextStyle(
+                                        color: AppColors.mainColor,
+                                        fontWeight: FontWeight.bold,
+                                      ),
+                                    )
+                                  ],
+                                ),
+                                Spacer(),
+                                Icon(
+                                  Icons.calendar_month,
+                                  color: AppColors.mainColor,
+                                ),
+                              ],
+                            ),
+                          ),
                         ),
                         const SizedBox(height: 20),
                         Row(
@@ -396,7 +508,7 @@ class _DetailScreenState extends State<DetailScreen> {
                                   Navigator.push(
                                     context,
                                     MaterialPageRoute(
-                                      builder: (context) => BookTrips(),
+                                      builder: (context) => ConFirmScreen(),
                                     ),
                                   );
                                 },
@@ -446,6 +558,88 @@ class _DetailScreenState extends State<DetailScreen> {
           ),
         ],
       ),
+    );
+  }
+
+  Container PickDay(BuildContext context) {
+    return Container(
+      height: MediaQuery.of(context).size.height / 2,
+      decoration: BoxDecoration(
+        color: Colors.white,
+        borderRadius: BorderRadius.circular(20),
+      ),
+      child: TableCalendar(
+        rowHeight: 45,
+        focusedDay: focusDay,
+        firstDay: DateTime(1990),
+        lastDay: DateTime(2050),
+        daysOfWeekVisible: true,
+        sixWeekMonthsEnforced: true,
+        shouldFillViewport: false,
+        calendarFormat: format,
+        headerStyle: HeaderStyle(
+          formatButtonTextStyle: TextStyle(
+            color: AppColors.mainColor,
+            fontWeight: FontWeight.bold,
+          ),
+          titleTextStyle: TextStyle(
+            fontWeight: FontWeight.bold,
+            color: AppColors.mainColor,
+            fontSize: 20,
+          ),
+          formatButtonDecoration: BoxDecoration(
+              color: Colors.white,
+              borderRadius: BorderRadius.circular(20),
+              border: Border.all(
+                width: 2,
+                color: AppColors.mainColor,
+              )),
+        ),
+        onFormatChanged: (CalendarFormat _format) {
+          setState(() {
+            format = _format;
+          });
+        },
+        onDaySelected: (DateTime select, DateTime focus) {
+          setState(() {
+            selectedDate = select;
+            focusDay = focus;
+            _dateBook = DateFormat('yyyy-MM-dd').format(focus);
+          });
+          // print(focusDay);
+          // print(selectedDate);
+        },
+        calendarStyle: CalendarStyle(
+          isTodayHighlighted: true,
+          selectedDecoration: BoxDecoration(
+            shape: BoxShape.circle,
+            color: AppColors.starColor,
+          ),
+          selectedTextStyle: TextStyle(color: Colors.white),
+        ),
+        selectedDayPredicate: (DateTime date) {
+          return isSameDay(selectedDate, date);
+        },
+      ),
+    );
+  }
+
+  Widget buildIndicator(bool isActive, Size size) {
+    return AnimatedContainer(
+      duration: const Duration(milliseconds: 300),
+      height: 10,
+      width: isActive ? 50 : 20,
+      margin: const EdgeInsets.symmetric(horizontal: 5),
+      decoration: BoxDecoration(
+          //container with border
+          color: isActive
+              ? AppColors.mainColor
+              : AppColors.mainColor.withOpacity(0.5),
+          borderRadius: const BorderRadius.all(Radius.circular(12)),
+          boxShadow: const [
+            BoxShadow(
+                color: Colors.black38, offset: Offset(2, 3), blurRadius: 3)
+          ]),
     );
   }
 }

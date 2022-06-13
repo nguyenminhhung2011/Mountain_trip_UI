@@ -39,7 +39,7 @@ class ReciveCard extends StatelessWidget {
                       title,
                       style: TextStyle(
                         color: Colors.black,
-                        fontWeight: FontWeight.w700,
+                        fontWeight: FontWeight.w600,
                       ),
                     ),
                   ),

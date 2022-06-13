@@ -296,7 +296,7 @@ class FakeData {
           Icon(Icons.image, color: AppColors.mainColor),
           const SizedBox(width: 5),
           Text(
-            'Let\'s Chat',
+            'See all Posts',
             style: TextStyle(
               color: Colors.grey,
               fontWeight: FontWeight.bold,

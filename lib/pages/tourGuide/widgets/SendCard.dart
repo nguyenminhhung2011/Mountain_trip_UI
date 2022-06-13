@@ -39,7 +39,7 @@ class SendCard extends StatelessWidget {
                       title,
                       style: TextStyle(
                         color: Colors.white,
-                        fontWeight: FontWeight.w700,
+                        fontWeight: FontWeight.w600,
                       ),
                     ),
                   ),
