@@ -17,7 +17,93 @@ class FakeData {
     'https://dulichvietnam.com.vn/vnt_upload/news/10_2019/khach-san-tren-nui-2.jpg',
   ];
 
+  // "assets/img/mountain.jpeg",
+  // "assets/img/welcome-one.png",
+  // "assets/img/welcome-three.png",
+  // "assets/img/welcome-two.png",
+
   final List<Map<String, dynamic>> listEmployee = [];
+  final List<Map<String, dynamic>> listCart = [
+    {
+      "id": 0,
+      "image": "assets/img/mountain.jpeg",
+      "name": "Everes",
+      "Payement": "\$ 20.11",
+      "type": 1,
+      "person": 5,
+      "date": "20-11-2002",
+    },
+    {
+      "id": 1,
+      "image": "assets/img/welcome-one.png",
+      "name": "Nui Phu Sy",
+      "Payement": "\$ 30.11",
+      "type": 0,
+      "person": 3,
+      "date": "20-11-2002",
+    },
+    {
+      "id": 2,
+      "image": "assets/img/welcome-three.png",
+      "name": "California",
+      "Payement": "\$ 29.21",
+      "type": 0,
+      "person": 4,
+      "date": "20-11-2002",
+    },
+    {
+      "id": 3,
+      "image": "assets/img/welcome-two.png",
+      "name": "Linh ta linh tinh",
+      "Payement": "\$ 10.23",
+      "type": -1,
+      "person": 2,
+      "date": "20-11-2002",
+    },
+  ];
+
+  final List<Map<String, dynamic>> listHotelCart = [
+    {
+      "id": 0,
+      "image":
+          'https://luhanhvietnam.com.vn/du-lich/vnt_upload/news/10_2020/khach-san-tren-vach-nui-da-Hotel_Country-Villa.jpg',
+      "name": "Huong Binh Hotels",
+      "Payement": "\$ 20.11",
+      "type": 1,
+      "person": 'Phong Doi',
+      "date": "20-11-2002",
+    },
+    {
+      "id": 1,
+      "image":
+          'https://luhanhvietnam.com.vn/du-lich/vnt_upload/news/10_2020/The-Pingjiang-Homey-Wild-Luxury-Hotel.jpg',
+      "name": "Tan Quoc Vuong Hotel",
+      "Payement": "\$ 30.11",
+      "type": 0,
+      "person": 'Phong Don',
+      "date": "20-11-2002",
+    },
+    {
+      "id": 2,
+      "image":
+          'https://vnn-imgs-a1.vgcloud.vn/znews-photo.zadn.vn/w1024/Uploaded/mdf_kxrxdf/2019_10_07/Wildflower_Hall.jpg',
+      "name": "5 Sao Hotel",
+      "Payement": "\$ 29.21",
+      "type": 0,
+      "person": 'Phong Don',
+      "date": "20-11-2002",
+    },
+    {
+      "id": 3,
+      "image":
+          'https://dulichvietnam.com.vn/vnt_upload/news/10_2019/khach-san-tren-nui-2.jpg',
+      "name": "Lalala Hotel",
+      "Payement": "\$ 10.23",
+      "type": -1,
+      "person": 'Phong Doi',
+      "date": "20-11-2002",
+    },
+  ];
   final List<Map<String, dynamic>> listButtonInProfile = [
     {
       'type': 0,

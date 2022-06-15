@@ -3,6 +3,7 @@ import 'package:flutter/src/foundation/key.dart';
 import 'package:flutter/src/widgets/framework.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:mountain_trip_api/misc/colors.dart';
+import 'package:mountain_trip_api/pages/Cart/cartMain.dart';
 import 'package:mountain_trip_api/pages/Home/widgets/DiffCard.dart';
 import 'package:mountain_trip_api/pages/Home/widgets/LocationCard.dart';
 import 'package:mountain_trip_api/pages/Home/widgets/PopularPlacesCard.dart';
@@ -57,15 +58,39 @@ class _HomeScreenState extends State<HomeScreen> {
                     height: 19, color: Colors.black54),
               ),
               Spacer(),
-              Container(
-                height: 35,
-                width: 35,
-                decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(10),
-                  image: DecorationImage(
-                    fit: BoxFit.cover,
-                    image: AssetImage('assets/img/mylogo.png'),
-                  ),
+              InkWell(
+                onTap: () {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                      builder: (context) => CartMain(),
+                    ),
+                  );
+                },
+                child: Stack(
+                  clipBehavior: Clip.none,
+                  children: [
+                    SvgPicture.asset('assets/icons/cart.svg'),
+                    Positioned(
+                      top: -10,
+                      left: 12,
+                      child: Container(
+                        padding: const EdgeInsets.all(3),
+                        decoration: BoxDecoration(
+                          shape: BoxShape.circle,
+                          color: AppColors.mainColor,
+                        ),
+                        child: Text(
+                          '1',
+                          style: TextStyle(
+                            color: Colors.white,
+                            fontWeight: FontWeight.w600,
+                            fontSize: 10,
+                          ),
+                        ),
+                      ),
+                    )
+                  ],
                 ),
               ),
             ],

@@ -606,7 +606,7 @@ class _DetailScreenState extends State<DetailScreen> {
             focusDay = focus;
             _dateBook = DateFormat('yyyy-MM-dd').format(focus);
           });
-          // print(focusDay);
+          Navigator.pop(context); // print(focusDay);
           // print(selectedDate);
         },
         calendarStyle: CalendarStyle(

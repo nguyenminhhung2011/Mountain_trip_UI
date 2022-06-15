@@ -2,6 +2,7 @@
 import 'package:flutter/material.dart';
 import 'package:mountain_trip_api/pages/ConfirmInformationListPages/widgets/InformationROw.dart';
 import 'package:mountain_trip_api/pages/ConfirmInformationListPages/widgets/Line.dart';
+import 'package:mountain_trip_api/widgets/dateContainer.dart';
 
 import '../../misc/colors.dart';
 
@@ -79,50 +80,7 @@ class ConfirmInformation extends StatelessWidget {
               header: "No Person in Tour",
               title: "5"),
           const SizedBox(height: 20),
-          Container(
-            width: double.infinity,
-            padding: const EdgeInsets.symmetric(
-              vertical: 10,
-              horizontal: 20,
-            ),
-            //height: 50,
-            decoration: BoxDecoration(
-              border: Border.all(
-                width: 2,
-                color: Colors.grey,
-              ),
-              borderRadius: BorderRadius.circular(14),
-            ),
-            child: Row(
-              children: [
-                Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Text(
-                      'Date of Trip',
-                      style: TextStyle(
-                        color: Colors.black,
-                        fontWeight: FontWeight.bold,
-                      ),
-                    ),
-                    const SizedBox(height: 5),
-                    Text(
-                      "20-11-2002",
-                      style: TextStyle(
-                        color: AppColors.mainColor,
-                        fontWeight: FontWeight.bold,
-                      ),
-                    )
-                  ],
-                ),
-                Spacer(),
-                Icon(
-                  Icons.calendar_month,
-                  color: AppColors.mainColor,
-                ),
-              ],
-            ),
-          ),
+          DateCotainer(date: '20-11-200'),
           const SizedBox(height: 50),
           Row(
             children: [
