@@ -1,14 +1,13 @@
 import 'package:flutter/material.dart';
 
 import '../../../misc/colors.dart';
+import '../../HotelScreen/HotelScreen.dart';
 
-class LocationCard extends StatelessWidget {
-  final Function() press;
+class HotelsCard extends StatelessWidget {
   final String image;
   final String name;
-  const LocationCard({
+  const HotelsCard({
     Key? key,
-    required this.press,
     required this.image,
     required this.name,
   }) : super(key: key);
@@ -16,7 +15,14 @@ class LocationCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return InkWell(
-      onTap: press,
+      onTap: () {
+        Navigator.push(
+          context,
+          MaterialPageRoute(
+            builder: (context) => HotelScreen(),
+          ),
+        );
+      },
       child: Container(
         child: Stack(
           children: [
@@ -27,7 +33,9 @@ class LocationCard extends StatelessWidget {
                 borderRadius: BorderRadius.circular(20),
                 image: DecorationImage(
                   fit: BoxFit.cover,
-                  image: AssetImage(image),
+                  image: NetworkImage(
+                    image,
+                  ),
                 ),
               ),
             ),
@@ -42,7 +50,7 @@ class LocationCard extends StatelessWidget {
                   colors: [
                     Colors.black26,
                     Colors.black26,
-                    AppColors.mainColor,
+                    AppColors.starColor,
                   ],
                 ),
               ),
@@ -53,9 +61,38 @@ class LocationCard extends StatelessWidget {
                 height: 270,
                 width: 180,
                 child: Column(
-                  mainAxisAlignment: MainAxisAlignment.end,
+                  //mainAxisAlignment: MainAxisAlignment.end,
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
+                    const SizedBox(height: 10),
+                    Container(
+                      width: 51,
+                      padding: const EdgeInsets.all(5),
+                      decoration: BoxDecoration(
+                        color: AppColors.mainColor,
+                        borderRadius: BorderRadius.circular(
+                          15,
+                        ),
+                      ),
+                      child: Row(
+                        children: [
+                          Icon(
+                            Icons.star,
+                            color: Colors.yellow,
+                            size: 13,
+                          ),
+                          const SizedBox(width: 5),
+                          Text(
+                            '3.5',
+                            style: TextStyle(
+                              color: Colors.white,
+                              fontWeight: FontWeight.w500,
+                            ),
+                          )
+                        ],
+                      ),
+                    ),
+                    Spacer(),
                     Text(
                       name,
                       style: TextStyle(
@@ -68,7 +105,7 @@ class LocationCard extends StatelessWidget {
                         Icon(Icons.location_on_sharp,
                             color: Colors.white, size: 15),
                         const SizedBox(width: 4),
-                        Text('Canada, Banff',
+                        Text('An Khe, Banff',
                             style: TextStyle(color: Colors.white)),
                       ],
                     ),

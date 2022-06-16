@@ -7,11 +7,13 @@ import 'package:mountain_trip_api/pages/Cart/cartMain.dart';
 import 'package:mountain_trip_api/pages/Home/widgets/DiffCard.dart';
 import 'package:mountain_trip_api/pages/Home/widgets/LocationCard.dart';
 import 'package:mountain_trip_api/pages/Home/widgets/PopularPlacesCard.dart';
+import 'package:mountain_trip_api/pages/Home/widgets/ViewHotel.dart';
 import 'package:mountain_trip_api/pages/Home/widgets/ViewListLocation.dart';
 import 'package:mountain_trip_api/pages/HotelScreen/HotelScreen.dart';
 import 'package:mountain_trip_api/pages/HotelScreen/allHotels.dart';
 import 'package:mountain_trip_api/widgets/ratingBar.dart';
 
+import '../../data/fake_data.dart';
 import '../tourGuide/chooseTourGuideScreen.dart';
 import '../tourGuide/tourGuideProfile.dart';
 
@@ -615,166 +617,6 @@ class ViewPoplularPlaces extends StatelessWidget {
             PopularPlacesCard(),
             PopularPlacesCard(),
             PopularPlacesCard()
-          ],
-        ),
-      ),
-    );
-  }
-}
-
-class ViewHotel extends StatelessWidget {
-  const ViewHotel({Key? key}) : super(key: key);
-
-  @override
-  Widget build(BuildContext context) {
-    return Padding(
-      padding: const EdgeInsets.symmetric(horizontal: 20),
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          InkWell(
-            onTap: () {
-              Navigator.push(
-                context,
-                MaterialPageRoute(
-                  builder: (context) => AllHotels(),
-                ),
-              );
-            },
-            child: Text(
-              'See All Hotel',
-              style: TextStyle(
-                color: AppColors.mainColor,
-                fontWeight: FontWeight.bold,
-                fontSize: 17,
-              ),
-            ),
-          ),
-          const SizedBox(height: 10),
-          SingleChildScrollView(
-            scrollDirection: Axis.horizontal,
-            child: Row(
-              children: [
-                HotelsCard(),
-                HotelsCard(),
-                HotelsCard(),
-                HotelsCard(),
-              ],
-            ),
-          ),
-        ],
-      ),
-    );
-  }
-}
-
-class HotelsCard extends StatelessWidget {
-  const HotelsCard({
-    Key? key,
-  }) : super(key: key);
-
-  @override
-  Widget build(BuildContext context) {
-    return InkWell(
-      onTap: () {
-        Navigator.push(
-          context,
-          MaterialPageRoute(
-            builder: (context) => HotelScreen(),
-          ),
-        );
-      },
-      child: Container(
-        child: Stack(
-          children: [
-            Container(
-              height: 270,
-              width: 180,
-              decoration: BoxDecoration(
-                borderRadius: BorderRadius.circular(20),
-                image: DecorationImage(
-                  fit: BoxFit.cover,
-                  image: NetworkImage(
-                    'https://pix10.agoda.net/hotelImages/280516/-1/cafcc95a1200438d463f6fbd37c1303f.jpg?ca=10&ce=1&s=1024x768',
-                  ),
-                ),
-              ),
-            ),
-            Container(
-              height: 270,
-              width: 180,
-              decoration: BoxDecoration(
-                borderRadius: BorderRadius.circular(20),
-                gradient: LinearGradient(
-                  begin: Alignment.topCenter,
-                  end: Alignment.bottomCenter,
-                  colors: [
-                    Colors.black26,
-                    Colors.black26,
-                    AppColors.starColor,
-                  ],
-                ),
-              ),
-            ),
-            Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 10),
-              child: Container(
-                height: 270,
-                width: 180,
-                child: Column(
-                  //mainAxisAlignment: MainAxisAlignment.end,
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    const SizedBox(height: 10),
-                    Container(
-                      width: 51,
-                      padding: const EdgeInsets.all(5),
-                      decoration: BoxDecoration(
-                        color: AppColors.mainColor,
-                        borderRadius: BorderRadius.circular(
-                          15,
-                        ),
-                      ),
-                      child: Row(
-                        children: [
-                          Icon(
-                            Icons.star,
-                            color: Colors.yellow,
-                            size: 13,
-                          ),
-                          const SizedBox(width: 5),
-                          Text(
-                            '3.5',
-                            style: TextStyle(
-                              color: Colors.white,
-                              fontWeight: FontWeight.w500,
-                            ),
-                          )
-                        ],
-                      ),
-                    ),
-                    Spacer(),
-                    Text(
-                      'Huong Binh',
-                      style: TextStyle(
-                        color: Colors.white,
-                        fontSize: 20,
-                      ),
-                    ),
-                    Row(
-                      children: [
-                        Icon(Icons.location_on_sharp,
-                            color: Colors.white, size: 15),
-                        const SizedBox(width: 4),
-                        Text('An Khe, Banff',
-                            style: TextStyle(color: Colors.white)),
-                      ],
-                    ),
-                    const SizedBox(height: 20),
-                  ],
-                ),
-              ),
-            ),
           ],
         ),
       ),

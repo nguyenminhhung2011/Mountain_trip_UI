@@ -20,7 +20,7 @@ class _GoogleMapsState extends State<GoogleMaps> {
   // double long = 49.5;
   // double lat = -0.09;
   List<Marker> location = [];
-  List<int> listTab = [0, 1, 2, 3, 4];
+  List<int> listTab = [0, 1, 2, 3, 4, 5];
   PageController pageController = PageController(
     viewportFraction: 0.85,
     initialPage: 0,
@@ -77,7 +77,7 @@ class _GoogleMapsState extends State<GoogleMaps> {
                               color: Colors.black, fontWeight: FontWeight.bold),
                           decoration: InputDecoration(
                             contentPadding: EdgeInsets.all(16.0),
-                            hintText: "Search Hotels",
+                            hintText: "Search Location",
                             prefixIcon: Icon(Icons.location_on_outlined,
                                 color: AppColors.mainColor),
                             border: InputBorder.none,
@@ -97,9 +97,31 @@ class _GoogleMapsState extends State<GoogleMaps> {
                         currentIndex = value;
                       });
                     },
-                    itemCount: 5,
+                    itemCount: 6,
                     itemBuilder: (contex, index) {
                       //double scale = max(viewportFr)
+                      if (index == 5) {
+                        return Padding(
+                          padding: const EdgeInsets.all(4.0),
+                          child: InkWell(
+                            onTap: () {},
+                            child: Container(
+                              alignment: Alignment.center,
+                              decoration: BoxDecoration(
+                                color: AppColors.mainColor.withOpacity(0.9),
+                                borderRadius: BorderRadius.circular(10),
+                              ),
+                              child: Text(
+                                'Show More..',
+                                style: TextStyle(
+                                  color: Colors.white,
+                                  fontWeight: FontWeight.bold,
+                                ),
+                              ),
+                            ),
+                          ),
+                        );
+                      }
                       return Padding(
                         padding: const EdgeInsets.all(4.0),
                         child: HotelCard(press: () {
@@ -120,7 +142,9 @@ class _GoogleMapsState extends State<GoogleMaps> {
                   children: listTab
                       .map(
                         (e) => buildIndicator(
-                            currentIndex == e, MediaQuery.of(context).size),
+                          currentIndex == e,
+                          MediaQuery.of(context).size,
+                        ),
                       )
                       .toList(),
                 ),

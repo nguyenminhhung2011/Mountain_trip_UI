@@ -80,7 +80,8 @@ class _CartMainState extends State<CartMain> {
                 icon: Row(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
-                    Icon(Icons.hotel, color: AppColors.mainColor),
+                    Icon(Icons.maps_home_work_rounded,
+                        color: AppColors.mainColor),
                     const SizedBox(width: 5),
                     Text(
                       'Hotels',

@@ -3,6 +3,7 @@ import 'package:flutter/src/foundation/key.dart';
 import 'package:flutter/src/widgets/framework.dart';
 import 'package:mountain_trip_api/pages/Search/widgets/SearchHotelsCard.dart';
 import 'package:mountain_trip_api/pages/Search/widgets/SearchTripCard.dart';
+import 'package:mountain_trip_api/pages/bookTripsScreen/googleMap.dart';
 import 'package:mountain_trip_api/widgets/TextFormFieldDesign.dart';
 
 import '../../misc/colors.dart';
@@ -12,6 +13,7 @@ class SearchPages extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final TextEditingController searchController = TextEditingController();
     return Scaffold(
       backgroundColor: Colors.white,
       body: Padding(
@@ -25,6 +27,30 @@ class SearchPages extends StatelessWidget {
               icon: Icon(
                 Icons.search,
                 color: AppColors.mainColor,
+              ),
+            ),
+            const SizedBox(height: 10),
+            InkWell(
+              onTap: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) => GoogleMaps(),
+                  ),
+                );
+              },
+              child: Row(
+                children: [
+                  Text(
+                    'Find in Google Map',
+                    style: TextStyle(
+                      color: AppColors.mainColor,
+                      fontWeight: FontWeight.bold,
+                    ),
+                  ),
+                  Spacer(),
+                  Icon(Icons.find_in_page, color: AppColors.mainColor),
+                ],
               ),
             ),
             const SizedBox(height: 10),

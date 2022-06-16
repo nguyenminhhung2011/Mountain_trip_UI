@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:mountain_trip_api/data/fake_data.dart';
 import 'package:mountain_trip_api/pages/DetailsPages/detailPages.dart';
 import 'package:mountain_trip_api/pages/Home/widgets/LocationCard.dart';
 
@@ -14,15 +15,22 @@ class ViewListLocation extends StatelessWidget {
       child: SingleChildScrollView(
         scrollDirection: Axis.horizontal,
         child: Row(
-          children: [
-            LocationCard(press: () {
-              Navigator.push(context,
-                  MaterialPageRoute(builder: (context) => DetailScreen()));
-            }),
-            LocationCard(press: () {}),
-            LocationCard(press: () {}),
-            LocationCard(press: () {}),
-          ],
+          children: FakeData()
+              .listCart
+              .map(
+                (e) => LocationCard(
+                    press: () {
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                          builder: (context) => DetailScreen(),
+                        ),
+                      );
+                    },
+                    image: e["image"],
+                    name: e["name"]),
+              )
+              .toList(),
         ),
       ),
     );
