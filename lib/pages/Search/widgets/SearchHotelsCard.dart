@@ -5,10 +5,12 @@ import '../../../misc/colors.dart';
 class SearchHotelsCard extends StatelessWidget {
   final String title;
   final Function() press;
+  final bool checkMode;
   const SearchHotelsCard({
     Key? key,
     required this.title,
     required this.press,
+    required this.checkMode,
   }) : super(key: key);
 
   @override
@@ -24,7 +26,7 @@ class SearchHotelsCard extends StatelessWidget {
             Text(
               title,
               style: TextStyle(
-                color: Colors.black,
+                color: (checkMode) ? Colors.black : Colors.white,
                 fontWeight: FontWeight.bold,
                 fontSize: 17,
               ),

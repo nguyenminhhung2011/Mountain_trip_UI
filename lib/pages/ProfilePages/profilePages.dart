@@ -5,12 +5,13 @@ import 'package:flutter/src/widgets/framework.dart';
 import '../../misc/colors.dart';
 
 class ProfileScreen extends StatelessWidget {
-  const ProfileScreen({Key? key}) : super(key: key);
+  final bool checkMode;
+  const ProfileScreen({Key? key, required this.checkMode}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.white,
+      backgroundColor: (checkMode) ? Colors.white : Colors.black,
       body: SingleChildScrollView(
         scrollDirection: Axis.vertical,
         child: Column(
@@ -68,7 +69,7 @@ class ProfileScreen extends StatelessWidget {
                         Text(
                           'Nguyen Minh Hung',
                           style: TextStyle(
-                            color: Colors.black,
+                            color: (checkMode) ? Colors.black : Colors.white,
                             fontWeight: FontWeight.bold,
                             fontSize: 20,
                           ),
@@ -92,24 +93,28 @@ class ProfileScreen extends StatelessWidget {
               icon: Icons.notifications,
               title: 'Notification',
               press: () {},
+              checkMode: checkMode,
             ),
             const SizedBox(height: 10),
             Button(
               icon: Icons.message,
               title: 'Messenger',
               press: () {},
+              checkMode: checkMode,
             ),
             const SizedBox(height: 10),
             Button(
               icon: Icons.support_agent,
               title: 'Support',
               press: () {},
+              checkMode: checkMode,
             ),
             const SizedBox(height: 10),
             Button(
               icon: Icons.settings,
               title: 'Edit Personal Information',
               press: () {},
+              checkMode: checkMode,
             ),
             const SizedBox(height: 50),
             InkWell(
@@ -165,11 +170,13 @@ class Button extends StatelessWidget {
   final Function() press;
   final IconData icon;
   final title;
+  final bool checkMode;
   const Button({
     Key? key,
     required this.press,
     required this.icon,
     this.title,
+    required this.checkMode,
   }) : super(key: key);
 
   @override
@@ -184,7 +191,7 @@ class Button extends StatelessWidget {
           padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 10),
           decoration: BoxDecoration(
             borderRadius: BorderRadius.circular(10),
-            color: Colors.white,
+            color: (checkMode) ? Colors.white : Colors.grey,
             boxShadow: [
               BoxShadow(
                 color: Colors.black38.withOpacity(0.1),
@@ -218,7 +225,8 @@ class Button extends StatelessWidget {
                 ),
               ),
               Spacer(),
-              Icon(Icons.arrow_forward_ios, color: Colors.grey),
+              Icon(Icons.arrow_forward_ios,
+                  color: (checkMode) ? Colors.grey : Colors.black),
             ],
           ),
         ),

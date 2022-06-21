@@ -9,19 +9,21 @@ import 'package:mountain_trip_api/widgets/TextFormFieldDesign.dart';
 import '../../misc/colors.dart';
 
 class SearchPages extends StatelessWidget {
-  const SearchPages({Key? key}) : super(key: key);
+  final bool checkMode;
+  const SearchPages({Key? key, required this.checkMode}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     final TextEditingController searchController = TextEditingController();
     return Scaffold(
-      backgroundColor: Colors.white,
+      backgroundColor: (checkMode) ? Colors.white : Colors.black,
       body: Padding(
         padding: const EdgeInsets.symmetric(horizontal: 20),
         child: Column(
           children: [
             const SizedBox(height: 20),
             TextFormFieldDesginWithIcon1(
+              checkMode: checkMode,
               hintText: "Search",
               labelText: "",
               icon: Icon(
@@ -59,7 +61,7 @@ class SearchPages extends StatelessWidget {
                 Text(
                   'Result',
                   style: TextStyle(
-                    color: Colors.black,
+                    color: (checkMode) ? Colors.black : Colors.white,
                     fontWeight: FontWeight.bold,
                     fontSize: 20,
                   ),
@@ -72,8 +74,14 @@ class SearchPages extends StatelessWidget {
                 scrollDirection: Axis.vertical,
                 child: Column(
                   children: [
-                    SearchTripCard(title: 'Dinh nui Everest', press: () {}),
-                    SearchHotelsCard(title: 'Huong Binh Hotels', press: () {})
+                    SearchTripCard(
+                        title: 'Dinh nui Everest',
+                        press: () {},
+                        checkMode: checkMode),
+                    SearchHotelsCard(
+                        title: 'Huong Binh Hotels',
+                        press: () {},
+                        checkMode: checkMode)
                   ],
                 ),
               ),

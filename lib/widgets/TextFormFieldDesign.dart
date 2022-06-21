@@ -168,12 +168,14 @@ class TextFormFieldDesginWithIcon extends StatelessWidget {
 class TextFormFieldDesginWithIcon1 extends StatelessWidget {
   final String hintText;
   final String labelText;
+  final bool checkMode;
   final Widget icon;
   const TextFormFieldDesginWithIcon1(
       {Key? key,
       required this.hintText,
       required this.labelText,
-      required this.icon})
+      required this.icon,
+      required this.checkMode})
       : super(key: key);
 
   @override
@@ -192,7 +194,7 @@ class TextFormFieldDesginWithIcon1 extends StatelessWidget {
       ),
       child: TextFormField(
         style: TextStyle(
-          color: Colors.black,
+          color: (checkMode) ? Colors.black : Colors.white,
           fontWeight: FontWeight.bold,
         ),
         decoration: InputDecoration(

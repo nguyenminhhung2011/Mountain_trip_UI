@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import '../../../misc/colors.dart';
 
 class DiffCard extends StatelessWidget {
+  final bool checkMode;
   final String icon;
   final String tittle;
   final Function() press;
@@ -11,6 +12,7 @@ class DiffCard extends StatelessWidget {
     required this.icon,
     required this.tittle,
     required this.press,
+    required this.checkMode,
   }) : super(key: key);
 
   @override
@@ -39,7 +41,7 @@ class DiffCard extends StatelessWidget {
             style: TextStyle(
               fontWeight: FontWeight.w500,
               fontSize: 14,
-              color: Colors.black,
+              color: (checkMode) ? Colors.black : Colors.white,
             ),
           ),
         ],

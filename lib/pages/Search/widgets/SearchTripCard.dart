@@ -3,10 +3,12 @@ import 'package:flutter/material.dart';
 class SearchTripCard extends StatelessWidget {
   final String title;
   final Function() press;
+  final bool checkMode;
   const SearchTripCard({
     Key? key,
     required this.title,
     required this.press,
+    required this.checkMode,
   }) : super(key: key);
 
   @override
@@ -25,7 +27,7 @@ class SearchTripCard extends StatelessWidget {
             Text(
               title,
               style: TextStyle(
-                color: Colors.black,
+                color: (checkMode) ? Colors.black : Colors.white,
                 fontWeight: FontWeight.bold,
                 fontSize: 17,
               ),

@@ -19,16 +19,118 @@ class MainPagesScreen extends StatefulWidget {
 
 class _MainPagesScreenState extends State<MainPagesScreen> {
   int currentIndex = 0;
-  List<Widget> Pages = [
-    HomeScreen(),
-    FavoritesPages(),
-    SearchPages(),
-    ProfileScreen(),
-  ];
+  bool checkMode = true;
+
   @override
   Widget build(BuildContext context) {
+    List<Widget> Pages = [
+      HomeScreen(checkMode: checkMode),
+      FavoritesPages(checkMode: checkMode),
+      SearchPages(checkMode: checkMode),
+      ProfileScreen(checkMode: checkMode),
+    ];
     return Scaffold(
       extendBody: true,
+      drawer: new Drawer(
+          // Thanh menu
+          child: Container(
+        color: AppColors.mainColor.withOpacity(0.2),
+        child: Column(
+          children: [
+            Padding(
+              padding: const EdgeInsets.only(top: 30, right: 40),
+              child: Text(
+                'Change The Interface',
+                style: TextStyle(
+                  color: Colors.black,
+                  fontWeight: FontWeight.bold,
+                  fontSize: 20,
+                ),
+              ),
+            ),
+            const SizedBox(height: 20),
+            Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 10),
+              child: InkWell(
+                borderRadius: BorderRadius.circular(10),
+                onTap: () {},
+                child: Container(
+                  padding:
+                      const EdgeInsets.symmetric(horizontal: 10, vertical: 5),
+                  decoration: BoxDecoration(
+                    borderRadius: BorderRadius.circular(10),
+                    color: Colors.white,
+                    boxShadow: const [
+                      BoxShadow(
+                          color: Colors.black38,
+                          offset: Offset(2, 3),
+                          blurRadius: 3)
+                    ],
+                  ),
+                  child: Row(
+                    children: [
+                      Icon(
+                        Icons.language,
+                        color: AppColors.mainColor,
+                      ),
+                      const SizedBox(width: 5),
+                      Text(
+                        'Change Language',
+                        style: TextStyle(
+                          color: Colors.black,
+                          fontWeight: FontWeight.bold,
+                        ),
+                      )
+                    ],
+                  ),
+                ),
+              ),
+            ),
+            const SizedBox(height: 20),
+            Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 10),
+              child: InkWell(
+                borderRadius: BorderRadius.circular(10),
+                onTap: () {
+                  setState(() {
+                    checkMode = !checkMode;
+                  });
+                },
+                child: Container(
+                  padding:
+                      const EdgeInsets.symmetric(horizontal: 10, vertical: 5),
+                  decoration: BoxDecoration(
+                    borderRadius: BorderRadius.circular(10),
+                    color: Colors.white,
+                    boxShadow: const [
+                      BoxShadow(
+                          color: Colors.black38,
+                          offset: Offset(2, 3),
+                          blurRadius: 3)
+                    ],
+                  ),
+                  child: Row(
+                    children: [
+                      Icon(
+                        (!checkMode) ? Icons.brightness_4 : Icons.brightness_2,
+                        color: AppColors.mainColor,
+                      ),
+                      const SizedBox(width: 5),
+                      Text(
+                        (!checkMode) ? 'Light Mode' : 'Dark Mode',
+                        style: TextStyle(
+                          color: Colors.black,
+                          fontWeight: FontWeight.bold,
+                        ),
+                      )
+                    ],
+                  ),
+                ),
+              ),
+            ),
+          ],
+        ),
+      )),
       backgroundColor: Colors.white,
       bottomNavigationBar: Container(
         padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 10),
@@ -38,7 +140,9 @@ class _MainPagesScreenState extends State<MainPagesScreen> {
           height: 53,
           padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 2),
           decoration: BoxDecoration(
-            color: Colors.white,
+            color: (checkMode)
+                ? Colors.white
+                : Color.fromARGB(255, 50, 48, 48).withOpacity(0.9),
             boxShadow: [
               BoxShadow(
                 offset: Offset(0, 1),
@@ -51,13 +155,15 @@ class _MainPagesScreenState extends State<MainPagesScreen> {
           child: Row(
             children: [
               ButtonPages(
-                  icon: Icons.home,
-                  press: () {
-                    setState(() {
-                      currentIndex = 0;
-                    });
-                  },
-                  check: currentIndex == 0),
+                icon: Icons.home,
+                press: () {
+                  setState(() {
+                    currentIndex = 0;
+                  });
+                },
+                check: currentIndex == 0,
+                checkMode: checkMode,
+              ),
               Spacer(),
               ButtonPages(
                   icon: Icons.favorite,
@@ -66,6 +172,7 @@ class _MainPagesScreenState extends State<MainPagesScreen> {
                       currentIndex = 1;
                     });
                   },
+                  checkMode: checkMode,
                   check: currentIndex == 1),
               Spacer(),
               ButtonPages(
@@ -75,6 +182,7 @@ class _MainPagesScreenState extends State<MainPagesScreen> {
                       currentIndex = 2;
                     });
                   },
+                  checkMode: checkMode,
                   check: currentIndex == 2),
               Spacer(),
               ButtonPages(
@@ -84,6 +192,7 @@ class _MainPagesScreenState extends State<MainPagesScreen> {
                       currentIndex = 3;
                     });
                   },
+                  checkMode: checkMode,
                   check: currentIndex == 3),
             ],
           ),
@@ -98,11 +207,13 @@ class ButtonPages extends StatelessWidget {
   final IconData icon;
   final Function() press;
   final bool check;
+  final bool checkMode;
   const ButtonPages({
     Key? key,
     required this.icon,
     required this.press,
     required this.check,
+    required this.checkMode,
   }) : super(key: key);
 
   @override
@@ -113,13 +224,19 @@ class ButtonPages extends StatelessWidget {
         padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 2),
         height: 30,
         decoration: BoxDecoration(
-          color: (check) ? AppColors.mainColor : Colors.white,
+          color: (check) ? AppColors.mainColor : Colors.transparent,
           borderRadius: BorderRadius.circular(20),
         ),
         duration: const Duration(milliseconds: 300),
         child: Icon(
           icon,
-          color: (check) ? Colors.white : Colors.black54,
+          color: (check)
+              ? (checkMode)
+                  ? Colors.white
+                  : Color.fromARGB(255, 50, 48, 48).withOpacity(0.9)
+              : (checkMode)
+                  ? Colors.black54
+                  : Colors.grey,
           size: 20,
         ),
       ),

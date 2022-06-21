@@ -20,7 +20,8 @@ import '../tourGuide/chooseTourGuideScreen.dart';
 import '../tourGuide/tourGuideProfile.dart';
 
 class HomeScreen extends StatefulWidget {
-  const HomeScreen({Key? key}) : super(key: key);
+  final bool checkMode;
+  const HomeScreen({Key? key, required this.checkMode}) : super(key: key);
 
   @override
   State<HomeScreen> createState() => _HomeScreenState();
@@ -28,7 +29,6 @@ class HomeScreen extends StatefulWidget {
 
 class _HomeScreenState extends State<HomeScreen> {
   int selectTabIndex = 0;
-  final GlobalKey<ScaffoldState> _scaffoldKey = new GlobalKey<ScaffoldState>();
 
   List<Map<String, dynamic>> _listTab = [
     {
@@ -47,104 +47,7 @@ class _HomeScreenState extends State<HomeScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      key: _scaffoldKey,
-      backgroundColor: Colors.white,
-      drawer: new Drawer(
-          // Thanh menu
-          child: Container(
-        color: AppColors.mainColor.withOpacity(0.2),
-        child: Column(
-          children: [
-            Padding(
-              padding: const EdgeInsets.only(top: 30, right: 40),
-              child: Text(
-                'Change The Interface',
-                style: TextStyle(
-                  color: Colors.black,
-                  fontWeight: FontWeight.bold,
-                  fontSize: 20,
-                ),
-              ),
-            ),
-            const SizedBox(height: 20),
-            Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 10),
-              child: InkWell(
-                borderRadius: BorderRadius.circular(10),
-                onTap: () {},
-                child: Container(
-                  padding:
-                      const EdgeInsets.symmetric(horizontal: 10, vertical: 5),
-                  decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(10),
-                    color: Colors.white,
-                    boxShadow: const [
-                      BoxShadow(
-                          color: Colors.black38,
-                          offset: Offset(2, 3),
-                          blurRadius: 3)
-                    ],
-                  ),
-                  child: Row(
-                    children: [
-                      Icon(
-                        Icons.language,
-                        color: AppColors.mainColor,
-                      ),
-                      const SizedBox(width: 5),
-                      Text(
-                        'Change Language',
-                        style: TextStyle(
-                          color: Colors.black,
-                          fontWeight: FontWeight.bold,
-                        ),
-                      )
-                    ],
-                  ),
-                ),
-              ),
-            ),
-            const SizedBox(height: 20),
-            Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 10),
-              child: InkWell(
-                borderRadius: BorderRadius.circular(10),
-                onTap: () {},
-                child: Container(
-                  padding:
-                      const EdgeInsets.symmetric(horizontal: 10, vertical: 5),
-                  decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(10),
-                    color: Colors.white,
-                    boxShadow: const [
-                      BoxShadow(
-                          color: Colors.black38,
-                          offset: Offset(2, 3),
-                          blurRadius: 3)
-                    ],
-                  ),
-                  child: Row(
-                    children: [
-                      Icon(
-                        Icons.sunny,
-                        color: AppColors.mainColor,
-                      ),
-                      const SizedBox(width: 5),
-                      Text(
-                        'Light Mode',
-                        style: TextStyle(
-                          color: Colors.black,
-                          fontWeight: FontWeight.bold,
-                        ),
-                      )
-                    ],
-                  ),
-                ),
-              ),
-            ),
-          ],
-        ),
-      )),
+      backgroundColor: (!widget.checkMode) ? Colors.black : Colors.white,
       body: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
         const SizedBox(height: 10),
         Container(
@@ -154,11 +57,10 @@ class _HomeScreenState extends State<HomeScreen> {
           child: Row(
             children: [
               InkWell(
-                onTap: () {
-                  _scaffoldKey.currentState?.openDrawer();
-                },
+                onTap: () {},
                 child: SvgPicture.asset('assets/icons/sort.svg',
-                    height: 19, color: Colors.black54),
+                    height: 19,
+                    color: (widget.checkMode) ? Colors.black : Colors.white),
               ),
               Spacer(),
               InkWell(
@@ -211,7 +113,7 @@ class _HomeScreenState extends State<HomeScreen> {
                   child: Text(
                     'Discover',
                     style: TextStyle(
-                      color: Colors.black,
+                      color: (widget.checkMode) ? Colors.black : Colors.white,
                       fontWeight: FontWeight.w500,
                       fontSize: 35,
                     ),
@@ -232,7 +134,9 @@ class _HomeScreenState extends State<HomeScreen> {
                           'Places',
                           style: TextStyle(
                             color: (selectTabIndex == 0)
-                                ? Colors.black
+                                ? (widget.checkMode)
+                                    ? Colors.black
+                                    : Colors.white
                                 : Colors.grey.withOpacity(0.6),
                             fontWeight: FontWeight.w500,
                             fontSize: 17,
@@ -250,7 +154,9 @@ class _HomeScreenState extends State<HomeScreen> {
                           'Popular places',
                           style: TextStyle(
                             color: (selectTabIndex == 1)
-                                ? Colors.black
+                                ? (widget.checkMode)
+                                    ? Colors.black
+                                    : Colors.white
                                 : Colors.grey.withOpacity(0.6),
                             fontWeight: FontWeight.w500,
                             fontSize: 17,
@@ -268,7 +174,9 @@ class _HomeScreenState extends State<HomeScreen> {
                           'Hotels',
                           style: TextStyle(
                             color: (selectTabIndex == 2)
-                                ? Colors.black
+                                ? (widget.checkMode)
+                                    ? Colors.black
+                                    : Colors.white
                                 : Colors.grey.withOpacity(0.6),
                             fontWeight: FontWeight.w500,
                             fontSize: 17,
@@ -298,7 +206,8 @@ class _HomeScreenState extends State<HomeScreen> {
                       Text(
                         'Explore more',
                         style: TextStyle(
-                          color: Colors.black,
+                          color:
+                              (widget.checkMode) ? Colors.black : Colors.white,
                           fontWeight: FontWeight.bold,
                           fontSize: 20,
                         ),
@@ -326,53 +235,57 @@ class _HomeScreenState extends State<HomeScreen> {
                     child: Row(
                       children: [
                         DiffCard(
-                          icon: 'assets/img/kayaking.png',
-                          tittle: 'Kayaking',
-                          press: () {
-                            Navigator.push(
-                              context,
-                              MaterialPageRoute(
-                                builder: (context) => MountainSports(sport: 0),
-                              ),
-                            );
-                          },
-                        ),
+                            icon: 'assets/img/kayaking.png',
+                            tittle: 'Kayaking',
+                            press: () {
+                              Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                  builder: (context) =>
+                                      MountainSports(sport: 0),
+                                ),
+                              );
+                            },
+                            checkMode: widget.checkMode),
                         DiffCard(
-                          icon: 'assets/img/snorkling.png',
-                          tittle: 'Snorkling',
-                          press: () {
-                            Navigator.push(
-                              context,
-                              MaterialPageRoute(
-                                builder: (context) => MountainSports(sport: 1),
-                              ),
-                            );
-                          },
-                        ),
+                            icon: 'assets/img/snorkling.png',
+                            tittle: 'Snorkling',
+                            press: () {
+                              Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                  builder: (context) =>
+                                      MountainSports(sport: 1),
+                                ),
+                              );
+                            },
+                            checkMode: widget.checkMode),
                         DiffCard(
-                          icon: 'assets/img/balloning.png',
-                          tittle: 'Balloning',
-                          press: () {
-                            Navigator.push(
-                              context,
-                              MaterialPageRoute(
-                                builder: (context) => MountainSports(sport: 2),
-                              ),
-                            );
-                          },
-                        ),
+                            icon: 'assets/img/balloning.png',
+                            tittle: 'Balloning',
+                            press: () {
+                              Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                  builder: (context) =>
+                                      MountainSports(sport: 2),
+                                ),
+                              );
+                            },
+                            checkMode: widget.checkMode),
                         DiffCard(
-                          icon: 'assets/img/hiking.png',
-                          tittle: 'Hiking',
-                          press: () {
-                            Navigator.push(
-                              context,
-                              MaterialPageRoute(
-                                builder: (context) => MountainSports(sport: 3),
-                              ),
-                            );
-                          },
-                        )
+                            icon: 'assets/img/hiking.png',
+                            tittle: 'Hiking',
+                            press: () {
+                              Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                  builder: (context) =>
+                                      MountainSports(sport: 3),
+                                ),
+                              );
+                            },
+                            checkMode: widget.checkMode)
                       ],
                     ),
                   ),
@@ -383,7 +296,7 @@ class _HomeScreenState extends State<HomeScreen> {
                   child: Text(
                     'Categories',
                     style: TextStyle(
-                      color: Colors.black,
+                      color: (widget.checkMode) ? Colors.black : Colors.white,
                       fontWeight: FontWeight.bold,
                       fontSize: 20,
                     ),
@@ -674,7 +587,8 @@ class _HomeScreenState extends State<HomeScreen> {
                       Text(
                         'Tour Guide',
                         style: TextStyle(
-                          color: Colors.black,
+                          color:
+                              (!widget.checkMode) ? Colors.white : Colors.black,
                           fontWeight: FontWeight.bold,
                           fontSize: 20,
                         ),

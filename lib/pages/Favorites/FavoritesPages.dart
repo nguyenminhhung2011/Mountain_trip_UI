@@ -8,12 +8,13 @@ import '../../data/fake_data.dart';
 import '../../misc/colors.dart';
 
 class FavoritesPages extends StatelessWidget {
-  const FavoritesPages({Key? key}) : super(key: key);
+  final bool checkMode;
+  const FavoritesPages({Key? key, required this.checkMode}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.white,
+      backgroundColor: (checkMode) ? Colors.white : Colors.black,
       body: Column(
         children: [
           const SizedBox(height: 20),
@@ -24,7 +25,7 @@ class FavoritesPages extends StatelessWidget {
                 Text(
                   'Favorites Location',
                   style: TextStyle(
-                    color: Colors.black,
+                    color: (checkMode) ? Colors.black : Colors.white,
                     fontWeight: FontWeight.bold,
                     fontSize: 20,
                   ),
@@ -46,6 +47,7 @@ class FavoritesPages extends StatelessWidget {
                 location: "Canada, Baff",
                 rating: 4.3,
                 press: () {},
+                checkMode: checkMode,
               ),
             ),
           ),

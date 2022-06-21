@@ -9,6 +9,7 @@ class FavoritesLocation extends StatelessWidget {
   final String location;
   final double rating;
   final Function() press;
+  final bool checkMode;
   const FavoritesLocation({
     Key? key,
     required this.imagePath,
@@ -16,6 +17,7 @@ class FavoritesLocation extends StatelessWidget {
     required this.location,
     required this.rating,
     required this.press,
+    required this.checkMode,
   }) : super(key: key);
 
   @override
@@ -30,15 +32,17 @@ class FavoritesLocation extends StatelessWidget {
           width: MediaQuery.of(context).size.width * 0.5,
           decoration: BoxDecoration(
             borderRadius: BorderRadius.circular(20),
-            color: Colors.white,
+            color: (checkMode) ? Colors.white : Colors.grey,
             boxShadow: [
               BoxShadow(
-                color: Colors.black38.withOpacity(0.1),
+                color:
+                    (checkMode) ? Colors.black38.withOpacity(0.1) : Colors.grey,
                 offset: Offset(-2, 2),
                 blurRadius: 3,
               ),
               BoxShadow(
-                color: Colors.black38.withOpacity(0.1),
+                color:
+                    (checkMode) ? Colors.black38.withOpacity(0.1) : Colors.grey,
                 offset: Offset(2, -2),
                 blurRadius: 3,
               )
