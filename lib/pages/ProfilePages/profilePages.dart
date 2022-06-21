@@ -166,15 +166,6 @@ class ProfileScreen extends StatelessWidget {
   }
 }
 
-class MinhHUngSocute extends StatelessWidget {
-  const MinhHUngSocute({Key? key}) : super(key: key);
-
-  @override
-  Widget build(BuildContext context) {
-    return Container();
-  }
-}
-
 class Button extends StatelessWidget {
   final Function() press;
   final IconData icon;
