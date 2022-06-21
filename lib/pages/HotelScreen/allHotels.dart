@@ -117,9 +117,6 @@ class AllHotels extends StatelessWidget {
                 crossAxisAlignment: CrossAxisAlignment.center,
                 children: [
                   PopulaHotelCard(),
-                  PopulaHotelCard(),
-                  PopulaHotelCard(),
-                  PopulaHotelCard(),
                 ],
               ),
             ),

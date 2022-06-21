@@ -4,6 +4,8 @@ import 'package:flutter/src/widgets/framework.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:mountain_trip_api/misc/colors.dart';
 import 'package:mountain_trip_api/pages/Cart/cartMain.dart';
+import 'package:mountain_trip_api/pages/Home/LevelScreen.dart';
+import 'package:mountain_trip_api/pages/Home/MountainWithSport.dart';
 import 'package:mountain_trip_api/pages/Home/widgets/DiffCard.dart';
 import 'package:mountain_trip_api/pages/Home/widgets/LocationCard.dart';
 import 'package:mountain_trip_api/pages/Home/widgets/PopularPlacesCard.dart';
@@ -26,6 +28,8 @@ class HomeScreen extends StatefulWidget {
 
 class _HomeScreenState extends State<HomeScreen> {
   int selectTabIndex = 0;
+  final GlobalKey<ScaffoldState> _scaffoldKey = new GlobalKey<ScaffoldState>();
+
   List<Map<String, dynamic>> _listTab = [
     {
       'index': 0,
@@ -43,18 +47,115 @@ class _HomeScreenState extends State<HomeScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      key: _scaffoldKey,
       backgroundColor: Colors.white,
+      drawer: new Drawer(
+          // Thanh menu
+          child: Container(
+        color: AppColors.mainColor.withOpacity(0.2),
+        child: Column(
+          children: [
+            Padding(
+              padding: const EdgeInsets.only(top: 30, right: 40),
+              child: Text(
+                'Change The Interface',
+                style: TextStyle(
+                  color: Colors.black,
+                  fontWeight: FontWeight.bold,
+                  fontSize: 20,
+                ),
+              ),
+            ),
+            const SizedBox(height: 20),
+            Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 10),
+              child: InkWell(
+                borderRadius: BorderRadius.circular(10),
+                onTap: () {},
+                child: Container(
+                  padding:
+                      const EdgeInsets.symmetric(horizontal: 10, vertical: 5),
+                  decoration: BoxDecoration(
+                    borderRadius: BorderRadius.circular(10),
+                    color: Colors.white,
+                    boxShadow: const [
+                      BoxShadow(
+                          color: Colors.black38,
+                          offset: Offset(2, 3),
+                          blurRadius: 3)
+                    ],
+                  ),
+                  child: Row(
+                    children: [
+                      Icon(
+                        Icons.language,
+                        color: AppColors.mainColor,
+                      ),
+                      const SizedBox(width: 5),
+                      Text(
+                        'Change Language',
+                        style: TextStyle(
+                          color: Colors.black,
+                          fontWeight: FontWeight.bold,
+                        ),
+                      )
+                    ],
+                  ),
+                ),
+              ),
+            ),
+            const SizedBox(height: 20),
+            Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 10),
+              child: InkWell(
+                borderRadius: BorderRadius.circular(10),
+                onTap: () {},
+                child: Container(
+                  padding:
+                      const EdgeInsets.symmetric(horizontal: 10, vertical: 5),
+                  decoration: BoxDecoration(
+                    borderRadius: BorderRadius.circular(10),
+                    color: Colors.white,
+                    boxShadow: const [
+                      BoxShadow(
+                          color: Colors.black38,
+                          offset: Offset(2, 3),
+                          blurRadius: 3)
+                    ],
+                  ),
+                  child: Row(
+                    children: [
+                      Icon(
+                        Icons.sunny,
+                        color: AppColors.mainColor,
+                      ),
+                      const SizedBox(width: 5),
+                      Text(
+                        'Light Mode',
+                        style: TextStyle(
+                          color: Colors.black,
+                          fontWeight: FontWeight.bold,
+                        ),
+                      )
+                    ],
+                  ),
+                ),
+              ),
+            ),
+          ],
+        ),
+      )),
       body: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
         const SizedBox(height: 10),
         Container(
-          color: Colors.white,
+          color: Colors.transparent,
           width: double.infinity,
           padding: const EdgeInsets.symmetric(vertical: 10, horizontal: 20),
           child: Row(
             children: [
               InkWell(
                 onTap: () {
-                  Navigator.pop(context);
+                  _scaffoldKey.currentState?.openDrawer();
                 },
                 child: SvgPicture.asset('assets/icons/sort.svg',
                     height: 19, color: Colors.black54),
@@ -227,22 +328,50 @@ class _HomeScreenState extends State<HomeScreen> {
                         DiffCard(
                           icon: 'assets/img/kayaking.png',
                           tittle: 'Kayaking',
-                          press: () {},
+                          press: () {
+                            Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                builder: (context) => MountainSports(sport: 0),
+                              ),
+                            );
+                          },
                         ),
                         DiffCard(
                           icon: 'assets/img/snorkling.png',
                           tittle: 'Snorkling',
-                          press: () {},
+                          press: () {
+                            Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                builder: (context) => MountainSports(sport: 1),
+                              ),
+                            );
+                          },
                         ),
                         DiffCard(
                           icon: 'assets/img/balloning.png',
                           tittle: 'Balloning',
-                          press: () {},
+                          press: () {
+                            Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                builder: (context) => MountainSports(sport: 2),
+                              ),
+                            );
+                          },
                         ),
                         DiffCard(
                           icon: 'assets/img/hiking.png',
                           tittle: 'Hiking',
-                          press: () {},
+                          press: () {
+                            Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                builder: (context) => MountainSports(sport: 3),
+                              ),
+                            );
+                          },
                         )
                       ],
                     ),
@@ -269,7 +398,16 @@ class _HomeScreenState extends State<HomeScreen> {
                       children: [
                         InkWell(
                           borderRadius: BorderRadius.circular(20),
-                          onTap: () {},
+                          onTap: () {
+                            Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                builder: (context) => LevelScreen(
+                                  level: 1,
+                                ),
+                              ),
+                            );
+                          },
                           child: Stack(
                             children: [
                               Container(
@@ -349,7 +487,16 @@ class _HomeScreenState extends State<HomeScreen> {
                         const SizedBox(width: 20),
                         InkWell(
                           borderRadius: BorderRadius.circular(20),
-                          onTap: () {},
+                          onTap: () {
+                            Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                builder: (context) => LevelScreen(
+                                  level: 2,
+                                ),
+                              ),
+                            );
+                          },
                           child: Stack(
                             children: [
                               Container(
@@ -429,7 +576,16 @@ class _HomeScreenState extends State<HomeScreen> {
                         const SizedBox(width: 20),
                         InkWell(
                           borderRadius: BorderRadius.circular(20),
-                          onTap: () {},
+                          onTap: () {
+                            Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                builder: (context) => LevelScreen(
+                                  level: 3,
+                                ),
+                              ),
+                            );
+                          },
                           child: Stack(
                             children: [
                               Container(

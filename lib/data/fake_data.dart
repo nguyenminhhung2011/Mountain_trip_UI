@@ -393,4 +393,54 @@ class FakeData {
       'color': Colors.white,
     },
   ];
+
+  final EasyColor = LinearGradient(
+    begin: Alignment.topCenter,
+    end: Alignment.bottomCenter,
+    colors: [
+      Colors.black26,
+      AppColors.mainColor,
+    ],
+  );
+
+  final MediumColor = LinearGradient(
+    begin: Alignment.topCenter,
+    end: Alignment.bottomCenter,
+    colors: [Colors.black26, Colors.yellow],
+  );
+  final HardColor = LinearGradient(
+    begin: Alignment.topCenter,
+    end: Alignment.bottomCenter,
+    colors: [
+      Colors.black26,
+      Colors.red,
+    ],
+  );
+
+  final List<Map<String, dynamic>> listSport = [
+    {
+      "image1": "assets/img/kayaking.jpg",
+      "image2": 'assets/img/kayaking.png',
+      "color": AppColors.mainColor.withOpacity(0.8),
+      "name": 'Kayaking',
+    },
+    {
+      "image1": "assets/img/snorkling.jpg",
+      "image2": 'assets/img/snorkling.png',
+      "color": Color.fromARGB(255, 223, 161, 66),
+      "name": 'Snorkling',
+    },
+    {
+      "image1": "assets/img/baloning.jpg",
+      "image2": 'assets/img/balloning.png',
+      "color": Color.fromARGB(255, 103, 60, 111),
+      "name": 'Balloning',
+    },
+    {
+      "image1": "assets/img/hiking.jpg",
+      "image2": 'assets/img/hiking.png',
+      "color": Color.fromARGB(255, 70, 230, 166),
+      "name": 'Hiking',
+    },
+  ];
 }
