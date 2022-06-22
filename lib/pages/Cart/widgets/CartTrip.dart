@@ -5,7 +5,8 @@ import '../../../misc/colors.dart';
 import 'CartTripItem.dart';
 
 class CartTrip extends StatelessWidget {
-  const CartTrip({Key? key}) : super(key: key);
+  final bool checkMode;
+  const CartTrip({Key? key, required this.checkMode}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -30,7 +31,7 @@ class CartTrip extends StatelessWidget {
                   )
                 ],
               )),
-          child: CartTripItem(index: index),
+          child: CartTripItem(index: index, checkMode: checkMode),
         );
       },
     );

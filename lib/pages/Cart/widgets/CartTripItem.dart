@@ -6,8 +6,10 @@ import '../../../misc/colors.dart';
 import '../BookInfor.dart';
 
 class CartTripItem extends StatelessWidget {
+  final bool checkMode;
   final int index;
-  const CartTripItem({Key? key, required this.index}) : super(key: key);
+  const CartTripItem({Key? key, required this.index, required this.checkMode})
+      : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -16,7 +18,7 @@ class CartTripItem extends StatelessWidget {
         Navigator.push(
           context,
           MaterialPageRoute(
-            builder: (context) => BookInfo(),
+            builder: (context) => BookInfo(checkMode: checkMode),
           ),
         );
       },
@@ -76,7 +78,11 @@ class CartTripItem extends StatelessWidget {
                     Text(
                       FakeData().listCart[index]["name"],
                       style: TextStyle(
-                        color: Colors.black,
+                        color: (checkMode)
+                            ? (checkMode)
+                                ? Colors.black
+                                : Colors.white
+                            : Colors.white,
                         fontWeight: FontWeight.bold,
                         fontSize: 15,
                       ),
@@ -112,7 +118,7 @@ class CartTripItem extends StatelessWidget {
                     Text(
                       FakeData().listCart[index]["Payement"],
                       style: TextStyle(
-                        color: Colors.black,
+                        color: (checkMode) ? Colors.black : Colors.white,
                         fontWeight: FontWeight.w600,
                       ),
                     )
@@ -125,7 +131,7 @@ class CartTripItem extends StatelessWidget {
               onTap: () {},
               child: Icon(
                 Icons.more_vert,
-                color: Colors.black,
+                color: (checkMode) ? Colors.black : Colors.white,
               ),
             ),
           ],

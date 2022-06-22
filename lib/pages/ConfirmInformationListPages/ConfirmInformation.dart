@@ -80,7 +80,7 @@ class ConfirmInformation extends StatelessWidget {
               header: "No Person in Tour",
               title: "5"),
           const SizedBox(height: 20),
-          DateCotainer(date: '20-11-200'),
+          DateCotainer(date: '20-11-200', checkMode: false),
           const SizedBox(height: 50),
           Row(
             children: [

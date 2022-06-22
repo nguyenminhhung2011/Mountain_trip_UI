@@ -6,7 +6,9 @@ import '../../../misc/colors.dart';
 
 class CartHotelItem extends StatelessWidget {
   final int index;
-  const CartHotelItem({Key? key, required this.index}) : super(key: key);
+  final bool checkMode;
+  const CartHotelItem({Key? key, required this.index, required this.checkMode})
+      : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -68,7 +70,7 @@ class CartHotelItem extends StatelessWidget {
                     Text(
                       FakeData().listHotelCart[index]["name"],
                       style: TextStyle(
-                        color: Colors.black,
+                        color: (checkMode) ? Colors.black : Colors.white,
                         fontWeight: FontWeight.bold,
                         fontSize: 15,
                       ),
@@ -103,7 +105,7 @@ class CartHotelItem extends StatelessWidget {
                     Text(
                       FakeData().listHotelCart[index]["Payement"],
                       style: TextStyle(
-                        color: Colors.black,
+                        color: (checkMode) ? Colors.black : Colors.white,
                         fontWeight: FontWeight.w600,
                       ),
                     )
@@ -116,7 +118,7 @@ class CartHotelItem extends StatelessWidget {
               onTap: () {},
               child: Icon(
                 Icons.more_vert,
-                color: Colors.black,
+                color: (checkMode) ? Colors.black : Colors.white,
               ),
             ),
           ],

@@ -5,22 +5,23 @@ import 'package:flutter/src/widgets/framework.dart';
 import '../../misc/colors.dart';
 
 class VoucherMain extends StatelessWidget {
-  const VoucherMain({Key? key}) : super(key: key);
+  final bool checkMode;
+  const VoucherMain({Key? key, required this.checkMode}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.white,
+      backgroundColor: (checkMode) ? Colors.white : Colors.black,
       appBar: AppBar(
         elevation: 0.0,
-        backgroundColor: Colors.white,
+        backgroundColor: (checkMode) ? Colors.white : Colors.black,
         leading: InkWell(
           onTap: () {
             Navigator.pop(context);
           },
           child: Icon(
             Icons.arrow_back_ios,
-            color: Colors.black,
+            color: (checkMode) ? Colors.black : Colors.white,
           ),
         ),
         title: Row(
@@ -28,7 +29,7 @@ class VoucherMain extends StatelessWidget {
             Text(
               'All Voucher:',
               style: TextStyle(
-                color: Colors.black,
+                color: (checkMode) ? Colors.black : Colors.white,
                 fontWeight: FontWeight.bold,
               ),
             ),
@@ -47,8 +48,8 @@ class VoucherMain extends StatelessWidget {
         padding: const EdgeInsets.symmetric(horizontal: 20),
         child: Column(
           children: [
-            Voucher(),
-            Voucher(),
+            Voucher(checkMode: checkMode),
+            Voucher(checkMode: checkMode),
           ],
         ),
       ),
@@ -57,8 +58,10 @@ class VoucherMain extends StatelessWidget {
 }
 
 class Voucher extends StatefulWidget {
+  final bool checkMode;
   const Voucher({
     Key? key,
+    required this.checkMode,
   }) : super(key: key);
 
   @override
@@ -130,7 +133,7 @@ class _VoucherState extends State<Voucher> {
                     Text(
                       'Discount: 15',
                       style: TextStyle(
-                        color: Colors.black,
+                        color: (widget.checkMode) ? Colors.black : Colors.white,
                         fontWeight: FontWeight.bold,
                         fontSize: 16,
                       ),
@@ -153,7 +156,7 @@ class _VoucherState extends State<Voucher> {
                     Text(
                       "Expired Date:",
                       style: TextStyle(
-                        color: Colors.black,
+                        color: (widget.checkMode) ? Colors.black : Colors.white,
                         fontWeight: FontWeight.bold,
                       ),
                     ),
@@ -174,7 +177,7 @@ class _VoucherState extends State<Voucher> {
                     Text(
                       "Code:",
                       style: TextStyle(
-                        color: Colors.black,
+                        color: (widget.checkMode) ? Colors.black : Colors.white,
                         fontWeight: FontWeight.bold,
                       ),
                     ),
@@ -201,7 +204,7 @@ class _VoucherState extends State<Voucher> {
               width: 30,
               decoration: BoxDecoration(
                 shape: BoxShape.circle,
-                color: Colors.white,
+                color: widget.checkMode ? Colors.white : Colors.black,
                 border: Border.all(
                   width: 2,
                   color: AppColors.mainColor,
@@ -217,7 +220,7 @@ class _VoucherState extends State<Voucher> {
               width: 30,
               decoration: BoxDecoration(
                 shape: BoxShape.circle,
-                color: Colors.white,
+                color: widget.checkMode ? Colors.white : Colors.black,
                 border: Border.all(
                   width: 2,
                   color: AppColors.mainColor,
@@ -233,7 +236,7 @@ class _VoucherState extends State<Voucher> {
               width: 30,
               decoration: BoxDecoration(
                 shape: BoxShape.circle,
-                color: Colors.white,
+                color: widget.checkMode ? Colors.white : Colors.black,
                 border: Border.all(
                   width: 2,
                   color: AppColors.mainColor,
@@ -249,7 +252,7 @@ class _VoucherState extends State<Voucher> {
               width: 30,
               decoration: BoxDecoration(
                 shape: BoxShape.circle,
-                color: Colors.white,
+                color: widget.checkMode ? Colors.white : Colors.black,
                 border: Border.all(
                   width: 2,
                   color: AppColors.mainColor,
@@ -265,7 +268,7 @@ class _VoucherState extends State<Voucher> {
               width: 30,
               decoration: BoxDecoration(
                 shape: BoxShape.circle,
-                color: Colors.white,
+                color: widget.checkMode ? Colors.white : Colors.black,
                 border: Border.all(
                   width: 2,
                   color: AppColors.mainColor,
@@ -281,7 +284,7 @@ class _VoucherState extends State<Voucher> {
               width: 30,
               decoration: BoxDecoration(
                 shape: BoxShape.circle,
-                color: Colors.white,
+                color: widget.checkMode ? Colors.white : Colors.black,
                 border: Border.all(
                   width: 2,
                   color: AppColors.mainColor,

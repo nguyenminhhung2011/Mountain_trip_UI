@@ -8,14 +8,15 @@ import '../ConfirmInformationListPages/widgets/InformationROw.dart';
 import '../ConfirmInformationListPages/widgets/Line.dart';
 
 class BookInfo extends StatelessWidget {
-  const BookInfo({Key? key}) : super(key: key);
+  final bool checkMode;
+  const BookInfo({Key? key, required this.checkMode}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.white,
+      backgroundColor: checkMode ? Colors.white : Colors.black,
       appBar: AppBar(
-        backgroundColor: Colors.white,
+        backgroundColor: checkMode ? Colors.white : Colors.black,
         elevation: 0,
         leading: InkWell(
           onTap: () {
@@ -23,13 +24,13 @@ class BookInfo extends StatelessWidget {
           },
           child: Icon(
             Icons.arrow_back_ios,
-            color: Colors.black,
+            color: (checkMode) ? Colors.black : Colors.white,
           ),
         ),
         title: Text(
           'Book Information',
           style: TextStyle(
-            color: Colors.black,
+            color: (checkMode) ? Colors.black : Colors.white,
             fontWeight: FontWeight.bold,
           ),
         ),
@@ -49,7 +50,7 @@ class BookInfo extends StatelessWidget {
                 Text(
                   'Nui Phu Sy',
                   style: TextStyle(
-                    color: Colors.black,
+                    color: (checkMode) ? Colors.black : Colors.white,
                     fontWeight: FontWeight.bold,
                     fontSize: 25,
                     fontFamily: "Sen",
@@ -100,7 +101,7 @@ class BookInfo extends StatelessWidget {
             const SizedBox(height: 20),
             Line(),
             const SizedBox(height: 20),
-            DateCotainer(date: '20-11-2002'),
+            DateCotainer(date: '20-11-2002', checkMode: checkMode),
             const SizedBox(height: 10),
             Row(
               children: [
@@ -113,7 +114,7 @@ class BookInfo extends StatelessWidget {
                 Text(
                   'Time Book',
                   style: TextStyle(
-                    color: Colors.black,
+                    color: (checkMode) ? Colors.black : Colors.white,
                     fontWeight: FontWeight.w600,
                     fontSize: 16,
                     fontFamily: "Sen",
@@ -144,7 +145,7 @@ class BookInfo extends StatelessWidget {
                 Text(
                   'Payement',
                   style: TextStyle(
-                    color: Colors.black,
+                    color: (checkMode) ? Colors.black : Colors.white,
                     fontWeight: FontWeight.bold,
                     fontSize: 25,
                   ),
@@ -180,7 +181,7 @@ class BookInfo extends StatelessWidget {
                 Text(
                   "Total Payement",
                   style: TextStyle(
-                    color: Colors.black,
+                    color: (checkMode) ? Colors.black : Colors.white,
                     fontWeight: FontWeight.bold,
                     fontSize: 16,
                   ),
@@ -204,7 +205,7 @@ class BookInfo extends StatelessWidget {
                 Text(
                   'Payment Status',
                   style: TextStyle(
-                    color: Colors.black,
+                    color: (checkMode) ? Colors.black : Colors.white,
                     fontWeight: FontWeight.w600,
                     fontSize: 16,
                     fontFamily: "Sen",
@@ -228,7 +229,7 @@ class BookInfo extends StatelessWidget {
                 Text(
                   'Payment methods',
                   style: TextStyle(
-                    color: Colors.black,
+                    color: (checkMode) ? Colors.black : Colors.white,
                     fontWeight: FontWeight.w600,
                     fontSize: 16,
                     fontFamily: "Sen",

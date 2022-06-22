@@ -6,7 +6,8 @@ import '../../../misc/colors.dart';
 import 'CartTripItem.dart';
 
 class CartHotels extends StatelessWidget {
-  const CartHotels({Key? key}) : super(key: key);
+  final bool checkMode;
+  const CartHotels({Key? key, required this.checkMode}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -30,7 +31,7 @@ class CartHotels extends StatelessWidget {
                   )
                 ],
               )),
-          child: CartHotelItem(index: index),
+          child: CartHotelItem(index: index, checkMode: checkMode),
         );
       },
     );

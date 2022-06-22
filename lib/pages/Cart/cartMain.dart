@@ -11,22 +11,27 @@ import '../../data/fake_data.dart';
 import '../../misc/colors.dart';
 
 class CartMain extends StatefulWidget {
-  const CartMain({Key? key}) : super(key: key);
+  final bool checkMode;
+  const CartMain({Key? key, required this.checkMode}) : super(key: key);
 
   @override
   State<CartMain> createState() => _CartMainState();
 }
 
 class _CartMainState extends State<CartMain> {
-  List<Widget> listPages = [CartMain(), Container()];
   @override
   Widget build(BuildContext context) {
+    List<Widget> listPages = [
+      CartMain(checkMode: widget.checkMode),
+      Container()
+    ];
+
     return DefaultTabController(
       length: 2,
       child: Scaffold(
-        backgroundColor: Colors.white,
+        backgroundColor: (widget.checkMode) ? Colors.white : Colors.black,
         appBar: AppBar(
-          backgroundColor: Colors.white,
+          backgroundColor: (widget.checkMode) ? Colors.white : Colors.black,
           elevation: 0.0,
           leading: InkWell(
             onTap: () {
@@ -34,7 +39,7 @@ class _CartMainState extends State<CartMain> {
             },
             child: Icon(
               Icons.arrow_back_ios,
-              color: Colors.black,
+              color: (widget.checkMode) ? Colors.black : Colors.white,
             ),
           ),
           title: Row(
@@ -42,7 +47,7 @@ class _CartMainState extends State<CartMain> {
               Text(
                 'Your Trip:',
                 style: TextStyle(
-                  color: Colors.black,
+                  color: (!widget.checkMode) ? Colors.white : Colors.black,
                   fontWeight: FontWeight.bold,
                 ),
               ),
@@ -102,13 +107,13 @@ class _CartMainState extends State<CartMain> {
             Column(
               children: [
                 const SizedBox(height: 20),
-                Expanded(child: CartTrip()),
+                Expanded(child: CartTrip(checkMode: widget.checkMode)),
               ],
             ),
             Column(
               children: [
                 const SizedBox(height: 20),
-                Expanded(child: CartHotels()),
+                Expanded(child: CartHotels(checkMode: widget.checkMode)),
               ],
             ),
           ],
@@ -119,7 +124,7 @@ class _CartMainState extends State<CartMain> {
             vertical: 15,
           ),
           decoration: BoxDecoration(
-            color: Colors.white,
+            color: (widget.checkMode) ? Colors.white : Colors.black,
             borderRadius: BorderRadius.only(
               topLeft: Radius.circular(30),
               topRight: Radius.circular(30),
@@ -127,8 +132,10 @@ class _CartMainState extends State<CartMain> {
             boxShadow: [
               BoxShadow(
                 offset: Offset(0, -15),
-                color: Colors.black.withOpacity(0.09),
-                blurRadius: 20,
+                color: (widget.checkMode)
+                    ? Colors.black.withOpacity(0.09)
+                    : Colors.grey.withOpacity(0.1),
+                blurRadius: 200,
               )
             ],
           ),
@@ -143,7 +150,8 @@ class _CartMainState extends State<CartMain> {
                     height: 40,
                     padding: const EdgeInsets.all(10),
                     decoration: BoxDecoration(
-                      color: Color(0xFFF5F6F9),
+                      color:
+                          (widget.checkMode) ? Color(0xFFF5F6F9) : Colors.grey,
                       borderRadius: BorderRadius.circular(10),
                     ),
                     child: SvgPicture.asset(
@@ -156,11 +164,16 @@ class _CartMainState extends State<CartMain> {
                     onTap: () {},
                     child: Row(
                       children: [
-                        Text('Add Voucher code'),
+                        Text('Add Voucher code',
+                            style: TextStyle(
+                                color: (widget.checkMode)
+                                    ? Colors.black
+                                    : Colors.white)),
                         const SizedBox(width: 5),
                         Icon(
                           Icons.arrow_forward_ios,
-                          color: Colors.black,
+                          color:
+                              (widget.checkMode) ? Colors.black : Colors.white,
                           size: 13,
                         ),
                       ],
@@ -174,13 +187,18 @@ class _CartMainState extends State<CartMain> {
                 children: [
                   RichText(
                     text: TextSpan(
-                      style: TextStyle(color: Colors.black, fontSize: 15),
+                      style: TextStyle(
+                          color:
+                              (widget.checkMode) ? Colors.black : Colors.white,
+                          fontSize: 15),
                       text: 'Total\n',
                       children: [
                         TextSpan(
                           text: '\$337.19',
                           style: TextStyle(
-                            color: Colors.black,
+                            color: (widget.checkMode)
+                                ? Colors.black
+                                : Colors.white,
                             fontWeight: FontWeight.bold,
                             fontSize: 15,
                           ),
@@ -195,7 +213,8 @@ class _CartMainState extends State<CartMain> {
                         Navigator.push(
                           context,
                           MaterialPageRoute(
-                            builder: (context) => VoucherMain(),
+                            builder: (context) =>
+                                VoucherMain(checkMode: widget.checkMode),
                           ),
                         );
                       },
@@ -215,7 +234,9 @@ class _CartMainState extends State<CartMain> {
                         child: Text(
                           'All Voucher',
                           style: TextStyle(
-                            color: Colors.white,
+                            color: (widget.checkMode)
+                                ? Colors.white
+                                : Colors.black,
                             fontWeight: FontWeight.bold,
                           ),
                         ),

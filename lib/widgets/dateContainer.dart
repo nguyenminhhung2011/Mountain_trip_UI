@@ -5,8 +5,10 @@ import 'package:flutter/src/widgets/framework.dart';
 import '../misc/colors.dart';
 
 class DateCotainer extends StatelessWidget {
+  final bool checkMode;
   final String date;
-  const DateCotainer({Key? key, required this.date}) : super(key: key);
+  const DateCotainer({Key? key, required this.date, required this.checkMode})
+      : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -32,7 +34,7 @@ class DateCotainer extends StatelessWidget {
               Text(
                 'Date of Trip',
                 style: TextStyle(
-                  color: Colors.black,
+                  color: checkMode ? Colors.black : Colors.white,
                   fontWeight: FontWeight.bold,
                 ),
               ),
