@@ -6,11 +6,13 @@ class CharStar extends StatelessWidget {
   final int star;
   final int all;
   final int eva;
+  final bool checkMode;
   const CharStar({
     Key? key,
     required this.star,
     required this.all,
     required this.eva,
+    required this.checkMode,
   }) : super(key: key);
 
   @override
@@ -20,7 +22,7 @@ class CharStar extends StatelessWidget {
         Text(
           star.toString(),
           style: TextStyle(
-            color: Colors.black,
+            color: (checkMode) ? Colors.black : Colors.white,
             fontWeight: FontWeight.bold,
             fontSize: 17,
           ),

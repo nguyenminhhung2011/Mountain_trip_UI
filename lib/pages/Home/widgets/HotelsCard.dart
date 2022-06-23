@@ -6,10 +6,12 @@ import '../../HotelScreen/HotelScreen.dart';
 class HotelsCard extends StatelessWidget {
   final String image;
   final String name;
+  final bool checkMode;
   const HotelsCard({
     Key? key,
     required this.image,
     required this.name,
+    required this.checkMode,
   }) : super(key: key);
 
   @override
@@ -19,7 +21,7 @@ class HotelsCard extends StatelessWidget {
         Navigator.push(
           context,
           MaterialPageRoute(
-            builder: (context) => HotelScreen(),
+            builder: (context) => HotelScreen(checkMode: checkMode),
           ),
         );
       },

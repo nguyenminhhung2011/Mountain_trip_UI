@@ -16,7 +16,8 @@ void onButtonTape(int index) {
 }
 
 class ConFirmScreen extends StatefulWidget {
-  const ConFirmScreen({Key? key}) : super(key: key);
+  final bool checkMode;
+  const ConFirmScreen({Key? key, required this.checkMode}) : super(key: key);
 
   @override
   State<ConFirmScreen> createState() => _ConFirmScreenState();
@@ -31,22 +32,27 @@ class _ConFirmScreenState extends State<ConFirmScreen> {
   @override
   Widget build(BuildContext context) {
     List<Widget> listPages = [
-      ConfirmInformation(press: () {
-        onButtonTape(1);
-      }),
+      ConfirmInformation(
+          press: () {
+            onButtonTape(1);
+          },
+          checkMode: widget.checkMode),
       Payement(
         press: () {
           onButtonTape(2);
         },
+        checkMode: widget.checkMode,
       ),
-      Success(press: () {
-        Navigator.pop(context);
-      }),
+      Success(
+          press: () {
+            Navigator.pop(context);
+          },
+          checkMode: widget.checkMode),
     ];
     return Scaffold(
       extendBody: true,
       extendBodyBehindAppBar: true,
-      backgroundColor: Colors.white,
+      backgroundColor: (widget.checkMode) ? Colors.white : Colors.black,
       appBar: AppBar(
         backgroundColor: Colors.transparent,
         elevation: 0,
@@ -56,7 +62,7 @@ class _ConFirmScreenState extends State<ConFirmScreen> {
           },
           child: Icon(
             Icons.arrow_back_ios,
-            color: Colors.black,
+            color: (widget.checkMode) ? Colors.black : Colors.white,
           ),
         ),
       ),
@@ -70,7 +76,7 @@ class _ConFirmScreenState extends State<ConFirmScreen> {
               Text(
                 'Confirm Information',
                 style: TextStyle(
-                  color: Colors.black,
+                  color: (widget.checkMode) ? Colors.black : Colors.white,
                   fontWeight: FontWeight.bold,
                   fontSize: 18,
                 ),

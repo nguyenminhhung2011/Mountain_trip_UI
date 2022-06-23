@@ -162,6 +162,7 @@ class BookInfo extends StatelessWidget {
                 color: AppColors.mainColor,
                 size: 20,
               ),
+              checkMode: checkMode,
             ),
             const SizedBox(height: 10),
             InformationROw(
@@ -172,6 +173,7 @@ class BookInfo extends StatelessWidget {
                 color: AppColors.mainColor,
                 size: 20,
               ),
+              checkMode: checkMode,
             ),
             const SizedBox(height: 10),
             Row(

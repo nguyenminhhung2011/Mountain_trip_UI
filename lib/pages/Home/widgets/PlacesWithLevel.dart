@@ -9,12 +9,14 @@ class PlacesWithLevel extends StatelessWidget {
   final String name;
   final String location;
   final double height;
+  final bool checkMode;
   const PlacesWithLevel({
     Key? key,
     required this.imagePath,
     required this.name,
     required this.location,
     required this.height,
+    required this.checkMode,
   }) : super(key: key);
 
   @override
@@ -26,7 +28,7 @@ class PlacesWithLevel extends StatelessWidget {
           Navigator.push(
             context,
             MaterialPageRoute(
-              builder: (context) => DetailScreen(),
+              builder: (context) => DetailScreen(checkMode: checkMode),
             ),
           );
         },
@@ -68,7 +70,7 @@ class PlacesWithLevel extends StatelessWidget {
                       Text(
                         name,
                         style: TextStyle(
-                          color: Colors.black,
+                          color: (checkMode) ? Colors.black : Colors.white,
                           fontWeight: FontWeight.bold,
                           fontSize: 17,
                         ),

@@ -11,7 +11,8 @@ import 'package:mountain_trip_api/pages/DetailsPages/widgets/PostComment.dart';
 import '../../misc/colors.dart';
 
 class Evaluate extends StatefulWidget {
-  const Evaluate({Key? key}) : super(key: key);
+  final bool checkMode;
+  const Evaluate({Key? key, required this.checkMode}) : super(key: key);
 
   @override
   State<Evaluate> createState() => _EvaluateState();
@@ -33,15 +34,16 @@ class _EvaluateState extends State<Evaluate> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.white,
+      backgroundColor: (widget.checkMode) ? Colors.white : Colors.black,
       appBar: AppBar(
         elevation: 0,
-        backgroundColor: Colors.white,
+        backgroundColor: (widget.checkMode) ? Colors.white : Colors.black,
         leading: InkWell(
           onTap: () {
             Navigator.pop(context);
           },
-          child: Icon(Icons.arrow_back_ios, color: Colors.black),
+          child: Icon(Icons.arrow_back_ios,
+              color: (widget.checkMode) ? Colors.black : Colors.white),
         ),
       ),
       floatingActionButton: FloatingActionButton(
@@ -74,7 +76,8 @@ class _EvaluateState extends State<Evaluate> {
                       Text(
                         '4.2',
                         style: TextStyle(
-                          color: Colors.black,
+                          color:
+                              (widget.checkMode) ? Colors.black : Colors.white,
                           fontSize: 60,
                           fontWeight: FontWeight.bold,
                         ),
@@ -110,11 +113,31 @@ class _EvaluateState extends State<Evaluate> {
                   Spacer(),
                   Column(
                     children: [
-                      CharStar(star: 5, all: 212, eva: 126),
-                      CharStar(star: 4, all: 212, eva: 56),
-                      CharStar(star: 3, all: 212, eva: 12),
-                      CharStar(star: 2, all: 212, eva: 23),
-                      CharStar(star: 1, all: 212, eva: 212 - 56 - 126 - 23),
+                      CharStar(
+                          star: 5,
+                          all: 212,
+                          eva: 126,
+                          checkMode: widget.checkMode),
+                      CharStar(
+                          star: 4,
+                          all: 212,
+                          eva: 56,
+                          checkMode: widget.checkMode),
+                      CharStar(
+                          star: 3,
+                          all: 212,
+                          eva: 12,
+                          checkMode: widget.checkMode),
+                      CharStar(
+                          star: 2,
+                          all: 212,
+                          eva: 23,
+                          checkMode: widget.checkMode),
+                      CharStar(
+                          star: 1,
+                          all: 212,
+                          eva: 212 - 56 - 126 - 23,
+                          checkMode: widget.checkMode),
                     ],
                   ),
                 ],

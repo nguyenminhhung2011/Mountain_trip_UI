@@ -7,7 +7,9 @@ import '../../misc/colors.dart';
 
 class Payement extends StatefulWidget {
   final Function() press;
-  const Payement({Key? key, required this.press}) : super(key: key);
+  final bool checkMode;
+  const Payement({Key? key, required this.press, required this.checkMode})
+      : super(key: key);
 
   @override
   State<Payement> createState() => _PayementState();
@@ -64,7 +66,7 @@ class _PayementState extends State<Payement> {
               Text(
                 'Please select a payment method',
                 style: TextStyle(
-                  color: Colors.black,
+                  color: (widget.checkMode) ? Colors.black : Colors.white,
                   fontWeight: FontWeight.bold,
                   fontSize: 20,
                 ),
@@ -102,7 +104,7 @@ class _PayementState extends State<Payement> {
                 ),
                 child: TextFormField(
                   style: TextStyle(
-                    color: Colors.black,
+                    color: (widget.checkMode) ? Colors.black : Colors.white,
                     fontWeight: FontWeight.bold,
                   ),
                   decoration: InputDecoration(
@@ -147,7 +149,7 @@ class _PayementState extends State<Payement> {
               Text(
                 'Payement',
                 style: TextStyle(
-                  color: Colors.black,
+                  color: (widget.checkMode) ? Colors.black : Colors.white,
                   fontWeight: FontWeight.bold,
                   fontSize: 20,
                 ),
@@ -156,24 +158,24 @@ class _PayementState extends State<Payement> {
           ),
           const SizedBox(height: 10),
           InformationROw(
-            header: "Payement",
-            title: "\$ 20.22",
-            icon: Icon(
-              Icons.attach_money,
-              color: AppColors.mainColor,
-              size: 20,
-            ),
-          ),
+              header: "Payement",
+              title: "\$ 20.22",
+              icon: Icon(
+                Icons.attach_money,
+                color: AppColors.mainColor,
+                size: 20,
+              ),
+              checkMode: widget.checkMode),
           const SizedBox(height: 10),
           InformationROw(
-            header: "Discount",
-            title: "\$ 1.22",
-            icon: Icon(
-              Icons.discount,
-              color: AppColors.mainColor,
-              size: 20,
-            ),
-          ),
+              header: "Discount",
+              title: "\$ 1.22",
+              icon: Icon(
+                Icons.discount,
+                color: AppColors.mainColor,
+                size: 20,
+              ),
+              checkMode: widget.checkMode),
           const SizedBox(height: 10),
           Row(
             children: [
@@ -182,7 +184,7 @@ class _PayementState extends State<Payement> {
               Text(
                 "Total Payement",
                 style: TextStyle(
-                  color: Colors.black,
+                  color: (widget.checkMode) ? Colors.black : Colors.white,
                   fontWeight: FontWeight.w700,
                   fontSize: 16,
                 ),
@@ -191,7 +193,7 @@ class _PayementState extends State<Payement> {
               Text(
                 "\$ 19.00",
                 style: TextStyle(
-                  color: Colors.black,
+                  color: (widget.checkMode) ? Colors.black : Colors.white,
                   fontWeight: FontWeight.w700,
                   fontSize: 16,
                 ),

@@ -5,11 +5,13 @@ class InformationROw extends StatelessWidget {
   final String header;
   final String title;
   final Widget icon;
+  final bool checkMode;
   const InformationROw({
     Key? key,
     required this.header,
     required this.title,
     required this.icon,
+    required this.checkMode,
   }) : super(key: key);
 
   @override
@@ -29,7 +31,7 @@ class InformationROw extends StatelessWidget {
         Text(
           title,
           style: TextStyle(
-            color: Colors.black,
+            color: (checkMode) ? Colors.black : Colors.white,
             fontWeight: FontWeight.w500,
           ),
         )

@@ -6,11 +6,13 @@ class NumberPeopleInGroup extends StatelessWidget {
   final int no;
   final bool selected;
   final Function() press;
+  final bool checkMode;
   const NumberPeopleInGroup({
     Key? key,
     required this.no,
     required this.press,
     required this.selected,
+    required this.checkMode,
   }) : super(key: key);
 
   @override
@@ -24,13 +26,22 @@ class NumberPeopleInGroup extends StatelessWidget {
         width: 60,
         decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(15),
-          color:
-              (selected) ? Colors.black : AppColors.mainColor.withOpacity(0.3),
+          color: (selected)
+              ? (checkMode)
+                  ? Colors.black
+                  : Colors.white
+              : (checkMode)
+                  ? AppColors.mainColor.withOpacity(0.3)
+                  : AppColors.mainColor,
         ),
         child: Text(
           no.toString(),
           style: TextStyle(
-            color: (selected) ? Colors.white : Colors.black,
+            color: (selected)
+                ? (checkMode)
+                    ? Colors.white
+                    : Colors.black
+                : Colors.black,
             fontWeight: FontWeight.bold,
             fontSize: 20,
           ),

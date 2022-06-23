@@ -25,16 +25,18 @@ class ButtonChoose extends StatelessWidget {
           padding: const EdgeInsets.symmetric(horizontal: 20),
           height: 35,
           decoration: BoxDecoration(
-            color: check ? AppColors.mainColor : Colors.white,
+            color: check ? AppColors.mainColor : Colors.transparent,
             border: Border.all(
-              width: 1,
+              width: 2,
               color: AppColors.mainColor,
             ),
             borderRadius: BorderRadius.circular(20),
           ),
           child: Text(
             tittle,
-            style: TextStyle(color: check ? Colors.white : AppColors.mainColor),
+            style: TextStyle(
+                color: check ? Colors.white : AppColors.mainColor,
+                fontWeight: FontWeight.bold),
           ),
         ),
       ),

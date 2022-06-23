@@ -10,12 +10,14 @@ import '../DetailsPages/detailPages.dart';
 
 class LevelScreen extends StatelessWidget {
   final int level; // 0: easy , 1: Medium , 2: Hard
-  const LevelScreen({Key? key, required this.level}) : super(key: key);
+  final bool checkMode;
+  const LevelScreen({Key? key, required this.level, required this.checkMode})
+      : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.white,
+      backgroundColor: (checkMode) ? Colors.white : Colors.black,
       extendBody: true,
       extendBodyBehindAppBar: true,
       appBar: AppBar(
@@ -144,7 +146,7 @@ class LevelScreen extends StatelessWidget {
             Text(
               'Popular places',
               style: TextStyle(
-                color: Colors.black,
+                color: (checkMode) ? Colors.black : Colors.white,
                 fontWeight: FontWeight.bold,
                 fontSize: 20,
               ),
@@ -156,6 +158,7 @@ class LevelScreen extends StatelessWidget {
                     .listCart
                     .map(
                       (e) => PlacesWithLevel(
+                        checkMode: checkMode,
                         height: 2100,
                         name: e["name"],
                         location: 'Thi xa An Khe, Viet Nam',

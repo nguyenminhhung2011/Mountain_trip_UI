@@ -10,7 +10,8 @@ import '../../misc/colors.dart';
 import '../tourGuide/chooseTourGuideScreen.dart';
 
 class GoogleMaps extends StatefulWidget {
-  const GoogleMaps({Key? key}) : super(key: key);
+  final bool checkMode;
+  const GoogleMaps({Key? key, required this.checkMode}) : super(key: key);
 
   @override
   State<GoogleMaps> createState() => _GoogleMapsState();
@@ -128,7 +129,8 @@ class _GoogleMapsState extends State<GoogleMaps> {
                           Navigator.push(
                             context,
                             MaterialPageRoute(
-                              builder: (context) => HotelScreen(),
+                              builder: (context) =>
+                                  HotelScreen(checkMode: widget.checkMode),
                             ),
                           );
                         }),

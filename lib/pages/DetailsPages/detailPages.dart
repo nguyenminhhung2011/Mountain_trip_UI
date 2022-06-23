@@ -15,7 +15,8 @@ import '../../widgets/ratingBar.dart';
 import '../bookTripsScreen/Calender.dart';
 
 class DetailScreen extends StatefulWidget {
-  const DetailScreen({Key? key}) : super(key: key);
+  final bool checkMode;
+  const DetailScreen({Key? key, required this.checkMode}) : super(key: key);
 
   @override
   State<DetailScreen> createState() => _DetailScreenState();
@@ -39,7 +40,7 @@ class _DetailScreenState extends State<DetailScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.white,
+      backgroundColor: (widget.checkMode) ? Colors.white : Colors.black,
       body: Stack(
         children: [
           PageView.builder(
@@ -125,7 +126,7 @@ class _DetailScreenState extends State<DetailScreen> {
                 width: double.infinity,
                 height: _height,
                 decoration: BoxDecoration(
-                  color: Colors.white,
+                  color: (widget.checkMode) ? Colors.white : Colors.black,
                   borderRadius: BorderRadius.only(
                     topLeft: Radius.circular(35),
                     topRight: Radius.circular(35),
@@ -144,7 +145,9 @@ class _DetailScreenState extends State<DetailScreen> {
                             Text(
                               'Yosemite',
                               style: TextStyle(
-                                color: Colors.black,
+                                color: (widget.checkMode)
+                                    ? Colors.black
+                                    : Colors.white,
                                 fontWeight: FontWeight.w500,
                                 fontSize: 25,
                               ),
@@ -211,7 +214,8 @@ class _DetailScreenState extends State<DetailScreen> {
                                 Navigator.push(
                                   context,
                                   MaterialPageRoute(
-                                    builder: (context) => Evaluate(),
+                                    builder: (context) =>
+                                        Evaluate(checkMode: widget.checkMode),
                                   ),
                                 );
                               },
@@ -229,7 +233,9 @@ class _DetailScreenState extends State<DetailScreen> {
                             Text(
                               'People',
                               style: TextStyle(
-                                color: Colors.black,
+                                color: (widget.checkMode)
+                                    ? Colors.black
+                                    : Colors.white,
                                 fontWeight: FontWeight.w600,
                                 fontSize: 21,
                               ),
@@ -252,6 +258,7 @@ class _DetailScreenState extends State<DetailScreen> {
                           child: Row(
                             children: [
                               NumberPeopleInGroup(
+                                  checkMode: widget.checkMode,
                                   no: 1,
                                   press: () {
                                     setState(() {
@@ -260,6 +267,7 @@ class _DetailScreenState extends State<DetailScreen> {
                                   },
                                   selected: selectPeople == 1),
                               NumberPeopleInGroup(
+                                  checkMode: widget.checkMode,
                                   no: 2,
                                   press: () {
                                     setState(() {
@@ -268,6 +276,7 @@ class _DetailScreenState extends State<DetailScreen> {
                                   },
                                   selected: selectPeople == 2),
                               NumberPeopleInGroup(
+                                  checkMode: widget.checkMode,
                                   no: 3,
                                   press: () {
                                     setState(() {
@@ -276,6 +285,7 @@ class _DetailScreenState extends State<DetailScreen> {
                                   },
                                   selected: selectPeople == 3),
                               NumberPeopleInGroup(
+                                  checkMode: widget.checkMode,
                                   no: 4,
                                   press: () {
                                     setState(() {
@@ -284,6 +294,7 @@ class _DetailScreenState extends State<DetailScreen> {
                                   },
                                   selected: selectPeople == 4),
                               NumberPeopleInGroup(
+                                  checkMode: widget.checkMode,
                                   no: 5,
                                   press: () {
                                     setState(() {
@@ -381,7 +392,9 @@ class _DetailScreenState extends State<DetailScreen> {
                         Text(
                           'Description',
                           style: TextStyle(
-                            color: Colors.black,
+                            color: (widget.checkMode)
+                                ? Colors.black
+                                : Colors.white,
                             fontWeight: FontWeight.w600,
                             fontSize: 21,
                           ),
@@ -400,7 +413,9 @@ class _DetailScreenState extends State<DetailScreen> {
                         Text(
                           'Level of difficult',
                           style: TextStyle(
-                            color: Colors.black,
+                            color: (widget.checkMode)
+                                ? Colors.black
+                                : Colors.white,
                             fontWeight: FontWeight.w600,
                             fontSize: 21,
                           ),
@@ -446,7 +461,9 @@ class _DetailScreenState extends State<DetailScreen> {
                                     Text(
                                       'Choose Date',
                                       style: TextStyle(
-                                        color: Colors.black,
+                                        color: (widget.checkMode)
+                                            ? Colors.black
+                                            : Colors.white,
                                         fontWeight: FontWeight.bold,
                                       ),
                                     ),
@@ -488,7 +505,9 @@ class _DetailScreenState extends State<DetailScreen> {
                                   borderRadius: BorderRadius.circular(20),
                                   boxShadow: [
                                     BoxShadow(
-                                        color: Colors.black38.withOpacity(0.4),
+                                        color: (widget.checkMode)
+                                            ? Colors.black38.withOpacity(0.4)
+                                            : Colors.grey.withOpacity(0.5),
                                         offset: Offset(2, 3),
                                         blurRadius: 3)
                                   ],
@@ -508,7 +527,8 @@ class _DetailScreenState extends State<DetailScreen> {
                                   Navigator.push(
                                     context,
                                     MaterialPageRoute(
-                                      builder: (context) => ConFirmScreen(),
+                                      builder: (context) => ConFirmScreen(
+                                          checkMode: widget.checkMode),
                                     ),
                                   );
                                 },

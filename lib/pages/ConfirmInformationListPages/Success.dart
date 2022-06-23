@@ -4,9 +4,11 @@ import '../../misc/colors.dart';
 
 class Success extends StatelessWidget {
   final Function() press;
+  final bool checkMode;
   const Success({
     Key? key,
     required this.press,
+    required this.checkMode,
   }) : super(key: key);
 
   @override
@@ -54,7 +56,7 @@ class Success extends StatelessWidget {
           Text(
             'Thank you for booking the trip',
             style: TextStyle(
-              color: Colors.black,
+              color: (checkMode) ? Colors.black : Colors.white,
               fontWeight: FontWeight.bold,
               fontSize: 20,
             ),

@@ -8,9 +8,11 @@ import '../../misc/colors.dart';
 
 class ConfirmInformation extends StatelessWidget {
   final Function() press;
+  final bool checkMode;
   const ConfirmInformation({
     Key? key,
     required this.press,
+    required this.checkMode,
   }) : super(key: key);
 
   @override
@@ -26,7 +28,7 @@ class ConfirmInformation extends StatelessWidget {
               Text(
                 'Checking Information',
                 style: TextStyle(
-                  color: Colors.black,
+                  color: (checkMode) ? Colors.black : Colors.white,
                   fontWeight: FontWeight.bold,
                   fontSize: 20,
                 ),
@@ -37,17 +39,20 @@ class ConfirmInformation extends StatelessWidget {
           InformationROw(
               icon: Icon(Icons.tour, color: AppColors.mainColor),
               header: "Name of Mountain",
-              title: "Everes Mountain"),
+              title: "Everes Mountain",
+              checkMode: checkMode),
           const SizedBox(height: 10),
           InformationROw(
               icon: Icon(Icons.location_on, color: AppColors.mainColor),
               header: "Location of Mountain",
-              title: "California,America"),
+              title: "California,America",
+              checkMode: checkMode),
           const SizedBox(height: 10),
           InformationROw(
               icon: Icon(Icons.star, color: AppColors.mainColor),
               header: "Level",
-              title: "Hard"),
+              title: "Hard",
+              checkMode: checkMode),
           const SizedBox(height: 20),
           Line(),
           const SizedBox(height: 20),
@@ -68,17 +73,20 @@ class ConfirmInformation extends StatelessWidget {
           InformationROw(
               icon: Icon(Icons.person, color: AppColors.mainColor),
               header: "Name",
-              title: "Nguyen Minh Hung"),
+              title: "Nguyen Minh Hung",
+              checkMode: checkMode),
           const SizedBox(height: 10),
           InformationROw(
               icon: Icon(Icons.phone, color: AppColors.mainColor),
               header: "Phone Number",
-              title: "0935703991"),
+              title: "0935703991",
+              checkMode: checkMode),
           const SizedBox(height: 10),
           InformationROw(
               icon: Icon(Icons.people, color: AppColors.mainColor),
               header: "No Person in Tour",
-              title: "5"),
+              title: "5",
+              checkMode: checkMode),
           const SizedBox(height: 20),
           DateCotainer(date: '20-11-200', checkMode: false),
           const SizedBox(height: 50),

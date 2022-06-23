@@ -9,14 +9,16 @@ import '../../widgets/ratingBar.dart';
 
 class MountainSports extends StatelessWidget {
   final int sport;
-  const MountainSports({Key? key, required this.sport}) : super(key: key);
+  final bool checkMode;
+  const MountainSports({Key? key, required this.sport, required this.checkMode})
+      : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       extendBody: true,
       extendBodyBehindAppBar: true,
-      backgroundColor: Colors.white,
+      backgroundColor: (checkMode) ? Colors.white : Colors.black,
       appBar: AppBar(
         backgroundColor: Colors.transparent,
         leading: InkWell(
@@ -125,7 +127,7 @@ class MountainSports extends StatelessWidget {
             Text(
               'Popular places',
               style: TextStyle(
-                color: Colors.black,
+                color: (checkMode) ? Colors.black : Colors.white,
                 fontWeight: FontWeight.bold,
                 fontSize: 20,
               ),

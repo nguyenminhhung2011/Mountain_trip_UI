@@ -6,7 +6,8 @@ import '../../../misc/colors.dart';
 import '../../HotelScreen/allHotels.dart';
 
 class ViewHotel extends StatelessWidget {
-  const ViewHotel({Key? key}) : super(key: key);
+  final bool checkMode;
+  const ViewHotel({Key? key, required this.checkMode}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -20,7 +21,7 @@ class ViewHotel extends StatelessWidget {
               Navigator.push(
                 context,
                 MaterialPageRoute(
-                  builder: (context) => AllHotels(),
+                  builder: (context) => AllHotels(checkMode: checkMode),
                 ),
               );
             },
@@ -39,7 +40,10 @@ class ViewHotel extends StatelessWidget {
             child: Row(
                 children: FakeData()
                     .listHotelCart
-                    .map((e) => HotelsCard(image: e["image"], name: e["name"]))
+                    .map((e) => HotelsCard(
+                        checkMode: checkMode,
+                        image: e["image"],
+                        name: e["name"]))
                     .toList()),
           ),
         ],

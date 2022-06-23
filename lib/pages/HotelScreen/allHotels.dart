@@ -9,12 +9,14 @@ import '../../widgets/ratingBar.dart';
 import '../bookTripsScreen/googleMap.dart';
 
 class AllHotels extends StatelessWidget {
-  const AllHotels({Key? key}) : super(key: key);
+  final bool checkMode;
+  const AllHotels({Key? key, required this.checkMode}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.white.withOpacity(0.95),
+      backgroundColor:
+          (checkMode) ? Colors.white.withOpacity(0.95) : Colors.black,
       appBar: AppBar(
         backgroundColor: Colors.transparent,
         elevation: 0,
@@ -27,7 +29,7 @@ class AllHotels extends StatelessWidget {
               },
               child: Icon(
                 Icons.arrow_back_ios,
-                color: Colors.black,
+                color: (checkMode) ? Colors.black : Colors.white,
               ),
             ),
           ],
@@ -45,7 +47,7 @@ class AllHotels extends StatelessWidget {
                 width: MediaQuery.of(context).size.width - 80,
                 height: 50,
                 decoration: BoxDecoration(
-                  color: Colors.white,
+                  color: checkMode ? Colors.white : Colors.grey,
                   borderRadius: BorderRadius.circular(20),
                   boxShadow: [
                     BoxShadow(
@@ -65,11 +67,13 @@ class AllHotels extends StatelessWidget {
                       width: MediaQuery.of(context).size.width - 150,
                       child: TextFormField(
                         style: TextStyle(
-                            color: Colors.black, fontWeight: FontWeight.bold),
+                            color: checkMode ? Colors.black : Colors.white,
+                            fontWeight: FontWeight.bold),
                         decoration: InputDecoration(
                           border: InputBorder.none,
                           hintText: 'Search here',
-                          hintStyle: TextStyle(color: Colors.grey),
+                          hintStyle: TextStyle(
+                              color: checkMode ? Colors.grey : Colors.black),
                         ),
                       ),
                     )
@@ -86,7 +90,7 @@ class AllHotels extends StatelessWidget {
                 Navigator.push(
                   context,
                   MaterialPageRoute(
-                    builder: (context) => GoogleMaps(),
+                    builder: (context) => GoogleMaps(checkMode: checkMode),
                   ),
                 );
               },
@@ -116,7 +120,7 @@ class AllHotels extends StatelessWidget {
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.center,
                 children: [
-                  PopulaHotelCard(),
+                  PopulaHotelCard(checkMode: checkMode),
                 ],
               ),
             ),
@@ -128,8 +132,10 @@ class AllHotels extends StatelessWidget {
 }
 
 class PopulaHotelCard extends StatelessWidget {
+  final bool checkMode;
   const PopulaHotelCard({
     Key? key,
+    required this.checkMode,
   }) : super(key: key);
 
   @override
@@ -141,7 +147,7 @@ class PopulaHotelCard extends StatelessWidget {
           Navigator.push(
             context,
             MaterialPageRoute(
-              builder: (context) => HotelScreen(),
+              builder: (context) => HotelScreen(checkMode: checkMode),
             ),
           );
         },

@@ -30,22 +30,23 @@ class HomeScreen extends StatefulWidget {
 class _HomeScreenState extends State<HomeScreen> {
   int selectTabIndex = 0;
 
-  List<Map<String, dynamic>> _listTab = [
-    {
-      'index': 0,
-      'widget': ViewListLocation(),
-    },
-    {
-      'index': 1,
-      'widget': ViewPoplularPlaces(),
-    },
-    {
-      'index': 2,
-      'widget': ViewHotel(),
-    }
-  ];
   @override
   Widget build(BuildContext context) {
+    List<Map<String, dynamic>> _listTab = [
+      {
+        'index': 0,
+        'widget': ViewListLocation(checkMode: widget.checkMode),
+      },
+      {
+        'index': 1,
+        'widget': ViewPoplularPlaces(),
+      },
+      {
+        'index': 2,
+        'widget': ViewHotel(checkMode: widget.checkMode),
+      }
+    ];
+
     return Scaffold(
       backgroundColor: (!widget.checkMode) ? Colors.black : Colors.white,
       body: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
@@ -242,8 +243,8 @@ class _HomeScreenState extends State<HomeScreen> {
                               Navigator.push(
                                 context,
                                 MaterialPageRoute(
-                                  builder: (context) =>
-                                      MountainSports(sport: 0),
+                                  builder: (context) => MountainSports(
+                                      sport: 0, checkMode: widget.checkMode),
                                 ),
                               );
                             },
@@ -255,8 +256,8 @@ class _HomeScreenState extends State<HomeScreen> {
                               Navigator.push(
                                 context,
                                 MaterialPageRoute(
-                                  builder: (context) =>
-                                      MountainSports(sport: 1),
+                                  builder: (context) => MountainSports(
+                                      sport: 1, checkMode: widget.checkMode),
                                 ),
                               );
                             },
@@ -268,8 +269,8 @@ class _HomeScreenState extends State<HomeScreen> {
                               Navigator.push(
                                 context,
                                 MaterialPageRoute(
-                                  builder: (context) =>
-                                      MountainSports(sport: 2),
+                                  builder: (context) => MountainSports(
+                                      sport: 2, checkMode: widget.checkMode),
                                 ),
                               );
                             },
@@ -281,8 +282,8 @@ class _HomeScreenState extends State<HomeScreen> {
                               Navigator.push(
                                 context,
                                 MaterialPageRoute(
-                                  builder: (context) =>
-                                      MountainSports(sport: 3),
+                                  builder: (context) => MountainSports(
+                                      sport: 3, checkMode: widget.checkMode),
                                 ),
                               );
                             },
@@ -317,6 +318,7 @@ class _HomeScreenState extends State<HomeScreen> {
                               context,
                               MaterialPageRoute(
                                 builder: (context) => LevelScreen(
+                                  checkMode: widget.checkMode,
                                   level: 1,
                                 ),
                               ),
@@ -406,6 +408,7 @@ class _HomeScreenState extends State<HomeScreen> {
                               context,
                               MaterialPageRoute(
                                 builder: (context) => LevelScreen(
+                                  checkMode: widget.checkMode,
                                   level: 2,
                                 ),
                               ),
@@ -495,6 +498,7 @@ class _HomeScreenState extends State<HomeScreen> {
                               context,
                               MaterialPageRoute(
                                 builder: (context) => LevelScreen(
+                                  checkMode: widget.checkMode,
                                   level: 3,
                                 ),
                               ),

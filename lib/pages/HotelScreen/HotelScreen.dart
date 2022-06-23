@@ -8,7 +8,8 @@ import '../../data/fake_data.dart';
 import '../../misc/colors.dart';
 
 class HotelScreen extends StatefulWidget {
-  const HotelScreen({Key? key}) : super(key: key);
+  final bool checkMode;
+  const HotelScreen({Key? key, required this.checkMode}) : super(key: key);
 
   @override
   State<HotelScreen> createState() => _HotelScreenState();
@@ -19,7 +20,7 @@ class _HotelScreenState extends State<HotelScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.white,
+      backgroundColor: widget.checkMode ? Colors.white : Colors.black,
       body: Stack(
         children: [
           Container(
@@ -74,7 +75,7 @@ class _HotelScreenState extends State<HotelScreen> {
                 width: double.infinity,
                 height: MediaQuery.of(context).size.height / 2.1,
                 decoration: BoxDecoration(
-                  color: Colors.white,
+                  color: widget.checkMode ? Colors.white : Colors.black,
                   borderRadius: BorderRadius.only(
                     topLeft: Radius.circular(40),
                     topRight: Radius.circular(40),
@@ -92,7 +93,9 @@ class _HotelScreenState extends State<HotelScreen> {
                           Text(
                             'Brush Hotel',
                             style: TextStyle(
-                              color: Colors.black,
+                              color: widget.checkMode
+                                  ? Colors.black
+                                  : Colors.white,
                               fontWeight: FontWeight.bold,
                               fontSize: 30,
                             ),
@@ -125,7 +128,9 @@ class _HotelScreenState extends State<HotelScreen> {
                           Text(
                             'Prague, Czech Republic',
                             style: TextStyle(
-                              color: Colors.black,
+                              color: widget.checkMode
+                                  ? Colors.black
+                                  : Colors.white,
                               fontWeight: FontWeight.bold,
                               fontSize: 15,
                             ),
@@ -151,7 +156,9 @@ class _HotelScreenState extends State<HotelScreen> {
                                 Text(
                                   'Reviews',
                                   style: TextStyle(
-                                    color: Colors.black,
+                                    color: widget.checkMode
+                                        ? Colors.black
+                                        : Colors.white,
                                     fontWeight: FontWeight.bold,
                                     fontSize: 20,
                                   ),
@@ -169,7 +176,9 @@ class _HotelScreenState extends State<HotelScreen> {
                                     Text(
                                       '3.8',
                                       style: TextStyle(
-                                        color: Colors.black,
+                                        color: widget.checkMode
+                                            ? Colors.black
+                                            : Colors.white,
                                         fontWeight: FontWeight.w700,
                                       ),
                                     ),
@@ -194,7 +203,8 @@ class _HotelScreenState extends State<HotelScreen> {
                                 Navigator.push(
                                   context,
                                   MaterialPageRoute(
-                                    builder: (context) => Evaluate(),
+                                    builder: (context) =>
+                                        Evaluate(checkMode: false),
                                   ),
                                 );
                               },
@@ -280,7 +290,7 @@ class _HotelScreenState extends State<HotelScreen> {
                       Text(
                         'Description',
                         style: TextStyle(
-                          color: Colors.black,
+                          color: widget.checkMode ? Colors.black : Colors.white,
                           fontSize: 20,
                           fontWeight: FontWeight.w500,
                         ),
@@ -298,7 +308,9 @@ class _HotelScreenState extends State<HotelScreen> {
                           Text(
                             'List Picture',
                             style: TextStyle(
-                              color: Colors.black,
+                              color: widget.checkMode
+                                  ? Colors.black
+                                  : Colors.white,
                               fontSize: 20,
                               fontWeight: FontWeight.w500,
                             ),
@@ -362,6 +374,7 @@ class _HotelScreenState extends State<HotelScreen> {
                             itemCount: FakeData().listImage.length,
                             itemBuilder: ((context, index) {
                               return ImageCard(
+                                checkMode: widget.checkMode,
                                 press: () {
                                   setState(() {
                                     selectedImage = index;
@@ -391,7 +404,8 @@ class _HotelScreenState extends State<HotelScreen> {
                         Text(
                           'Total Price',
                           style: TextStyle(
-                            color: Colors.black,
+                            color:
+                                widget.checkMode ? Colors.black : Colors.white,
                             fontSize: 17,
                             fontWeight: FontWeight.w600,
                           ),
@@ -403,7 +417,9 @@ class _HotelScreenState extends State<HotelScreen> {
                               TextSpan(
                                 text: '\$ 1,422 ',
                                 style: TextStyle(
-                                  color: Colors.black,
+                                  color: widget.checkMode
+                                      ? Colors.black
+                                      : Colors.white,
                                   fontWeight: FontWeight.bold,
                                   fontSize: 25,
                                 ),
@@ -464,11 +480,13 @@ class ImageCard extends StatelessWidget {
   final Function() press;
   final String imagePath;
   final bool checkClick;
+  final bool checkMode;
   const ImageCard({
     Key? key,
     required this.press,
     required this.imagePath,
     required this.checkClick,
+    required this.checkMode,
   }) : super(key: key);
 
   @override
@@ -483,7 +501,11 @@ class ImageCard extends StatelessWidget {
           borderRadius: BorderRadius.circular(15),
           border: Border.all(
             width: 2,
-            color: (checkClick) ? Colors.blue : Colors.black,
+            color: (checkClick)
+                ? Colors.blue
+                : (checkMode)
+                    ? Colors.black
+                    : Colors.white,
           ),
           image: DecorationImage(
             fit: BoxFit.cover,

@@ -4,8 +4,10 @@ import 'package:mountain_trip_api/pages/DetailsPages/detailPages.dart';
 import 'package:mountain_trip_api/pages/Home/widgets/LocationCard.dart';
 
 class ViewListLocation extends StatelessWidget {
+  final bool checkMode;
   const ViewListLocation({
     Key? key,
+    required this.checkMode,
   }) : super(key: key);
 
   @override
@@ -23,7 +25,8 @@ class ViewListLocation extends StatelessWidget {
                       Navigator.push(
                         context,
                         MaterialPageRoute(
-                          builder: (context) => DetailScreen(),
+                          builder: (context) =>
+                              DetailScreen(checkMode: checkMode),
                         ),
                       );
                     },

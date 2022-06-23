@@ -10,7 +10,8 @@ import 'package:table_calendar/table_calendar.dart';
 import '../../misc/colors.dart';
 
 class BookTrips extends StatefulWidget {
-  const BookTrips({Key? key}) : super(key: key);
+  final bool checkMode;
+  const BookTrips({Key? key, required this.checkMode}) : super(key: key);
 
   @override
   State<BookTrips> createState() => _BookTripsState();
@@ -72,7 +73,8 @@ class _BookTripsState extends State<BookTrips> {
                     Navigator.push(
                       context,
                       MaterialPageRoute(
-                        builder: (context) => GoogleMaps(),
+                        builder: (context) =>
+                            GoogleMaps(checkMode: widget.checkMode),
                       ),
                     );
                   },
