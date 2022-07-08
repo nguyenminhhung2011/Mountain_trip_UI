@@ -203,8 +203,9 @@ class _HotelScreenState extends State<HotelScreen> {
                                 Navigator.push(
                                   context,
                                   MaterialPageRoute(
-                                    builder: (context) =>
-                                        Evaluate(checkMode: false),
+                                    builder: (context) => Evaluate(
+                                      checkMode: widget.checkMode,
+                                    ),
                                   ),
                                 );
                               },

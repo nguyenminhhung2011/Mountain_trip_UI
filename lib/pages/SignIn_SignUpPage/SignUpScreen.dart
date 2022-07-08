@@ -1,14 +1,33 @@
+import 'dart:typed_data';
+
 import 'package:flutter/material.dart';
 import 'package:flutter/src/foundation/key.dart';
 import 'package:flutter/src/widgets/framework.dart';
 
+import 'package:get/get.dart';
+import 'package:image_picker/image_picker.dart';
+import 'package:mountain_trip_api/utils/utils.dart';
+
 import '../../misc/colors.dart';
 import '../../widgets/TextFormFieldDesign.dart';
 
-class SignUpScreen extends StatelessWidget {
+class SignUpScreen extends StatefulWidget {
   const SignUpScreen({Key? key}) : super(key: key);
 
   @override
+  State<SignUpScreen> createState() => _SignUpScreenState();
+}
+
+class _SignUpScreenState extends State<SignUpScreen> {
+  Uint8List? _image;
+  @override
+  void selectedImage() async {
+    Uint8List file = await pickImage(ImageSource.camera);
+    setState(() {
+      _image = file;
+    });
+  }
+
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Colors.white,
@@ -89,18 +108,16 @@ class SignUpScreen extends StatelessWidget {
                                 border:
                                     Border.all(width: 2, color: Colors.white),
                               ),
-                              child: Container(
-                                height: 60,
-                                width: 60,
-                                decoration: BoxDecoration(
-                                  shape: BoxShape.circle,
-                                  // image: DecorationImage(
-                                  //   fit: BoxFit.cover,
-                                  //   image: NetworkImage(
-                                  //       'https://scontent.fsgn5-15.fna.fbcdn.net/v/t39.30808-6/283302695_586918832926290_7105784237859390906_n.jpg?_nc_cat=111&ccb=1-7&_nc_sid=09cbfe&_nc_ohc=ESsVoa63avcAX_UDBUu&_nc_ht=scontent.fsgn5-15.fna&oh=00_AT8KFguLOr6_8642GieK6QfNofXEYHU38xfL4PBqWhI4SA&oe=6298B4FA'),
-                                  // ),
-                                ),
-                              ),
+                              child: (_image == null)
+                                  ? const CircleAvatar(
+                                      backgroundImage: AssetImage(
+                                          'assets/img/mountain.jpeg'),
+                                      radius: 45,
+                                    )
+                                  : CircleAvatar(
+                                      radius: 45,
+                                      backgroundImage: MemoryImage(_image!),
+                                    ),
                             ),
                             const SizedBox(width: 10),
                             Column(
@@ -116,7 +133,9 @@ class SignUpScreen extends StatelessWidget {
                                 ),
                                 const SizedBox(height: 2),
                                 InkWell(
-                                  onTap: () {},
+                                  onTap: () {
+                                    selectedImage();
+                                  },
                                   child: Container(
                                     height: 30,
                                     width: 100,

@@ -1,6 +1,9 @@
+import 'dart:typed_data';
+
 import 'package:flutter/src/foundation/key.dart';
 import 'package:flutter/src/widgets/framework.dart';
 import 'package:flutter/material.dart';
+import 'package:image_picker/image_picker.dart';
 import 'package:mountain_trip_api/data/fake_data.dart';
 import 'package:mountain_trip_api/misc/colors.dart';
 import 'package:mountain_trip_api/pages/SignIn_SignUpPage/SignInScreen.dart';
@@ -19,17 +22,12 @@ class WelcomeScreen extends StatefulWidget {
 class _WelcomeScreenState extends State<WelcomeScreen> {
   // late List<User> users;
   @override
+  
   void initState() {
     super.initState();
-    //getData();
   }
 
-  // getData() async {
-  //   users = await RemoteService().getAllUser();
-  //   for (var item in users) {
-  //     print(item.name);
-  //   }
-  // }
+  
 
   Widget build(BuildContext context) {
     final List<int> indexPage = [0, 1, 2];
