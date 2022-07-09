@@ -21,3 +21,12 @@ void SnackBarError(String msg) {
     backgroundColor: AppColors.mainColor,
   );
 }
+
+void SnackBarNoti(String title, String msg) {
+  Get.snackbar(
+    title,
+    msg,
+    duration: Duration(seconds: 2),
+    backgroundColor: AppColors.mainColor,
+  );
+}

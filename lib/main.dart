@@ -2,17 +2,17 @@
 
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:mountain_trip_api/controls/userController.dart';
 import 'package:mountain_trip_api/pages/Home/HomeScreen.dart';
 import 'package:mountain_trip_api/pages/home_screen_pages.dart';
 import 'package:mountain_trip_api/routes/app_pages.dart';
 
 void main() {
-  runApp(const MyApp());
+  runApp(MyApp());
 }
 
 class MyApp extends StatelessWidget {
-  const MyApp({Key? key}) : super(key: key);
-
+  final userC = Get.put(UserController());
   @override
   Widget build(BuildContext context) {
     return GetMaterialApp(

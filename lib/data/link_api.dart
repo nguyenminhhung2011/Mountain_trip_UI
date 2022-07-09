@@ -2,5 +2,5 @@ class linkApi {
 //User request Link
 
   static final String signInLink = "http://localhost:2011/user/signIn/";
-  static final String signUpLink = "";
+  static final String signUpLink = "http://localhost:2011/user/signUp/";
 }

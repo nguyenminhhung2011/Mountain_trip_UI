@@ -13,4 +13,18 @@ class UserProviders extends GetConnect {
     }
     return "";
   }
+
+  Future<String> signUpFunc(
+      String email, String password, String photoPath) async {
+    print('Sign Up Function is called');
+    var client = http.Client();
+    var uri = Uri.parse(
+        linkApi.signUpLink + email + "/" + password + "/" + photoPath);
+    print(linkApi.signUpLink + email + "/" + password + "/" + photoPath);
+    var response = await client.post(uri);
+    if (response.statusCode == 200) {
+      return response.body;
+    }
+    return "";
+  }
 }

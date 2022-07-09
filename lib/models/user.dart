@@ -22,11 +22,11 @@ class User {
 
   factory User.fromJson(Map<String, dynamic> json) => User(
         id: json["id"],
-        name: json["name"],
-        email: json["email"],
-        password: json["password"],
-        avatar: json["avatar"],
-        phoneNumber: json["phoneNumber"],
+        name: json["Name"],
+        email: json["Email"],
+        password: json["Password"],
+        avatar: json["Avatar"],
+        phoneNumber: json["PhoneNumber"],
       );
 
   Map<String, dynamic> toJson() => {

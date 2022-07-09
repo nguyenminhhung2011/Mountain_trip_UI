@@ -8,6 +8,7 @@ import 'package:mountain_trip_api/pages/SignIn_SignUpPage/SignUpScreen.dart';
 import 'package:mountain_trip_api/widgets/responsiveButton.dart';
 
 import '../../misc/colors.dart';
+import '../../routes/routName.dart';
 import '../../widgets/TextFormFieldDesign.dart';
 import '../mainPages.dart/mainPages.dart';
 
@@ -172,12 +173,8 @@ class SignInScreen extends StatelessWidget {
                             ResponSiveButton(
                                 tittle: "",
                                 press: () {
-                                  Navigator.push(
-                                    context,
-                                    MaterialPageRoute(
-                                      builder: (context) => MainPagesScreen(),
-                                    ),
-                                  );
+                                  usersC.SignIn(
+                                      signInC.emailC.text, signInC.passC.text);
                                 }),
                             const SizedBox(height: 7),
                             Row(
@@ -193,12 +190,7 @@ class SignInScreen extends StatelessWidget {
                                 ),
                                 InkWell(
                                   onTap: () {
-                                    Navigator.push(
-                                      context,
-                                      MaterialPageRoute(
-                                        builder: (context) => SignUpScreen(),
-                                      ),
-                                    );
+                                    Get.toNamed(RouteName.signUp);
                                   },
                                   child: Text(
                                     'Sign Up',

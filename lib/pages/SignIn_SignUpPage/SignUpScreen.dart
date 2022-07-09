@@ -6,13 +6,19 @@ import 'package:flutter/src/widgets/framework.dart';
 
 import 'package:get/get.dart';
 import 'package:image_picker/image_picker.dart';
+import 'package:mountain_trip_api/controls/signUpController.dart';
 import 'package:mountain_trip_api/utils/utils.dart';
 
+import '../../controls/signInController.dart';
+import '../../controls/userController.dart';
 import '../../misc/colors.dart';
 import '../../widgets/TextFormFieldDesign.dart';
 
 class SignUpScreen extends StatefulWidget {
-  const SignUpScreen({Key? key}) : super(key: key);
+  final signUpC = Get.find<SignUpC>();
+  final usersC = Get.find<UserController>();
+
+  SignUpScreen({Key? key}) : super(key: key);
 
   @override
   State<SignUpScreen> createState() => _SignUpScreenState();
@@ -161,26 +167,32 @@ class _SignUpScreenState extends State<SignUpScreen> {
                         child: Column(
                           children: [
                             TextFormFieldDesgin(
-                              control: d,
+                              control: widget.signUpC.emailC,
                               hintText: "Enter your Email",
                               labelText: "Email",
                             ),
                             const SizedBox(height: 20),
                             TextFormFieldPassword(
-                              control: d,
+                              control: widget.signUpC.passC,
                               hintText: "Enter your Password",
                               labelText: "Password",
                             ),
                             const SizedBox(height: 20),
                             TextFormFieldPassword(
-                              control: d,
+                              control: widget.signUpC.repassC,
                               hintText: "Enter Re PassWord",
                               labelText: "Re_Password",
                             ),
                             const SizedBox(height: 7),
                             const SizedBox(height: 17),
                             InkWell(
-                              onTap: () {},
+                              onTap: () {
+                                widget.usersC.SignUp(
+                                    widget.signUpC.emailC.text,
+                                    widget.signUpC.passC.text,
+                                    widget.signUpC.repassC.text,
+                                    "null");
+                              },
                               child: Container(
                                 height: 50,
                                 width: 150,

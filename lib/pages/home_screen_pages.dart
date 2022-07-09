@@ -12,11 +12,12 @@ import 'package:mountain_trip_api/pages/SignIn_SignUpPage/SignInScreen.dart';
 import 'package:mountain_trip_api/services/remoteServices.dart';
 import 'package:mountain_trip_api/widgets/responsiveButton.dart';
 
+import '../controls/userController.dart';
 import '../models/user.dart';
 import '../routes/routName.dart';
 
 class WelcomeScreen extends StatefulWidget {
-  final userC = Get.find<UserProviders>();
+  final userC = Get.find<UserController>();
   @override
   State<WelcomeScreen> createState() => _WelcomeScreenState();
 }
