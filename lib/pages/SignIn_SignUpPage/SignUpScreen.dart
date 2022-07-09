@@ -20,6 +20,7 @@ class SignUpScreen extends StatefulWidget {
 
 class _SignUpScreenState extends State<SignUpScreen> {
   Uint8List? _image;
+  final TextEditingController d = TextEditingController();
   @override
   void selectedImage() async {
     Uint8List file = await pickImage(ImageSource.camera);
@@ -160,16 +161,19 @@ class _SignUpScreenState extends State<SignUpScreen> {
                         child: Column(
                           children: [
                             TextFormFieldDesgin(
+                              control: d,
                               hintText: "Enter your Email",
                               labelText: "Email",
                             ),
                             const SizedBox(height: 20),
                             TextFormFieldPassword(
+                              control: d,
                               hintText: "Enter your Password",
                               labelText: "Password",
                             ),
                             const SizedBox(height: 20),
                             TextFormFieldPassword(
+                              control: d,
                               hintText: "Enter Re PassWord",
                               labelText: "Re_Password",
                             ),

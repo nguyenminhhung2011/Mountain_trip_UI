@@ -1,6 +1,9 @@
 import 'package:flutter/src/foundation/key.dart';
 import 'package:flutter/src/widgets/framework.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+import 'package:mountain_trip_api/controls/signInController.dart';
+import 'package:mountain_trip_api/controls/userController.dart';
 import 'package:mountain_trip_api/pages/SignIn_SignUpPage/SignUpScreen.dart';
 import 'package:mountain_trip_api/widgets/responsiveButton.dart';
 
@@ -9,8 +12,8 @@ import '../../widgets/TextFormFieldDesign.dart';
 import '../mainPages.dart/mainPages.dart';
 
 class SignInScreen extends StatelessWidget {
-  const SignInScreen({Key? key}) : super(key: key);
-
+  final signInC = Get.find<SignInC>();
+  final usersC = Get.find<UserController>();
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -138,11 +141,13 @@ class SignInScreen extends StatelessWidget {
                         child: Column(
                           children: [
                             TextFormFieldDesgin(
+                              control: signInC.emailC,
                               hintText: "Enter your Email",
                               labelText: "Email",
                             ),
                             const SizedBox(height: 20),
                             TextFormFieldPassword(
+                              control: signInC.passC,
                               hintText: "Enter your Password",
                               labelText: "Password",
                             ),

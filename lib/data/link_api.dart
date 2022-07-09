@@ -1,4 +1,6 @@
 class linkApi {
-  static final String signIn = "http://localhost:2011/api/user/signIn";
-  static final String getAllUser = "http://localhost:2011/getAll";
+//User request Link
+
+  static final String signInLink = "http://localhost:2011/user/signIn/";
+  static final String signUpLink = "";
 }

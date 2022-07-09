@@ -5,15 +5,18 @@ import '../misc/colors.dart';
 class TextFormFieldDesgin extends StatelessWidget {
   final String hintText;
   final String labelText;
+  final TextEditingController control;
   const TextFormFieldDesgin({
     Key? key,
     required this.hintText,
     required this.labelText,
+    required this.control,
   }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return TextFormField(
+      controller: control,
       keyboardType: TextInputType.emailAddress,
       obscureText: false,
       style: TextStyle(
@@ -55,11 +58,12 @@ class TextFormFieldDesgin extends StatelessWidget {
 class TextFormFieldPassword extends StatefulWidget {
   final String hintText;
   final String labelText;
-
+  final TextEditingController control;
   const TextFormFieldPassword({
     Key? key,
     required this.hintText,
     required this.labelText,
+    required this.control,
   }) : super(key: key);
 
   @override
@@ -71,6 +75,7 @@ class _TextFormFieldPasswordState extends State<TextFormFieldPassword> {
   @override
   Widget build(BuildContext context) {
     return TextFormField(
+      controller: widget.control,
       keyboardType: TextInputType.emailAddress,
       obscureText: checkShow,
       style: TextStyle(

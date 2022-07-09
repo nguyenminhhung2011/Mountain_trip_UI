@@ -39,29 +39,5 @@ class MyApp extends StatelessWidget {
       home: WelcomeScreen(),
       getPages: AppPages.pages,
     );
-    // MaterialApp(
-    //   theme: ThemeData(
-    //     primarySwatch: Colors.blue,
-    //     visualDensity: VisualDensity.adaptivePlatformDensity,
-    //     fontFamily: "Sen",
-    //     appBarTheme: AppBarTheme(
-    //       color: Colors.white,
-    //       elevation: 0,
-    //       brightness: Brightness.light,
-    //       iconTheme: IconThemeData(
-    //         color: Colors.black,
-    //       ),
-    //       textTheme: TextTheme(
-    //         headline6: TextStyle(
-    //           color: Colors.black12,
-    //           fontSize: 18,
-    //         ),
-    //       ),
-    //     ),
-    //   ),
-    //   debugShowCheckedModeBanner: false,
-    //   title: 'Mountain trip',
-    //   home: const WelcomeScreen(),
-    // );
   }
 }
