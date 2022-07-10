@@ -2,33 +2,36 @@ import 'package:flutter/material.dart';
 import 'package:flutter/src/foundation/key.dart';
 import 'package:flutter/src/widgets/framework.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:get/get.dart';
 import 'package:mountain_trip_api/pages/Favorites/FavoritesPages.dart';
 import 'package:mountain_trip_api/pages/ProfilePages/profilePages.dart';
 import 'package:mountain_trip_api/pages/Search/searchScreen.dart';
-import 'package:mountain_trip_api/pages/home_screen_pages.dart';
+import 'package:mountain_trip_api/pages/Welcome_page.dart';
 
+import '../../controls/mainPagge_controller.dart';
+import '../../controls/userController.dart';
 import '../../misc/colors.dart';
 import '../Home/HomeScreen.dart';
 
 class MainPagesScreen extends StatefulWidget {
-  const MainPagesScreen({Key? key}) : super(key: key);
+  final userC = Get.find<UserController>();
+  final mainC = Get.find<MainPageC>();
+  MainPagesScreen({Key? key}) : super(key: key);
 
   @override
   State<MainPagesScreen> createState() => _MainPagesScreenState();
 }
 
 class _MainPagesScreenState extends State<MainPagesScreen> {
-  int currentIndex = 0;
-  bool checkMode = true;
-
   @override
   Widget build(BuildContext context) {
     List<Widget> Pages = [
-      HomeScreen(checkMode: checkMode),
-      FavoritesPages(checkMode: checkMode),
-      SearchPages(checkMode: checkMode),
-      ProfileScreen(checkMode: checkMode),
+      HomeScreen(checkMode: widget.mainC.checkMode),
+      FavoritesPages(checkMode: widget.mainC.checkMode),
+      SearchPages(checkMode: widget.mainC.checkMode),
+      ProfileScreen(checkMode: widget.mainC.checkMode),
     ];
+
     return Scaffold(
       extendBody: true,
       drawer: new Drawer(
@@ -93,7 +96,7 @@ class _MainPagesScreenState extends State<MainPagesScreen> {
                 borderRadius: BorderRadius.circular(10),
                 onTap: () {
                   setState(() {
-                    checkMode = !checkMode;
+                    widget.mainC.checkMode = !widget.mainC.checkMode;
                   });
                 },
                 child: Container(
@@ -112,12 +115,14 @@ class _MainPagesScreenState extends State<MainPagesScreen> {
                   child: Row(
                     children: [
                       Icon(
-                        (!checkMode) ? Icons.brightness_4 : Icons.brightness_2,
+                        (!widget.mainC.checkMode)
+                            ? Icons.brightness_4
+                            : Icons.brightness_2,
                         color: AppColors.mainColor,
                       ),
                       const SizedBox(width: 5),
                       Text(
-                        (!checkMode) ? 'Light Mode' : 'Dark Mode',
+                        (!widget.mainC.checkMode) ? 'Light Mode' : 'Dark Mode',
                         style: TextStyle(
                           color: Colors.black,
                           fontWeight: FontWeight.bold,
@@ -140,7 +145,7 @@ class _MainPagesScreenState extends State<MainPagesScreen> {
           height: 53,
           padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 2),
           decoration: BoxDecoration(
-            color: (checkMode)
+            color: (widget.mainC.checkMode)
                 ? Colors.white
                 : Color.fromARGB(255, 50, 48, 48).withOpacity(0.9),
             boxShadow: [
@@ -158,47 +163,47 @@ class _MainPagesScreenState extends State<MainPagesScreen> {
                 icon: Icons.home,
                 press: () {
                   setState(() {
-                    currentIndex = 0;
+                    widget.mainC.currentIndex = 0;
                   });
                 },
-                check: currentIndex == 0,
-                checkMode: checkMode,
+                check: widget.mainC.currentIndex == 0,
+                checkMode: widget.mainC.checkMode,
               ),
               Spacer(),
               ButtonPages(
                   icon: Icons.favorite,
                   press: () {
                     setState(() {
-                      currentIndex = 1;
+                      widget.mainC.currentIndex = 1;
                     });
                   },
-                  checkMode: checkMode,
-                  check: currentIndex == 1),
+                  checkMode: widget.mainC.checkMode,
+                  check: widget.mainC.currentIndex == 1),
               Spacer(),
               ButtonPages(
                   icon: Icons.search,
                   press: () {
                     setState(() {
-                      currentIndex = 2;
+                      widget.mainC.currentIndex = 2;
                     });
                   },
-                  checkMode: checkMode,
-                  check: currentIndex == 2),
+                  checkMode: widget.mainC.checkMode,
+                  check: widget.mainC.currentIndex == 2),
               Spacer(),
               ButtonPages(
                   icon: Icons.person,
                   press: () {
                     setState(() {
-                      currentIndex = 3;
+                      widget.mainC.currentIndex = 3;
                     });
                   },
-                  checkMode: checkMode,
-                  check: currentIndex == 3),
+                  checkMode: widget.mainC.checkMode,
+                  check: widget.mainC.currentIndex == 3),
             ],
           ),
         ),
       ),
-      body: Pages[currentIndex],
+      body: Pages[widget.mainC.currentIndex],
     );
   }
 }

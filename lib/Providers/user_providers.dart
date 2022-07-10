@@ -20,8 +20,28 @@ class UserProviders extends GetConnect {
     var client = http.Client();
     var uri = Uri.parse(
         linkApi.signUpLink + email + "/" + password + "/" + photoPath);
-    print(linkApi.signUpLink + email + "/" + password + "/" + photoPath);
     var response = await client.post(uri);
+    if (response.statusCode == 200) {
+      return response.body;
+    }
+    return "";
+  }
+
+  Future<String> EditFunc(
+      String id, String email, String pass, String name, String phone) async {
+    var client = http.Client();
+    var uri = Uri.parse(linkApi.EditLink +
+        id +
+        "/" +
+        name +
+        "/" +
+        email +
+        "/" +
+        pass +
+        "/" +
+        "null/" +
+        phone);
+    var response = await client.patch(uri);
     if (response.statusCode == 200) {
       return response.body;
     }

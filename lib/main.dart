@@ -4,7 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:mountain_trip_api/controls/userController.dart';
 import 'package:mountain_trip_api/pages/Home/HomeScreen.dart';
-import 'package:mountain_trip_api/pages/home_screen_pages.dart';
+import 'package:mountain_trip_api/pages/Welcome_page.dart';
 import 'package:mountain_trip_api/routes/app_pages.dart';
 
 void main() {
