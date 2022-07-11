@@ -128,7 +128,10 @@ class _ProfileScreenState extends State<ProfileScreen> {
                 Button(
                   icon: Icons.message,
                   title: 'Messenger',
-                  press: () {},
+                  press: () {
+                    print(userC.user.name);
+                    Get.reload();
+                  },
                   checkMode: widget.checkMode,
                 ),
                 const SizedBox(height: 10),
@@ -189,6 +192,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                                           proC.passC.text,
                                           proC.phoneC.text);
                                       Get.reload();
+                                      setState(() {});
                                     },
                                     child: Container(
                                       alignment: Alignment.center,

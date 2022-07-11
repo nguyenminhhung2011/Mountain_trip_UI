@@ -47,4 +47,14 @@ class UserProviders extends GetConnect {
     }
     return "";
   }
+
+  Future<String> ChangePassFunc(String id, String newPass) async {
+    var client = http.Client();
+    var uri = Uri.parse(linkApi.chanePassLink + id + "/" + newPass);
+    var response = await client.patch(uri);
+    if (response.statusCode == 200) {
+      return response.body;
+    }
+    return "";
+  }
 }
