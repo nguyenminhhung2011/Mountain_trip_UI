@@ -6,7 +6,9 @@ class ProFileC extends GetxController {
   late TextEditingController phoneC;
   late TextEditingController emailC;
   late TextEditingController passC;
-
+  late TextEditingController newPassC;
+  late TextEditingController rePsasC;
+  late int checkPages = 0;
   @override
   void onInit() {
     super.onInit();
@@ -14,6 +16,8 @@ class ProFileC extends GetxController {
     emailC = TextEditingController();
     passC = TextEditingController();
     phoneC = TextEditingController();
+    newPassC = TextEditingController();
+    rePsasC = TextEditingController();
   }
 
   @override
@@ -22,6 +26,9 @@ class ProFileC extends GetxController {
     passC.dispose();
     nameC.dispose();
     phoneC.dispose();
+    newPassC.dispose();
+    rePsasC.dispose();
+    checkPages = 0;
     super.onClose();
   }
 }

@@ -96,15 +96,16 @@ class UserController extends GetxController {
     update();
   }
 
-  Future<void> EditProfile(
+  Future<String> EditProfile(
       String id, String name, String email, String pass, String phone) async {
-    if (name != "" && email != "" && pass != "" && phone != "") {
+    if (name != "" && email != "" && phone != "") {
       if (email.contains('@')) {
         if (pass.length >= 7) {
           try {
+            String change = "";
             await Get.defaultDialog(
                 title: "Update Profile",
-                middleText: "Do you want update your Profile?",
+                middleText: "Do you want update your Profile",
                 middleTextStyle: TextStyle(
                   color: Colors.black,
                   fontWeight: FontWeight.bold,
@@ -131,33 +132,40 @@ class UserController extends GetxController {
                       _user.value?.phoneNumber = phone;
                       update();
                       SnackBarNoti("Edit User", "Change Profiie is success");
-                      Get.reload();
+                      change = "yes";
                     } else {
                       SnackBarError('Cann\'t change your profile');
+                      change = "no";
                     }
                   });
                 });
+            return change;
+            //Get.reload();
           } catch (err) {
             SnackBarError(err.toString());
-            return;
+            return "no";
           }
         } else {
           SnackBarError('Password must be more than 7 characters');
-          return;
+          return "no";
         }
       } else {
         SnackBarError('Email is not format');
-        return;
+        return "no";
       }
     } else {
       SnackBarError("Field is null");
     }
+    return "no";
   }
 
-  Future<void> changePass(String id, String newPass) async {
-    if (newPass.length >= 7) {
-      try {
-        await Get.defaultDialog(
+  Future<String> changePass(
+      String id, String yourPass, String newPass, String rePass) async {
+    if (newPass == rePass) {
+      if (newPass.length >= 7) {
+        try {
+          String result = "";
+          await Get.defaultDialog(
             title: "Update Password",
             middleText: "Do you want change your Password?",
             middleTextStyle: TextStyle(
@@ -175,19 +183,34 @@ class UserController extends GetxController {
               fontWeight: FontWeight.bold,
             ),
             onConfirm: () {
-              UserProviders().ChangePassFunc(id, newPass).then((value) {
-                _user.value?.password = newPass;
-                update();
-                Get.reload();
+              UserProviders()
+                  .ChangePassFunc(id, newPass, yourPass)
+                  .then((value) {
+                if (value.contains('Error')) {
+                  result = "no";
+                  SnackBarError("Your Password is invalid");
+                } else {
+                  _user.value?.password = newPass;
+                  update();
+                  Get.reload();
+                  result = "yes";
+                  SnackBarNoti("Change Password", "Change Password is success");
+                }
               });
-              return;
-            });
-      } catch (err) {
-        SnackBarError(err.toString());
+            },
+          );
+          return result;
+        } catch (err) {
+          SnackBarError("Cann't change your Pass");
+        }
+      } else {
+        SnackBarError("New Password muse be more than 7 characters");
+        return "no";
       }
     } else {
-      SnackBarError("New Password muse be more than 7 characters");
-      return;
+      SnackBarError("Re Password is invalid");
+      return "no";
     }
+    return "no";
   }
 }
