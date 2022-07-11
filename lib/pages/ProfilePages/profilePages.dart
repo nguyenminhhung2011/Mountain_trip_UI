@@ -91,28 +91,56 @@ class _ProfileScreenState extends State<ProfileScreen> {
                         left: 30,
                         bottom:
                             -(MediaQuery.of(context).size.width * 0.3) / 1.5,
-                        child: Container(
-                          padding: const EdgeInsets.all(4),
-                          width: MediaQuery.of(context).size.width * 0.3,
-                          height: MediaQuery.of(context).size.width * 0.3,
-                          decoration: BoxDecoration(
-                            shape: BoxShape.circle,
-                            color: Colors.white,
-                          ),
-                          child: Container(
-                            decoration: BoxDecoration(
-                              //color: Colors.red,
-                              shape: BoxShape.circle,
-                              image: DecorationImage(
-                                fit: BoxFit.cover,
-                                image: (userC.user.avatar == "null")
-                                    ? NetworkImage(
-                                        'https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460__340.png',
-                                      )
-                                    : NetworkImage(userC.user.avatar),
+                        child: Stack(
+                          clipBehavior: Clip.none,
+                          children: [
+                            Container(
+                              padding: const EdgeInsets.all(4),
+                              width: MediaQuery.of(context).size.width * 0.3,
+                              height: MediaQuery.of(context).size.width * 0.3,
+                              decoration: BoxDecoration(
+                                shape: BoxShape.circle,
+                                color: Colors.white,
+                              ),
+                              child: Container(
+                                decoration: BoxDecoration(
+                                  //color: Colors.red,
+                                  shape: BoxShape.circle,
+                                  image: DecorationImage(
+                                    fit: BoxFit.cover,
+                                    image: (userC.user.avatar == "null")
+                                        ? NetworkImage(
+                                            'https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460__340.png',
+                                          )
+                                        : NetworkImage(userC.user.avatar),
+                                  ),
+                                ),
                               ),
                             ),
-                          ),
+                            InkWell(
+                              onTap: () {},
+                              child: Container(
+                                padding: const EdgeInsets.all(10),
+                                decoration: BoxDecoration(
+                                  shape: BoxShape.circle,
+                                  color: AppColors.mainColor,
+                                  boxShadow: [
+                                    BoxShadow(
+                                      color: Colors.black38.withOpacity(0.1),
+                                      offset: Offset(-2, 2),
+                                      blurRadius: 3,
+                                    ),
+                                    BoxShadow(
+                                      color: Colors.black38.withOpacity(0.1),
+                                      offset: Offset(2, -2),
+                                      blurRadius: 3,
+                                    )
+                                  ],
+                                ),
+                                child: Icon(Icons.camera, color: Colors.white),
+                              ),
+                            )
+                          ],
                         ),
                       ),
                       Positioned(
