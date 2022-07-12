@@ -21,9 +21,13 @@ class SignInScreen extends StatelessWidget {
       backgroundColor: Colors.white,
       body: Stack(
         children: [
-          Image(
-            fit: BoxFit.cover,
-            image: AssetImage('assets/img/mountain.jpeg'),
+          Container(
+            width: double.infinity,
+            height: double.infinity,
+            child: Image(
+              fit: BoxFit.cover,
+              image: AssetImage('assets/img/mountain.jpeg'),
+            ),
           ),
           Container(
             width: double.infinity,

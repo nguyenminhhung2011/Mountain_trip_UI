@@ -32,9 +32,13 @@ class _SignUpScreenState extends State<SignUpScreen> {
       backgroundColor: Colors.white,
       body: Stack(
         children: [
-          Image(
-            fit: BoxFit.cover,
-            image: AssetImage('assets/img/mountain.jpeg'),
+          Container(
+            height: double.infinity,
+            width: double.infinity,
+            child: Image(
+              fit: BoxFit.cover,
+              image: AssetImage('assets/img/mountain.jpeg'),
+            ),
           ),
           Container(
             width: double.infinity,

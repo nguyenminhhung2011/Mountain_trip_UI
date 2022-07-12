@@ -6,6 +6,8 @@ class SignUpC extends GetxController {
   late TextEditingController passC;
   late TextEditingController repassC;
   late TextEditingController phoneNoC;
+  late int pages = 0;
+  late int otp_code = 0;
   @override
   void onInit() {
     super.onInit();
@@ -22,6 +24,7 @@ class SignUpC extends GetxController {
     passC.dispose();
     repassC.dispose();
     phoneNoC.dispose();
+    otp_code = 0;
     super.onClose();
   }
 }
