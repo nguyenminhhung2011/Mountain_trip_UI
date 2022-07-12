@@ -5,11 +5,13 @@ import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 
 class Function1 {
-  Future sendEmail(String email) async {
+  Future<String> sendEmail(String email) async {
     const servicedId = "service_dt1vsrn";
     const templatedId = "template_wyhd1kn";
     const userId = "uOFqprvD7RNb1vEWD";
     var rand = Random();
+    int otpCode = rand.nextInt(8999) + 1000;
+
     final url = Uri.parse("https://api.emailjs.com/api/v1.0/email/send");
     try {
       final response = await http.post(url,
@@ -26,15 +28,17 @@ class Function1 {
               "user_email": email,
               "email_to": email,
               "name_send": "Mountain trip App",
-              "message": rand.nextInt(9999),
+              "message": otpCode,
             }
           }));
-      print(response.body);
+      if (response.statusCode != 200) {
+        return "error";
+      }
+      return otpCode.toString();
     } catch (err) {
       print(err.toString());
     }
-    print("send");
-    return;
+    return "error";
   }
 }
 //

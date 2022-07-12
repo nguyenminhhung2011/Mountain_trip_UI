@@ -51,15 +51,15 @@ class UserController extends GetxController {
     }
   }
 
-  void SignUp(String email, String password, String repass, String photoPath) {
-    if (email != "" && password != "") {
+  void SignUp(String email, String password, String repass, String phone) {
+    if (email != "" && password != "" && phone != "") {
       if (email.contains('@')) {
         if (password.length >= 7) {
           if (password != repass) {
             SnackBarError('Repass is incorrect');
           } else {
             try {
-              UserProviders().signUpFunc(email, password, photoPath).then(
+              UserProviders().signUpFunc(email, password, phone).then(
                 (value) {
                   if (!value.contains('Error')) {
                     var temp = json.decode(value);
@@ -67,7 +67,8 @@ class UserController extends GetxController {
                     update();
                     SnackBarNoti("Sign Up", "Create account is success");
                   } else {
-                    SnackBarError('Email or password is valid');
+                    print(value);
+                    SnackBarError(value);
                   }
                 },
               );

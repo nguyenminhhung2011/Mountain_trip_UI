@@ -9,19 +9,21 @@ class UserProviders extends GetConnect {
     var uri = Uri.parse(linkApi.signInLink + email + "/" + password);
     var response = await client.get(uri);
     if (response.statusCode == 200) {
+      print(response.body);
       return response.body;
     }
     return "";
   }
 
   Future<String> signUpFunc(
-      String email, String password, String photoPath) async {
+      String email, String password, String phoneNo) async {
     print('Sign Up Function is called');
     var client = http.Client();
-    var uri = Uri.parse(
-        linkApi.signUpLink + email + "/" + password + "/" + photoPath);
+    var uri =
+        Uri.parse(linkApi.signUpLink + email + "/" + password + "/" + phoneNo);
     var response = await client.post(uri);
     if (response.statusCode == 200) {
+      print(response.body);
       return response.body;
     }
     return "";
