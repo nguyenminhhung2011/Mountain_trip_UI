@@ -6,11 +6,13 @@ class TextFormFieldDesgin extends StatelessWidget {
   final String hintText;
   final String labelText;
   final TextEditingController control;
+  final IconData icon;
   const TextFormFieldDesgin({
     Key? key,
     required this.hintText,
     required this.labelText,
     required this.control,
+    required this.icon,
   }) : super(key: key);
 
   @override
@@ -46,7 +48,7 @@ class TextFormFieldDesgin extends StatelessWidget {
           padding: const EdgeInsets.fromLTRB(0, 12, 12, 12),
           onPressed: () {},
           icon: Icon(
-            Icons.person,
+            icon,
             color: AppColors.mainColor,
           ),
         ),

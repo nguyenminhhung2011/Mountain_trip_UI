@@ -7,6 +7,7 @@ import 'package:flutter/src/widgets/framework.dart';
 import 'package:get/get.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:mountain_trip_api/controls/signUpController.dart';
+import 'package:mountain_trip_api/function.dart';
 import 'package:mountain_trip_api/utils/utils.dart';
 
 import '../../controls/signInController.dart';
@@ -25,16 +26,7 @@ class SignUpScreen extends StatefulWidget {
 }
 
 class _SignUpScreenState extends State<SignUpScreen> {
-  Uint8List? _image;
-  final TextEditingController d = TextEditingController();
   @override
-  void selectedImage() async {
-    Uint8List file = await pickImage(ImageSource.camera);
-    setState(() {
-      _image = file;
-    });
-  }
-
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Colors.white,
@@ -96,71 +88,6 @@ class _SignUpScreenState extends State<SignUpScreen> {
                         ),
                       ),
                       const SizedBox(height: 5),
-                      Container(
-                        padding: const EdgeInsets.symmetric(
-                            horizontal: 20, vertical: 5),
-                        margin: const EdgeInsets.symmetric(horizontal: 30),
-                        width: double.infinity,
-                        height: 80,
-                        decoration: BoxDecoration(
-                          color: AppColors.mainColor,
-                          borderRadius: BorderRadius.circular(29),
-                        ),
-                        child: Row(
-                          children: [
-                            Container(
-                              padding: const EdgeInsets.all(5),
-                              decoration: BoxDecoration(
-                                shape: BoxShape.circle,
-                                border:
-                                    Border.all(width: 2, color: Colors.white),
-                              ),
-                              child: (_image == null)
-                                  ? const CircleAvatar(
-                                      backgroundImage: AssetImage(
-                                          'assets/img/mountain.jpeg'),
-                                      radius: 45,
-                                    )
-                                  : CircleAvatar(
-                                      radius: 45,
-                                      backgroundImage: MemoryImage(_image!),
-                                    ),
-                            ),
-                            const SizedBox(width: 10),
-                            Column(
-                              mainAxisAlignment: MainAxisAlignment.center,
-                              crossAxisAlignment: CrossAxisAlignment.start,
-                              children: [
-                                Text(
-                                  'Pick Your Avatar',
-                                  style: TextStyle(
-                                    color: Colors.white,
-                                    fontWeight: FontWeight.bold,
-                                  ),
-                                ),
-                                const SizedBox(height: 2),
-                                InkWell(
-                                  onTap: () {
-                                    selectedImage();
-                                  },
-                                  child: Container(
-                                    height: 30,
-                                    width: 100,
-                                    decoration: BoxDecoration(
-                                      borderRadius: BorderRadius.circular(20),
-                                      color: AppColors.textColor1,
-                                    ),
-                                    child: Icon(
-                                      Icons.camera_alt,
-                                      color: Colors.white,
-                                    ),
-                                  ),
-                                )
-                              ],
-                            ),
-                          ],
-                        ),
-                      ),
                       const SizedBox(height: 15),
                       Padding(
                         padding: const EdgeInsets.symmetric(horizontal: 30),
@@ -170,6 +97,14 @@ class _SignUpScreenState extends State<SignUpScreen> {
                               control: widget.signUpC.emailC,
                               hintText: "Enter your Email",
                               labelText: "Email",
+                              icon: Icons.person,
+                            ),
+                            const SizedBox(height: 20),
+                            TextFormFieldDesgin(
+                              control: widget.signUpC.phoneNoC,
+                              hintText: "Enter your phoneNumber",
+                              labelText: "Phone Number",
+                              icon: Icons.phone,
                             ),
                             const SizedBox(height: 20),
                             TextFormFieldPassword(
@@ -187,11 +122,13 @@ class _SignUpScreenState extends State<SignUpScreen> {
                             const SizedBox(height: 17),
                             InkWell(
                               onTap: () {
-                                widget.usersC.SignUp(
-                                    widget.signUpC.emailC.text,
-                                    widget.signUpC.passC.text,
-                                    widget.signUpC.repassC.text,
-                                    "null");
+                                // widget.usersC.SignUp(
+                                //     widget.signUpC.emailC.text,
+                                //     widget.signUpC.passC.text,
+                                //     widget.signUpC.repassC.text,
+                                //     "null");
+                                Function1()
+                                    .sendEmail(widget.signUpC.emailC.text);
                               },
                               child: Container(
                                 height: 50,

@@ -117,29 +117,6 @@ class _ProfileScreenState extends State<ProfileScreen> {
                                 ),
                               ),
                             ),
-                            InkWell(
-                              onTap: () {},
-                              child: Container(
-                                padding: const EdgeInsets.all(10),
-                                decoration: BoxDecoration(
-                                  shape: BoxShape.circle,
-                                  color: AppColors.mainColor,
-                                  boxShadow: [
-                                    BoxShadow(
-                                      color: Colors.black38.withOpacity(0.1),
-                                      offset: Offset(-2, 2),
-                                      blurRadius: 3,
-                                    ),
-                                    BoxShadow(
-                                      color: Colors.black38.withOpacity(0.1),
-                                      offset: Offset(2, -2),
-                                      blurRadius: 3,
-                                    )
-                                  ],
-                                ),
-                                child: Icon(Icons.camera, color: Colors.white),
-                              ),
-                            )
                           ],
                         ),
                       ),

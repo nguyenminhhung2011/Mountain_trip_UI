@@ -145,6 +145,7 @@ class SignInScreen extends StatelessWidget {
                               control: signInC.emailC,
                               hintText: "Enter your Email",
                               labelText: "Email",
+                              icon: Icons.person,
                             ),
                             const SizedBox(height: 20),
                             TextFormFieldPassword(

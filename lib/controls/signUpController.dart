@@ -5,13 +5,15 @@ class SignUpC extends GetxController {
   late TextEditingController emailC;
   late TextEditingController passC;
   late TextEditingController repassC;
-
+  late TextEditingController phoneNoC;
   @override
   void onInit() {
     super.onInit();
     emailC = TextEditingController();
     passC = TextEditingController();
     repassC = TextEditingController();
+    phoneNoC = TextEditingController();
+    emailC.text = "hungnguyen.201102ak@gmail.com";
   }
 
   @override
@@ -19,6 +21,7 @@ class SignUpC extends GetxController {
     emailC.dispose();
     passC.dispose();
     repassC.dispose();
+    phoneNoC.dispose();
     super.onClose();
   }
 }
