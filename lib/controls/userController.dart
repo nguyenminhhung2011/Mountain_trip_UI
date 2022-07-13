@@ -37,7 +37,7 @@ class UserController extends GetxController {
               update();
               Get.toNamed(RouteName.mainPage);
             } else {
-              SnackBarError('Email or password is valid');
+              SnackBarError(value);
             }
           });
         } catch (err) {
@@ -66,6 +66,7 @@ class UserController extends GetxController {
                     _user.value = User.fromJson(temp);
                     update();
                     SnackBarNoti("Sign Up", "Create account is success");
+                    Get.toNamed(RouteName.mainPage);
                   } else {
                     print(value);
                     SnackBarError(value);
@@ -158,6 +159,11 @@ class UserController extends GetxController {
       SnackBarError("Field is null");
     }
     return "no";
+  }
+
+  Future<String> resetPassword(
+      String email, String newPass, String repass) async {
+    return "";
   }
 
   Future<String> changePass(

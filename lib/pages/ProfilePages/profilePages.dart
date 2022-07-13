@@ -4,6 +4,7 @@ import 'package:flutter/src/widgets/framework.dart';
 import 'package:get/get.dart';
 import 'package:mountain_trip_api/controls/profileControl.dart';
 import 'package:mountain_trip_api/controls/userController.dart';
+import 'package:mountain_trip_api/pages/Welcome_page.dart';
 
 import '../../misc/colors.dart';
 import '../../utils/utils.dart';
@@ -195,7 +196,10 @@ class _ProfileScreenState extends State<ProfileScreen> {
                           const SizedBox(height: 50),
                           InkWell(
                             onTap: () {
-                              userC.SignOut();
+                              Navigator.of(context).pushAndRemoveUntil(
+                                  MaterialPageRoute(
+                                      builder: (context) => WelcomeScreen()),
+                                  (Route<dynamic> route) => false);
                             },
                             borderRadius: BorderRadius.circular(10),
                             child: Padding(
