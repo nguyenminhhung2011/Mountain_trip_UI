@@ -162,34 +162,29 @@ class UserController extends GetxController {
     return "no";
   }
 
-  void resetPassword(String email, String newPass, String repass) {
+  String resetPassword(String email, String newPass, String repass) {
     if (newPass.length >= 7) {
       if (newPass == repass) {
         try {
+          String check = "";
           UserProviders().ResetPassFunc(email, newPass).then((value) {
             if (value != "") {
-              var temp = json.decode(value);
-              print(temp["name"]);
-              _user.value = User.fromJson(temp);
-              update();
-              SnackBarNoti("Reset password", "Reset Password is success");
-              Get.toNamed(RouteName.mainPage);
+              check = "Reset Password is success";
             } else {
-              SnackBarError("Cann't Reset your Password");
+              check = "Error Cann't Reset your Password";
             }
           });
+          return check;
         } catch (err) {
-          SnackBarError(err.toString());
+          return "Error" + err.toString();
         }
       } else {
-        SnackBarError("Error RePass is invalid");
-        return;
+        return "Error RePass is invalid";
       }
     } else {
-      SnackBarError("Error Password must be more than 7 characters");
-      return;
+      return "Error Password must be more than 7 characters";
     }
-    return;
+    return "Error";
   }
 
   Future<String> changePass(

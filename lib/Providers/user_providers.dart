@@ -66,8 +66,6 @@ class UserProviders extends GetConnect {
     var clinet = http.Client();
     var uri = Uri.parse(linkApi.resetPassLink + email + "/" + newPass);
     var response = await clinet.patch(uri);
-    print(response.body);
-
     if (response.statusCode == 200) {
       return response.body;
     }

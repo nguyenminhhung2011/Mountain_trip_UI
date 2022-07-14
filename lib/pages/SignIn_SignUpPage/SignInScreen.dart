@@ -91,6 +91,16 @@ class _SignInScreenState extends State<SignInScreen> {
     }
   }
 
+  void initAll() {
+    signInC.emailC.text = "";
+    signInC.newPassC.text = "";
+    signInC.rePassC.text = "";
+    signInC.otp1.text = "";
+    signInC.otp2.text = "";
+    signInC.otp3.text = "";
+    signInC.otp4.text = "";
+  }
+
   void resetPassword() {}
 
   Widget build(BuildContext context) {
@@ -474,13 +484,7 @@ class _SignInScreenState extends State<SignInScreen> {
               InkWell(
                 onTap: () {
                   setState(() {
-                    signInC.emailC.text = "";
-                    signInC.newPassC.text = "";
-                    signInC.rePassC.text = "";
-                    signInC.otp1.text = "";
-                    signInC.otp2.text = "";
-                    signInC.otp3.text = "";
-                    signInC.otp4.text = "";
+                    initAll();
                     signInC.pages = 0;
                   });
                 },
@@ -499,8 +503,19 @@ class _SignInScreenState extends State<SignInScreen> {
               Expanded(
                 child: InkWell(
                   onTap: () {
-                    UserController().resetPassword(signInC.emailC.text,
-                        signInC.newPassC.text, signInC.rePassC.text);
+                    String result = UserController().resetPassword(
+                        signInC.emailC.text,
+                        signInC.newPassC.text,
+                        signInC.rePassC.text);
+                    if (result.contains("Error")) {
+                      SnackBarError(result);
+                    } else {
+                      SnackBarNoti("Reset Password", result);
+                      setState(() {
+                        initAll();
+                        signInC.pages = 0;
+                      });
+                    }
                   },
                   child: Container(
                     height: 50,
