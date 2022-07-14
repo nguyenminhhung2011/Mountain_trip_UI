@@ -498,7 +498,10 @@ class _SignInScreenState extends State<SignInScreen> {
               const SizedBox(width: 10),
               Expanded(
                 child: InkWell(
-                  onTap: () {},
+                  onTap: () {
+                    UserController().resetPassword(signInC.emailC.text,
+                        signInC.newPassC.text, signInC.rePassC.text);
+                  },
                   child: Container(
                     height: 50,
                     decoration: BoxDecoration(

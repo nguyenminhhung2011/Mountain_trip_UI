@@ -32,6 +32,7 @@ class UserController extends GetxController {
         try {
           UserProviders().signInFunc(email, password).then((value) {
             if (!value.contains('Error')) {
+              print(value);
               var temp = json.decode(value);
               _user.value = User.fromJson(temp);
               update();
@@ -161,9 +162,34 @@ class UserController extends GetxController {
     return "no";
   }
 
-  Future<String> resetPassword(
-      String email, String newPass, String repass) async {
-    return "";
+  void resetPassword(String email, String newPass, String repass) {
+    if (newPass.length >= 7) {
+      if (newPass == repass) {
+        try {
+          UserProviders().ResetPassFunc(email, newPass).then((value) {
+            if (value != "") {
+              var temp = json.decode(value);
+              print(temp["name"]);
+              _user.value = User.fromJson(temp);
+              update();
+              SnackBarNoti("Reset password", "Reset Password is success");
+              Get.toNamed(RouteName.mainPage);
+            } else {
+              SnackBarError("Cann't Reset your Password");
+            }
+          });
+        } catch (err) {
+          SnackBarError(err.toString());
+        }
+      } else {
+        SnackBarError("Error RePass is invalid");
+        return;
+      }
+    } else {
+      SnackBarError("Error Password must be more than 7 characters");
+      return;
+    }
+    return;
   }
 
   Future<String> changePass(
